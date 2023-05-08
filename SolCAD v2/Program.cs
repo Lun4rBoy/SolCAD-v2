@@ -22,7 +22,7 @@ namespace SolCAD_v2
             // see https://aka.ms/applicationconfiguration.
             Climatic_Controller.RadTemp_Calculos(-20.81197, -69.12911, 50, radList);
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new Inicio());
         }
     }
 }
