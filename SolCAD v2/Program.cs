@@ -20,7 +20,6 @@ namespace SolCAD_v2
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
-            Climatic_Controller.RadTemp_Calculos(-20.81197, -69.12911, 50, radList);
             ApplicationConfiguration.Initialize();
             Application.Run(new Inicio());
         }

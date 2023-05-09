@@ -15,11 +15,11 @@ namespace SolCAD_v2
             trackBars.Add(sliderCrecimiento);
             trackBars.Add(sliderAutonomia);
 
-            foreach(TrackBar slider in trackBars) 
+            foreach (TrackBar slider in trackBars)
             {
                 // Configurar las propiedades del slider
                 slider.Minimum = 0; // Valor mínimo del slider
-                if (slider.Name.Equals("sliderPotencia")||slider.Name.Equals("sliderCrecimiento"))
+                if (slider.Name.Equals("sliderPotencia") || slider.Name.Equals("sliderCrecimiento"))
                 {
                     slider.Maximum = 1000; // Valor máximo del slider
                 }
@@ -27,7 +27,7 @@ namespace SolCAD_v2
                 {
                     slider.Maximum = 100;
                 }
-                
+
                 slider.TickStyle = TickStyle.BottomRight; // Estilo de las marcas del slider
                 slider.TickFrequency = 10; // Frecuencia de las marcas del slider
                 slider.LargeChange = 10; // Cambio grande del slider
@@ -37,7 +37,7 @@ namespace SolCAD_v2
                 // Agregar un controlador de eventos para responder a los cambios en el slider
                 slider.Scroll += Slider_Scroll;
             }
-            
+
 
         }
 
@@ -53,13 +53,13 @@ namespace SolCAD_v2
                     wattsPotencia.Text = valor.ToString() + " Watts";
                     break;
                 case "sliderAutonomia":
-                    horaslbl.Text = valor.ToString() +" Horas";
+                    horaslbl.Text = valor.ToString() + " Horas";
                     break;
                 case "sliderCrecimiento":
                     wattsCrecimiento.Text = valor.ToString() + " Watts";
                     break;
             }
-            
+
         }
     }
 }

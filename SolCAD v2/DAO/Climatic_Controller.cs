@@ -244,5 +244,20 @@ namespace SolCAD_v2.DAO
         {
             return Math.Cos(Math.Abs(-latRadianes+v-elevRadianes)) / Math.Cos(Math.Abs(-latRadianes+v));
         }
+
+        public static List<AllSheets> finalTable(double LAT, double LON, int INC)
+        {
+
+            List<AllSheets> list = new List<AllSheets>()
+            {
+                Temp_Calculos(LAT,LON,Program.tempList),
+                Temp_Calculos(LAT, LON,Program.dsolList),
+                Temp_Calculos(LAT, LON, Program.tempMinList),
+                RadTemp_Calculos(LAT, LON,INC, Program.radList).Item1,
+                RadTemp_Calculos(LAT, LON,INC, Program.radList).Item2
+            };
+
+            return list;
+        }
     }
 }
