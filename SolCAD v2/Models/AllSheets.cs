@@ -21,7 +21,6 @@ namespace SolCAD_v2.Models
         public double OCT { get; set; }
         public double NOV { get; set; }
         public double DIC { get; set; }
-
         public AllSheets() {}
 
         public AllSheets(string aux, double ENE, double FEB, double MAR, double ABR, double MAY,
@@ -41,5 +40,7 @@ namespace SolCAD_v2.Models
             this.NOV = NOV;
             this.DIC = DIC;
         }
+
+        
     }
 }

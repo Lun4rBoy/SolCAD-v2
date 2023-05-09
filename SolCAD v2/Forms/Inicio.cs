@@ -1,3 +1,6 @@
+using MathNet.Numerics.Statistics;
+using SolCAD_v2.DAO;
+
 namespace SolCAD_v2
 {
     public partial class Inicio : Form
@@ -10,10 +13,12 @@ namespace SolCAD_v2
 
         private void ConfigurarSlider()
         {
-            List<TrackBar> trackBars = new List<TrackBar>();
-            trackBars.Add(sliderPotencia);
-            trackBars.Add(sliderCrecimiento);
-            trackBars.Add(sliderAutonomia);
+            List<TrackBar> trackBars = new List<TrackBar>
+            {
+                sliderPotencia,
+                sliderCrecimiento,
+                sliderAutonomia
+            };
 
             foreach (TrackBar slider in trackBars)
             {
@@ -60,6 +65,37 @@ namespace SolCAD_v2
                     break;
             }
 
+        }
+
+        private void LoadDataTable(object sender, EventArgs e)
+        {
+            #region Variables de entrada
+            double LAT = 0;
+            double LON = 0;
+            int INC = 0;
+            #endregion Variables de entrada
+            #region Colecciones
+            var table = Climatic_Controller.finalTable(LAT,LON,INC);
+
+            var rowRadH = new[] { table.ElementAt(3).ENE, table.ElementAt(3).FEB, table.ElementAt(3).MAR, table.ElementAt(3).ABR, 
+                    table.ElementAt(3).MAY, table.ElementAt(3).JUN, table.ElementAt(3).JUL, table.ElementAt(3).AGO, table.ElementAt(3).SEP, table.ElementAt(3).OCT,
+                    table.ElementAt(3).NOV, table.ElementAt(3).DIC };
+
+            var rowRadI = new[] { table.ElementAt(4).ENE, table.ElementAt(4).FEB, table.ElementAt(4).MAR, table.ElementAt(4).ABR,
+                    table.ElementAt(4).MAY, table.ElementAt(4).JUN, table.ElementAt(4).JUL, table.ElementAt(4).AGO, table.ElementAt(4).SEP, table.ElementAt(4).OCT,
+                    table.ElementAt(4).NOV, table.ElementAt(4).DIC };
+            #endregion Colecciones
+            #region Calculos
+            double Prom_AnualH = rowRadH.Sum() / 12;
+            double DesvH = Statistics.StandardDeviation(rowRadH);
+            double RadMinH = rowRadH.Min();
+
+            double Prom_AnualI = rowRadI.Sum() / 12;
+            double DesvI = Statistics.StandardDeviation(rowRadI);
+            double RadMinI = rowRadI.Min();
+
+            double RadBruto = (Prom_AnualI - DesvI) / 2;
+            #endregion Calculos
         }
     }
 }

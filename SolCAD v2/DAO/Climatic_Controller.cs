@@ -259,5 +259,24 @@ namespace SolCAD_v2.DAO
 
             return list;
         }
+
+        public static double effTable(double radBruto, double? respaldo, AllSheets dSol)
+        {
+            var IRR = (radBruto / 2) / 9;
+            var maxDsol = new[] {dSol.ENE, dSol.FEB, dSol.MAR, dSol.ABR,
+                    dSol.MAY, dSol.JUN, dSol.JUL, dSol.AGO, dSol.SEP, dSol.OCT,
+                    dSol.NOV, dSol.DIC}.Max();
+            int newRespaldo = 0;
+            int hora = 3600 * 12;
+            double hora2 = 0;
+            double angulo = 0;
+
+            if (respaldo == null)
+            {
+                newRespaldo = (int)Math.Round(maxDsol * 24, 0);
+            }
+
+            return 0;
+        }
     }
 }
