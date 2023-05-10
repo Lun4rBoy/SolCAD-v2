@@ -34,7 +34,7 @@ namespace SolCAD_v2.DAO
         public static List<AllSheets> dataList(string filename)
         {
             var tempList = new List<AllSheets>();
-            var genericList = Csv_manager.Controller.GetData(filename, "SolCAD_v2.Models.AllSheets");
+            var genericList = Csv_manager.Controller.GetData(filename, "SolCAD_v2.Models.AllSheets",Comuna_Controller.test);
 
             foreach (var g in genericList)
             {
@@ -45,7 +45,7 @@ namespace SolCAD_v2.DAO
         public static List<Radiation> RdataList()
         {
             var radList = new List<Radiation>();
-            var genericList = Csv_manager.Controller.GetData("Radiacion", "SolCAD_v2.Models.Radiation");
+            var genericList = Csv_manager.Controller.GetData("Radiacion", "SolCAD_v2.Models.Radiation", Comuna_Controller.test);
 
             foreach (var g in genericList)
             {
