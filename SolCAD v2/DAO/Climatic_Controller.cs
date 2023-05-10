@@ -267,6 +267,7 @@ namespace SolCAD_v2.DAO
                     dSol.MAY, dSol.JUN, dSol.JUL, dSol.AGO, dSol.SEP, dSol.OCT,
                     dSol.NOV, dSol.DIC}.Max();
             int newRespaldo = 0;
+            double r = IRR*3600;
             int hora = 3600 * 12;
             double hora2 = 0;
             double angulo = 0;
@@ -275,8 +276,15 @@ namespace SolCAD_v2.DAO
             {
                 newRespaldo = (int)Math.Round(maxDsol * 24, 0);
             }
+            var arrayHora = new double [10];
 
-            return 0;
+            arrayHora = new[] { hora, hora + r};
+            for(int i = 1; i < 10; i++)
+            {
+                arrayHora.Append(arrayHora[i]+r);
+            }
+
+            return arrayHora[9];
         }
     }
 }

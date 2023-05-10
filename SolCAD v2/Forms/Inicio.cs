@@ -1,14 +1,22 @@
 using MathNet.Numerics.Statistics;
 using SolCAD_v2.DAO;
+using SolCAD_v2.Models;
 
 namespace SolCAD_v2
 {
     public partial class Inicio : Form
     {
+        List<Comuna> ListComunas;
         public Inicio()
         {
             InitializeComponent();
+            cbx_Region.Items.Add("Seleccione...");
+            cbx_Comuna.Items.Add("Seleccione...");
+            cbx_Comuna.SelectedIndex = 0;
+            cbx_Region.SelectedIndex = 0;
+            CargaRegiones();
             ConfigurarSlider();
+
         }
 
         private void ConfigurarSlider()
@@ -69,33 +77,55 @@ namespace SolCAD_v2
 
         private void LoadDataTable(object sender, EventArgs e)
         {
-            #region Variables de entrada
-            double LAT = 0;
-            double LON = 0;
-            int INC = 0;
-            #endregion Variables de entrada
-            #region Colecciones
-            var table = Climatic_Controller.finalTable(LAT,LON,INC);
+            if (cbx_Comuna.SelectedIndex != 0) 
+            {
+                #region Variables de entrada
+                var comuna = (from c in ListComunas where c.COMUNA == cbx_Comuna.SelectedItem select c).FirstOrDefault();
+                double LAT = comuna.LAT;
+                double LON = comuna.LON;
+                int INC = 50; //Ver con agustin donde se selecciona el angulo en la APP
+                #endregion Variables de entrada
+                #region Colecciones
+                var table = Climatic_Controller.finalTable(LAT, LON, INC);
 
-            var rowRadH = new[] { table.ElementAt(3).ENE, table.ElementAt(3).FEB, table.ElementAt(3).MAR, table.ElementAt(3).ABR, 
+                var rowRadH = new[] { table.ElementAt(3).ENE, table.ElementAt(3).FEB, table.ElementAt(3).MAR, table.ElementAt(3).ABR,
                     table.ElementAt(3).MAY, table.ElementAt(3).JUN, table.ElementAt(3).JUL, table.ElementAt(3).AGO, table.ElementAt(3).SEP, table.ElementAt(3).OCT,
                     table.ElementAt(3).NOV, table.ElementAt(3).DIC };
 
-            var rowRadI = new[] { table.ElementAt(4).ENE, table.ElementAt(4).FEB, table.ElementAt(4).MAR, table.ElementAt(4).ABR,
+                var rowRadI = new[] { table.ElementAt(4).ENE, table.ElementAt(4).FEB, table.ElementAt(4).MAR, table.ElementAt(4).ABR,
                     table.ElementAt(4).MAY, table.ElementAt(4).JUN, table.ElementAt(4).JUL, table.ElementAt(4).AGO, table.ElementAt(4).SEP, table.ElementAt(4).OCT,
                     table.ElementAt(4).NOV, table.ElementAt(4).DIC };
-            #endregion Colecciones
-            #region Calculos
-            double Prom_AnualH = rowRadH.Sum() / 12;
-            double DesvH = Statistics.StandardDeviation(rowRadH);
-            double RadMinH = rowRadH.Min();
+                #endregion Colecciones
+                #region Calculos
+                double Prom_AnualH = rowRadH.Sum() / 12;
+                double DesvH = Statistics.StandardDeviation(rowRadH);
+                double RadMinH = rowRadH.Min();
 
-            double Prom_AnualI = rowRadI.Sum() / 12;
-            double DesvI = Statistics.StandardDeviation(rowRadI);
-            double RadMinI = rowRadI.Min();
+                double Prom_AnualI = rowRadI.Sum() / 12;
+                double DesvI = Statistics.StandardDeviation(rowRadI);
+                double RadMinI = rowRadI.Min();
 
-            double RadBruto = (Prom_AnualI - DesvI) / 2;
-            #endregion Calculos
+                double RadBruto = (Prom_AnualI - DesvI) / 2;
+                Climatic_Controller.effTable(RadBruto,null,table.ElementAt(2));
+                #endregion Calculos
+            }
+
+        }
+
+        private void CargaRegiones()
+        {
+            cbx_Region.Items.AddRange(new[]{"Tarapaca","Antofagasta","Atacama","Coquimbo","Valparaiso",
+                    "Libertador General Bernardo O'Higgins","Maule","Bío-Bío","Araucanía",
+                    "Lagos","Aysén","Magallanes y Antartica Chilena","Region Metropolitana","Ríos","Arica y Parinacota","Ñuble"});
+            
+        }
+
+        private void DisplayComunas(object sender, EventArgs e)
+        {
+            
+            ListComunas = Comuna_Controller.ComunaList();
+            var nombres = (from c in ListComunas where c.Region == cbx_Region.SelectedIndex select c.COMUNA).ToArray();
+            cbx_Comuna.Items.AddRange(nombres);
         }
     }
 }

@@ -33,7 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Regiónlbl = new System.Windows.Forms.Label();
             this.cbx_Comuna = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbx_Region = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -110,7 +110,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.Regiónlbl);
             this.groupBox1.Controls.Add(this.cbx_Comuna);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.cbx_Region);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox1.Location = new System.Drawing.Point(12, 52);
             this.groupBox1.Name = "groupBox1";
@@ -141,6 +141,8 @@
             // 
             // cbx_Comuna
             // 
+            this.cbx_Comuna.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_Comuna.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbx_Comuna.FormattingEnabled = true;
             this.cbx_Comuna.Location = new System.Drawing.Point(72, 60);
             this.cbx_Comuna.Name = "cbx_Comuna";
@@ -148,13 +150,16 @@
             this.cbx_Comuna.TabIndex = 1;
             this.cbx_Comuna.SelectedIndexChanged += new System.EventHandler(this.LoadDataTable);
             // 
-            // comboBox1
+            // cbx_Region
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(72, 29);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(219, 25);
-            this.comboBox1.TabIndex = 0;
+            this.cbx_Region.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_Region.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbx_Region.FormattingEnabled = true;
+            this.cbx_Region.Location = new System.Drawing.Point(72, 29);
+            this.cbx_Region.Name = "cbx_Region";
+            this.cbx_Region.Size = new System.Drawing.Size(219, 25);
+            this.cbx_Region.TabIndex = 0;
+            this.cbx_Region.SelectedIndexChanged += new System.EventHandler(this.DisplayComunas);
             // 
             // groupBox2
             // 
@@ -771,7 +776,7 @@
         private ToolStripMenuItem toolStripMenuItem2;
         private ToolStripMenuItem toolStripMenuItem3;
         private ComboBox cbx_Comuna;
-        private ComboBox comboBox1;
+        private ComboBox cbx_Region;
         private CheckBox checkBox2;
         private CheckBox checkBox1;
         private ToolStrip toolStrip1;

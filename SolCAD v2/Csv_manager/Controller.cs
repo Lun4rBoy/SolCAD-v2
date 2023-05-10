@@ -8,12 +8,14 @@ namespace SolCAD_v2.Csv_manager
 {
     public class Controller
     {
-        public static List<object?> GetData(string fileName, string c)
+        public static List<object?> GetData(string fileName, string c, bool info)
         {
             string route = "../Files/" + fileName+".csv";
             var type = Type.GetType(c);
             CsvReader csv = null;
-            CultureInfo culture = new CultureInfo("es-CL");
+
+            CultureInfo culture = CultureInfo.CurrentCulture;
+            if(info==true) culture = new CultureInfo("es-CL");
 
             var cfg = new CsvConfiguration(culture)
             {
