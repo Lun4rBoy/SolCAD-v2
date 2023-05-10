@@ -15,7 +15,11 @@ namespace SolCAD_v2.Csv_manager
             CsvReader csv = null;
 
             CultureInfo culture = CultureInfo.CurrentCulture;
-            if(info==true) culture = new CultureInfo("es-CL");
+            if (info == true)
+            {
+                culture = new CultureInfo("es-CL");
+                culture.NumberFormat.NumberDecimalSeparator = ".";
+            }
 
             var cfg = new CsvConfiguration(culture)
             {

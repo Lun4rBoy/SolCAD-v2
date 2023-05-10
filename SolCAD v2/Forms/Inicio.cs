@@ -77,7 +77,7 @@ namespace SolCAD_v2
 
         private void LoadDataTable(object sender, EventArgs e)
         {
-            if (cbx_Comuna.SelectedIndex != 0) 
+            if (cbx_Comuna.SelectedIndex != 0)
             {
                 #region Variables de entrada
                 var comuna = (from c in ListComunas where c.COMUNA == cbx_Comuna.SelectedItem select c).FirstOrDefault();
@@ -97,16 +97,18 @@ namespace SolCAD_v2
                     table.ElementAt(4).NOV, table.ElementAt(4).DIC };
                 #endregion Colecciones
                 #region Calculos
-                double Prom_AnualH = rowRadH.Sum() / 12;
-                double DesvH = Statistics.StandardDeviation(rowRadH);
-                double RadMinH = rowRadH.Min();
+                double Prom_AnualH = Math.Round(rowRadH.Sum() / 12,3);
+                double DesvH = Math.Round(Statistics.StandardDeviation(rowRadH),3);
+                double RadMinH = Math.Round(rowRadH.Min(),3);
 
-                double Prom_AnualI = rowRadI.Sum() / 12;
-                double DesvI = Statistics.StandardDeviation(rowRadI);
-                double RadMinI = rowRadI.Min();
+                double Prom_AnualI = Math.Round(rowRadI.Sum() / 12,3);
+                double DesvI = Math.Round(Statistics.StandardDeviation(rowRadI),3);
+                double RadMinI = Math.Round(rowRadI.Min(),3);
 
-                double RadBruto = (Prom_AnualI - DesvI) / 2;
-                Climatic_Controller.effTable(RadBruto,null,table.ElementAt(2));
+                double RadBruto = (Prom_AnualI - DesvI);
+                double DesviationLost = 1 - Climatic_Controller.effTable(RadBruto, null, table.ElementAt(2));
+                string test = (DesviationLost * 100).ToString("0.00") + "%";
+                double RadPropose = rowRadI.Average() - DesvI;
                 #endregion Calculos
             }
 
@@ -117,12 +119,12 @@ namespace SolCAD_v2
             cbx_Region.Items.AddRange(new[]{"Tarapaca","Antofagasta","Atacama","Coquimbo","Valparaiso",
                     "Libertador General Bernardo O'Higgins","Maule","Bío-Bío","Araucanía",
                     "Lagos","Aysén","Magallanes y Antartica Chilena","Region Metropolitana","Ríos","Arica y Parinacota","Ñuble"});
-            
+
         }
 
         private void DisplayComunas(object sender, EventArgs e)
         {
-            
+
             ListComunas = Comuna_Controller.ComunaList();
             var nombres = (from c in ListComunas where c.Region == cbx_Region.SelectedIndex select c.COMUNA).ToArray();
             cbx_Comuna.Items.AddRange(nombres);

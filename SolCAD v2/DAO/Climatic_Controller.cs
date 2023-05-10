@@ -1,10 +1,4 @@
-﻿using Microsoft.VisualBasic.Logging;
-using SolCAD_v2.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SolCAD_v2.Models;
 
 namespace SolCAD_v2.DAO
 {
@@ -34,7 +28,7 @@ namespace SolCAD_v2.DAO
         public static List<AllSheets> dataList(string filename)
         {
             var tempList = new List<AllSheets>();
-            var genericList = Csv_manager.Controller.GetData(filename, "SolCAD_v2.Models.AllSheets",Comuna_Controller.test);
+            var genericList = Csv_manager.Controller.GetData(filename, "SolCAD_v2.Models.AllSheets", Comuna_Controller.test);
 
             foreach (var g in genericList)
             {
@@ -90,7 +84,7 @@ namespace SolCAD_v2.DAO
             return valor_Interpolado(blackList, aux);
         }
 
-        public static Tuple<AllSheets,AllSheets> RadTemp_Calculos(double LAT, double LON, int inclination, List<Radiation> data)
+        public static Tuple<AllSheets, AllSheets> RadTemp_Calculos(double LAT, double LON, int inclination, List<Radiation> data)
         {
             #region Variables
             int x1 = (int)Math.Truncate(LAT - 1);
@@ -224,25 +218,25 @@ namespace SolCAD_v2.DAO
             AllSheets a = new AllSheets()
             {
                 aux = "inlc",
-                ENE = valInter.ENE*conditioning.ENE,
-                FEB = valInter.FEB*conditioning.FEB,
-                MAR = valInter.MAR*conditioning.MAR,
-                ABR = valInter.ABR*conditioning.ABR,
-                MAY = valInter.MAY*conditioning.MAY,
-                JUN = valInter.JUN*conditioning.JUN,
-                JUL = valInter.JUL*conditioning.JUL,
-                AGO = valInter.AGO*conditioning.AGO,
-                SEP = valInter.SEP*conditioning.SEP,
-                OCT = valInter.OCT*conditioning.OCT,
-                NOV = valInter.NOV*conditioning.NOV,
-                DIC = valInter.DIC*conditioning.DIC
+                ENE = Math.Round(valInter.ENE * conditioning.ENE, 2),
+                FEB = Math.Round(valInter.FEB * conditioning.FEB, 2),
+                MAR = Math.Round(valInter.MAR * conditioning.MAR, 2),
+                ABR = Math.Round(valInter.ABR * conditioning.ABR, 2),
+                MAY = Math.Round(valInter.MAY * conditioning.MAY, 2),
+                JUN = Math.Round(valInter.JUN * conditioning.JUN, 2),
+                JUL = Math.Round(valInter.JUL * conditioning.JUL, 2),
+                AGO = Math.Round(valInter.AGO * conditioning.AGO, 2),
+                SEP = Math.Round(valInter.SEP * conditioning.SEP, 2),
+                OCT = Math.Round(valInter.OCT * conditioning.OCT, 2),
+                NOV = Math.Round(valInter.NOV * conditioning.NOV, 2),
+                DIC = Math.Round(valInter.DIC * conditioning.DIC, 2)
             };
 
             return a;
         }
         public static double formula_Acondicionamiento(double v)
         {
-            return Math.Cos(Math.Abs(-latRadianes+v-elevRadianes)) / Math.Cos(Math.Abs(-latRadianes+v));
+            return Math.Cos(Math.Abs(-latRadianes + v - elevRadianes)) / Math.Cos(Math.Abs(-latRadianes + v));
         }
 
         public static List<AllSheets> finalTable(double LAT, double LON, int INC)
@@ -262,29 +256,48 @@ namespace SolCAD_v2.DAO
 
         public static double effTable(double radBruto, double? respaldo, AllSheets dSol)
         {
+            var arrayHora = new double[10];
+            var arrayHora2 = new double[10];
+            var arrayAngulo = new double[10];
+            var arrayEff = new double[10];
+
             var IRR = (radBruto / 2) / 9;
             var maxDsol = new[] {dSol.ENE, dSol.FEB, dSol.MAR, dSol.ABR,
                     dSol.MAY, dSol.JUN, dSol.JUL, dSol.AGO, dSol.SEP, dSol.OCT,
                     dSol.NOV, dSol.DIC}.Max();
             int newRespaldo = 0;
-            double r = IRR*3600;
+            double r = IRR * 3600;
             int hora = 3600 * 12;
-            double hora2 = 0;
-            double angulo = 0;
 
             if (respaldo == null)
             {
                 newRespaldo = (int)Math.Round(maxDsol * 24, 0);
             }
-            var arrayHora = new double [10];
+            
+            arrayHora[0]=hora; arrayHora[1]=Math.Round(hora + r);
+            arrayHora2[0] =0; arrayHora2[1] = (arrayHora[1] - arrayHora[0]) / 3600;
+            arrayAngulo[0] = 0;
+            
+            
 
-            arrayHora = new[] { hora, hora + r};
+            for (int i = 2; i < 10; i++)
+            {
+                arrayHora[i] = Math.Round((arrayHora[i - 1] + r));
+            }
+            for (int i = 2; i < 10; i++)
+            {
+                arrayHora2[i] = arrayHora2[1]*i;
+            }
             for(int i = 1; i < 10; i++)
             {
-                arrayHora.Append(arrayHora[i]+r);
+                arrayAngulo[i] = 15 * arrayHora2[i];
             }
-
-            return arrayHora[9];
+            arrayEff[0] = Math.Cos(arrayAngulo[0]*(Math.PI/180));
+            for (int i = 1; i < 10; i++)
+            {
+                arrayEff[i] = Math.Cos(arrayAngulo[i] * (Math.PI / 180));
+            }
+            return arrayEff.Average();
         }
     }
 }

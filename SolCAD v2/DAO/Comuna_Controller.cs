@@ -20,8 +20,9 @@ namespace SolCAD_v2.DAO
             {
                 tempList.Add((Comuna)g!);
             }
-            if (tempList[0].LAT > 90)
+            if (tempList[0].LAT < (-90) || tempList[0].LAT > 90)
             {
+                tempList.Clear();
                 genericList = Csv_manager.Controller.GetData("Comunas", "SolCAD_v2.Models.Comuna", true);
                 test= false;
                 goto again;
