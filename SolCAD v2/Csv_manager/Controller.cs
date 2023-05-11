@@ -8,7 +8,7 @@ namespace SolCAD_v2.Csv_manager
 {
     public class Controller
     {
-        public static List<object?> GetData(string fileName, string c, bool info)
+        public static List<object?> GetData(string fileName, string c, bool info,bool? fixer)
         {
             string route = "../Files/" + fileName+".csv";
             var type = Type.GetType(c);
@@ -18,7 +18,12 @@ namespace SolCAD_v2.Csv_manager
             if (info == true)
             {
                 culture = new CultureInfo("es-CL");
-                culture.NumberFormat.NumberDecimalSeparator = ".";
+                string separator = ".";
+                if (fixer == false)
+                {
+                    separator = ",";
+                }
+                culture.NumberFormat.NumberDecimalSeparator = separator;
             }
 
             var cfg = new CsvConfiguration(culture)

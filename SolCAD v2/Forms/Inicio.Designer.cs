@@ -37,16 +37,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.wattsCrecimiento = new System.Windows.Forms.Label();
-            this.horaslbl = new System.Windows.Forms.Label();
-            this.wattsPotencia = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.sliderCrecimiento = new System.Windows.Forms.TrackBar();
-            this.sliderAutonomia = new System.Windows.Forms.TrackBar();
-            this.sliderPotencia = new System.Windows.Forms.TrackBar();
+            this.gbxCondiciones = new System.Windows.Forms.GroupBox();
+            this.btnLista = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,10 +87,7 @@
             this.diseñarbtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sliderCrecimiento)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sliderAutonomia)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sliderPotencia)).BeginInit();
+            this.gbxCondiciones.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -195,105 +184,29 @@
             this.checkBox1.Text = "Globos";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
+            // gbxCondiciones
             // 
-            this.groupBox3.Controls.Add(this.wattsCrecimiento);
-            this.groupBox3.Controls.Add(this.horaslbl);
-            this.groupBox3.Controls.Add(this.wattsPotencia);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.sliderCrecimiento);
-            this.groupBox3.Controls.Add(this.sliderAutonomia);
-            this.groupBox3.Controls.Add(this.sliderPotencia);
-            this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox3.Location = new System.Drawing.Point(12, 158);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(479, 166);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "CONDICIONES";
+            this.gbxCondiciones.Controls.Add(this.btnLista);
+            this.gbxCondiciones.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.gbxCondiciones.Location = new System.Drawing.Point(12, 158);
+            this.gbxCondiciones.Name = "gbxCondiciones";
+            this.gbxCondiciones.Size = new System.Drawing.Size(221, 122);
+            this.gbxCondiciones.TabIndex = 2;
+            this.gbxCondiciones.TabStop = false;
+            this.gbxCondiciones.Text = "CONDICIONES";
             // 
-            // wattsCrecimiento
+            // btnLista
             // 
-            this.wattsCrecimiento.AutoSize = true;
-            this.wattsCrecimiento.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.wattsCrecimiento.Location = new System.Drawing.Point(397, 110);
-            this.wattsCrecimiento.Name = "wattsCrecimiento";
-            this.wattsCrecimiento.Size = new System.Drawing.Size(37, 15);
-            this.wattsCrecimiento.TabIndex = 8;
-            this.wattsCrecimiento.Text = "Watts";
-            // 
-            // horaslbl
-            // 
-            this.horaslbl.AutoSize = true;
-            this.horaslbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.horaslbl.Location = new System.Drawing.Point(397, 69);
-            this.horaslbl.Name = "horaslbl";
-            this.horaslbl.Size = new System.Drawing.Size(38, 15);
-            this.horaslbl.TabIndex = 7;
-            this.horaslbl.Text = "Horas";
-            // 
-            // wattsPotencia
-            // 
-            this.wattsPotencia.AutoSize = true;
-            this.wattsPotencia.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.wattsPotencia.Location = new System.Drawing.Point(397, 34);
-            this.wattsPotencia.Name = "wattsPotencia";
-            this.wattsPotencia.Size = new System.Drawing.Size(37, 15);
-            this.wattsPotencia.TabIndex = 6;
-            this.wattsPotencia.Text = "Watts";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(11, 110);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 15);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Crecimiento";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(11, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 15);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Autonomia";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(11, 34);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 15);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Potencia";
-            // 
-            // sliderCrecimiento
-            // 
-            this.sliderCrecimiento.Location = new System.Drawing.Point(99, 110);
-            this.sliderCrecimiento.Name = "sliderCrecimiento";
-            this.sliderCrecimiento.Size = new System.Drawing.Size(271, 45);
-            this.sliderCrecimiento.TabIndex = 2;
-            // 
-            // sliderAutonomia
-            // 
-            this.sliderAutonomia.Location = new System.Drawing.Point(99, 69);
-            this.sliderAutonomia.Name = "sliderAutonomia";
-            this.sliderAutonomia.Size = new System.Drawing.Size(271, 45);
-            this.sliderAutonomia.TabIndex = 1;
-            // 
-            // sliderPotencia
-            // 
-            this.sliderPotencia.Location = new System.Drawing.Point(99, 34);
-            this.sliderPotencia.Name = "sliderPotencia";
-            this.sliderPotencia.Size = new System.Drawing.Size(271, 45);
-            this.sliderPotencia.TabIndex = 0;
+            this.btnLista.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnLista.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnLista.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnLista.Location = new System.Drawing.Point(22, 38);
+            this.btnLista.Name = "btnLista";
+            this.btnLista.Size = new System.Drawing.Size(181, 47);
+            this.btnLista.TabIndex = 9;
+            this.btnLista.Text = "Lista Equipamiento";
+            this.btnLista.UseVisualStyleBackColor = false;
+            this.btnLista.Click += new System.EventHandler(this.btnLista_Click);
             // 
             // menuStrip1
             // 
@@ -409,7 +322,7 @@
             this.groupBox4.Controls.Add(this.comboBox4);
             this.groupBox4.Controls.Add(this.comboBox3);
             this.groupBox4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox4.Location = new System.Drawing.Point(12, 330);
+            this.groupBox4.Location = new System.Drawing.Point(239, 158);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(252, 122);
             this.groupBox4.TabIndex = 5;
@@ -497,7 +410,7 @@
             this.groupBox5.Controls.Add(this.textBox2);
             this.groupBox5.Controls.Add(this.textBox1);
             this.groupBox5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox5.Location = new System.Drawing.Point(12, 458);
+            this.groupBox5.Location = new System.Drawing.Point(12, 286);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(314, 135);
             this.groupBox5.TabIndex = 6;
@@ -710,17 +623,18 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 599);
+            this.progressBar1.Location = new System.Drawing.Point(12, 427);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(479, 23);
             this.progressBar1.TabIndex = 7;
+            this.progressBar1.Move += new System.EventHandler(this.progressBar1_Move);
             // 
             // diseñarbtn
             // 
             this.diseñarbtn.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.diseñarbtn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.diseñarbtn.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.diseñarbtn.Location = new System.Drawing.Point(363, 546);
+            this.diseñarbtn.Location = new System.Drawing.Point(361, 374);
             this.diseñarbtn.Name = "diseñarbtn";
             this.diseñarbtn.Size = new System.Drawing.Size(98, 47);
             this.diseñarbtn.TabIndex = 8;
@@ -731,28 +645,25 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(498, 646);
+            this.ClientSize = new System.Drawing.Size(498, 463);
             this.Controls.Add(this.diseñarbtn);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.gbxCondiciones);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Inicio";
             this.Text = "SolCAD - MCD 2023";
+            this.Move += new System.EventHandler(this.progressBar1_Move);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sliderCrecimiento)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sliderAutonomia)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sliderPotencia)).EndInit();
+            this.gbxCondiciones.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -770,7 +681,7 @@
 
         private GroupBox groupBox1;
         private GroupBox groupBox2;
-        private GroupBox groupBox3;
+        private GroupBox gbxCondiciones;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem toolStripMenuItem2;
@@ -832,5 +743,6 @@
         private TextBox textBox4;
         private TextBox textBox3;
         private TextBox textBox2;
+        private Button btnLista;
     }
 }

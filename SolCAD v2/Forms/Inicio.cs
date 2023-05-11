@@ -1,12 +1,15 @@
 using MathNet.Numerics.Statistics;
 using SolCAD_v2.DAO;
+using SolCAD_v2.Forms;
 using SolCAD_v2.Models;
+using System.Diagnostics;
 
 namespace SolCAD_v2
 {
     public partial class Inicio : Form
     {
         List<Comuna> ListComunas;
+        ListaEquipamiento list = new ListaEquipamiento();
         public Inicio()
         {
             InitializeComponent();
@@ -15,7 +18,9 @@ namespace SolCAD_v2
             cbx_Comuna.SelectedIndex = 0;
             cbx_Region.SelectedIndex = 0;
             CargaRegiones();
-            ConfigurarSlider();
+            
+            list.Hide();
+            //ConfigurarSlider();
 
         }
 
@@ -124,10 +129,42 @@ namespace SolCAD_v2
 
         private void DisplayComunas(object sender, EventArgs e)
         {
-
-            ListComunas = Comuna_Controller.ComunaList();
+            bool fixer = true;
+            Again:
+            try {
+                ListComunas = Comuna_Controller.ComunaList(fixer);
+            } catch (Exception ex) { Debug.WriteLine(ex.Message); fixer = false; goto Again; }
+            
             var nombres = (from c in ListComunas where c.Region == cbx_Region.SelectedIndex select c.COMUNA).ToArray();
             cbx_Comuna.Items.AddRange(nombres);
+        }
+
+        private void btnLista_Click(object sender, EventArgs e)
+        {
+            list.LocationChanged += Inicio_LocationChanged;
+            list.Show();
+            ActualizarPosicion();
+        }
+        private void Inicio_LocationChanged(object sender, EventArgs e)
+        {
+            ActualizarPosicion();
+        }
+        private void ActualizarPosicion()
+        {
+            if (list != null && !list.IsDisposed)
+            {
+                list.Location = new Point(Right, Top);
+            };
+        }
+
+        private void Inicio_DragOver(object sender, DragEventArgs e)
+        {
+            ActualizarPosicion();
+        }
+
+        private void progressBar1_Move(object sender, EventArgs e)
+        {
+            ActualizarPosicion();
         }
     }
 }

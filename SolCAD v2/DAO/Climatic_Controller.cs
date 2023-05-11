@@ -1,4 +1,5 @@
 ﻿using SolCAD_v2.Models;
+using System.Diagnostics;
 
 namespace SolCAD_v2.DAO
 {
@@ -25,10 +26,10 @@ namespace SolCAD_v2.DAO
         public static double latRadianes = 0;
         public static double elevRadianes = 0;
 
-        public static List<AllSheets> dataList(string filename)
+        public static List<AllSheets> dataList(string filename, bool? fixer)
         {
             var tempList = new List<AllSheets>();
-            var genericList = Csv_manager.Controller.GetData(filename, "SolCAD_v2.Models.AllSheets", Comuna_Controller.test);
+            var genericList = Csv_manager.Controller.GetData(filename, "SolCAD_v2.Models.AllSheets", Comuna_Controller.test,fixer);
 
             foreach (var g in genericList)
             {
@@ -36,10 +37,10 @@ namespace SolCAD_v2.DAO
             }
             return tempList;
         }
-        public static List<Radiation> RdataList()
+        public static List<Radiation> RdataList(bool? fixer)
         {
             var radList = new List<Radiation>();
-            var genericList = Csv_manager.Controller.GetData("Radiacion", "SolCAD_v2.Models.Radiation", Comuna_Controller.test);
+            var genericList = Csv_manager.Controller.GetData("Radiacion", "SolCAD_v2.Models.Radiation", Comuna_Controller.test,fixer);
 
             foreach (var g in genericList)
             {
@@ -242,15 +243,20 @@ namespace SolCAD_v2.DAO
         public static List<AllSheets> finalTable(double LAT, double LON, int INC)
         {
 
-            List<AllSheets> list = new List<AllSheets>()
+            List<AllSheets> list = new List<AllSheets>();
+            bool fixer = true;
+            Again:
+            try
             {
-                Temp_Calculos(LAT,LON,Program.tempList),
-                Temp_Calculos(LAT, LON,Program.dsolList),
-                Temp_Calculos(LAT, LON, Program.tempMinList),
-                RadTemp_Calculos(LAT, LON,INC, Program.radList).Item1,
-                RadTemp_Calculos(LAT, LON,INC, Program.radList).Item2
-            };
+                var rad = RdataList(fixer);
+                list.Add(Temp_Calculos(LAT, LON, dataList("Temp",fixer)));
+                list.Add(Temp_Calculos(LAT, LON, dataList("D_sol",fixer)));
+                list.Add(Temp_Calculos(LAT, LON, dataList("Tminima", fixer)));
+                list.Add(RadTemp_Calculos(LAT, LON, INC, rad).Item1);
+                list.Add(RadTemp_Calculos(LAT, LON, INC, rad).Item2);
 
+            }catch(Exception ex) { Debug.WriteLine(ex.Message); fixer = false; goto Again; }
+            
             return list;
         }
 
@@ -277,26 +283,21 @@ namespace SolCAD_v2.DAO
             arrayHora[0]=hora; arrayHora[1]=Math.Round(hora + r);
             arrayHora2[0] =0; arrayHora2[1] = (arrayHora[1] - arrayHora[0]) / 3600;
             arrayAngulo[0] = 0;
-            
-            
+            arrayEff[0] = Math.Cos(arrayAngulo[0] * (Math.PI / 180));
 
-            for (int i = 2; i < 10; i++)
-            {
-                arrayHora[i] = Math.Round((arrayHora[i - 1] + r));
-            }
-            for (int i = 2; i < 10; i++)
-            {
-                arrayHora2[i] = arrayHora2[1]*i;
-            }
-            for(int i = 1; i < 10; i++)
-            {
-                arrayAngulo[i] = 15 * arrayHora2[i];
-            }
-            arrayEff[0] = Math.Cos(arrayAngulo[0]*(Math.PI/180));
+
             for (int i = 1; i < 10; i++)
             {
+                if (i >= 2)
+                {
+                    arrayHora[i] = Math.Round((arrayHora[i - 1] + r));
+                }
+                arrayHora2[i] = arrayHora2[1] * i;
+                arrayAngulo[i] = 15 * arrayHora2[i];
                 arrayEff[i] = Math.Cos(arrayAngulo[i] * (Math.PI / 180));
-            }
+            } 
+            
+
             return arrayEff.Average();
         }
     }

@@ -10,11 +10,11 @@ namespace SolCAD_v2.DAO
     public class Comuna_Controller
     {
         public static bool test;
-        public static List<Comuna> ComunaList()
+        public static List<Comuna> ComunaList(bool fixer)
         {
             var tempList = new List<Comuna>();
             test = true;
-            var genericList = Csv_manager.Controller.GetData("Comunas", "SolCAD_v2.Models.Comuna",false);
+            var genericList = Csv_manager.Controller.GetData("Comunas", "SolCAD_v2.Models.Comuna",false, fixer);
             again:
             foreach (var g in genericList)
             {
@@ -23,7 +23,7 @@ namespace SolCAD_v2.DAO
             if (tempList[0].LAT < (-90) || tempList[0].LAT > 90)
             {
                 tempList.Clear();
-                genericList = Csv_manager.Controller.GetData("Comunas", "SolCAD_v2.Models.Comuna", true);
+                genericList = Csv_manager.Controller.GetData("Comunas", "SolCAD_v2.Models.Comuna", true, fixer);
                 test= false;
                 goto again;
             }

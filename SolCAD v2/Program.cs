@@ -9,12 +9,6 @@ namespace SolCAD_v2
         ///  The main entry point for the application.
         /// </summary>
         /// 
-
-        public static List<AllSheets> tempList = Climatic_Controller.dataList("Temp");
-        public static List<AllSheets> dsolList = Climatic_Controller.dataList("D_sol");
-        public static List<AllSheets> tempMinList = Climatic_Controller.dataList("Tminima");
-        public static List<Radiation> radList = Climatic_Controller.RdataList();
-
         [STAThread]
         static void Main()
         {
