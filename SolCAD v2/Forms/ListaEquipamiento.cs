@@ -47,6 +47,7 @@ namespace SolCAD_v2.Forms
                 }
                 try
                 {
+                    if (!CellsValidator(row)) return null;
                     c.Qty = Convert.ToInt32(row.Cells["Qty"].Value);
                     c.Nombre = row.Cells["Nombre"].Value.ToString()!;
                     c.PotenciaA = Convert.ToInt32(row.Cells["PotenciaA"].Value);
@@ -70,11 +71,13 @@ namespace SolCAD_v2.Forms
         private void btnSave_Click(object sender, EventArgs e)
         {
             ListaEquipo = listaEquipos();
+            if(ListaEquipo==null) return;
             if (ListaEquipo.Count == 0) 
             {
                 MessageBox.Show("El listado esta vacio, ingrese al menos 1 fila!");
                 return;
-            } 
+            }
+            ConsumoPromedio = 0;
             foreach (var row in ListaEquipo)
             {
                 ConsumoPromedio += row.SubTotal;
@@ -112,6 +115,30 @@ namespace SolCAD_v2.Forms
                     dgEquipamiento.Rows.Remove(selectedRow);
                 }
             }
+        }
+        private bool CellsValidator(DataGridViewRow row)
+        {
+            if (!int.TryParse(row.Cells["Qty"].Value.ToString(), out int value))
+            {
+                MessageBox.Show("Ingrese un valor entero en columna Qty!");
+                return false;
+            }
+            if (!int.TryParse(row.Cells["PotenciaA"].Value.ToString(), out int value3))
+            {
+                MessageBox.Show("Ingrese un valor entero en columna Potencia A!");
+                return false;
+            }
+            if (!int.TryParse(row.Cells["PorcientoA"].Value.ToString(), out int value4))
+            {
+                MessageBox.Show("Ingrese un valor entero en columna A%!");
+                return false;
+            }
+            if (!int.TryParse(row.Cells["PotenciaB"].Value.ToString(), out int value5))
+            {
+                MessageBox.Show("Ingrese un valor entero en columna Potencia B!");
+                return false;
+            }
+            return true;
         }
     }
 }
