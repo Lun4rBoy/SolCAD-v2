@@ -6,18 +6,20 @@ namespace SolCAD_v2.Forms
 {
     public partial class ListaEquipamiento : Form
     {
-        public static double ConsumoPromedio;
-        public static double PerdidasConversion;
-        public static double TotalCorregido;
         public static List<Consumo>? ListaEquipo;
         public ListaEquipamiento()
         {
             InitializeComponent();
-            dgEquipamiento.Rows[0].Cells[0].Value = 1;
-            dgEquipamiento.Rows[0].Cells[1].Value = "Equipo ejemplo";
-            dgEquipamiento.Rows[0].Cells[2].Value = 123;
-            dgEquipamiento.Rows[0].Cells[3].Value = 60;
-            dgEquipamiento.Rows[0].Cells[4].Value = 23;
+
+            if (Inicio.dgBackup!=null) dgEquipamiento = Inicio.dgBackup;
+            else
+            {
+                dgEquipamiento.Rows[0].Cells[0].Value = 1;
+                dgEquipamiento.Rows[0].Cells[1].Value = "Equipo ejemplo";
+                dgEquipamiento.Rows[0].Cells[2].Value = 123;
+                dgEquipamiento.Rows[0].Cells[3].Value = 60;
+                dgEquipamiento.Rows[0].Cells[4].Value = 23;
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -71,34 +73,33 @@ namespace SolCAD_v2.Forms
         private void btnSave_Click(object sender, EventArgs e)
         {
             ListaEquipo = listaEquipos();
-            if(ListaEquipo==null) return;
-            if (ListaEquipo.Count == 0) 
+            if (ListaEquipo == null) return;
+            if (ListaEquipo.Count == 0)
             {
                 MessageBox.Show("El listado esta vacio, ingrese al menos 1 fila!");
                 return;
             }
-            ConsumoPromedio = 0;
             foreach (var row in ListaEquipo)
             {
-                ConsumoPromedio += row.SubTotal;
+                Inicio.ConsumoPromedio += row.SubTotal;
             }
-            try 
+            try
             {
-                ConsumoPromedio = ConsumoPromedio / ListaEquipo.Count;
-                if (txtPorcientoPer.Text.Equals("")|| !int.TryParse(txtPorcientoPer.Text.Replace("%",""),out int value) || txtPorcientoPer.Text.Equals("0%"))
+                Inicio.ConsumoPromedio = Inicio.ConsumoPromedio / ListaEquipo.Count;
+                if (txtPorcientoPer.Text.Equals("") || !int.TryParse(txtPorcientoPer.Text.Replace("%", ""), out int value) || txtPorcientoPer.Text.Equals("0%"))
                 {
                     MessageBox.Show("Valor incorrecto o inexistente en campo Perdidas de Conversión!");
                     return;
                 };
-                PerdidasConversion = ConsumoPromedio * (Convert.ToDouble(txtPorcientoPer.Text.Replace("%", ""))/100);
-                TotalCorregido = ConsumoPromedio + PerdidasConversion;
+                Inicio.PerdidasConversion = Inicio.ConsumoPromedio * (Convert.ToDouble(txtPorcientoPer.Text.Replace("%", "")) / 100);
+                Inicio.TotalCorregido = Inicio.ConsumoPromedio + Inicio.PerdidasConversion;
             }
-            catch(Exception ex) { Debug.WriteLine(ex.Message); return; }
-            
+            catch (Exception ex) { Debug.WriteLine(ex.Message); return; }
 
-            txtPromedioTotal.Text = ConsumoPromedio.ToString();
-            txtPerConversion.Text = PerdidasConversion.ToString();
-            txtTotalCorregido.Text = TotalCorregido.ToString();
+
+            txtPromedioTotal.Text = Inicio.ConsumoPromedio.ToString();
+            txtPerConversion.Text = Inicio.PerdidasConversion.ToString();
+            txtTotalCorregido.Text = Inicio.TotalCorregido.ToString();
             //if (ListaEquipo.Count >0) Hide();
         }
 
@@ -140,5 +141,11 @@ namespace SolCAD_v2.Forms
             }
             return true;
         }
+
+        private void ListaEquipamiento_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //pendiente (clase getter y setter en Inicio)
+        }
+        //
     }
 }

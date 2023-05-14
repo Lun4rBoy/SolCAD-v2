@@ -10,6 +10,11 @@ namespace SolCAD_v2
     {
         List<Comuna> ListComunas;
         ListaEquipamiento list = new ListaEquipamiento();
+        public static DataGridView dgBackup = null;
+        public static double ConsumoPromedio = 0;
+        public static double PerdidasConversion = 0;
+        public static double TotalCorregido = 0;
+
         public Inicio()
         {
             InitializeComponent();
@@ -18,7 +23,7 @@ namespace SolCAD_v2
             cbx_Comuna.SelectedIndex = 0;
             cbx_Region.SelectedIndex = 0;
             CargaRegiones();
-            
+
             list.Hide();
             //ConfigurarSlider();
 
@@ -102,13 +107,13 @@ namespace SolCAD_v2
                     table.ElementAt(4).NOV, table.ElementAt(4).DIC };
                 #endregion Colecciones
                 #region Calculos
-                double Prom_AnualH = Math.Round(rowRadH.Sum() / 12,3);
-                double DesvH = Math.Round(Statistics.StandardDeviation(rowRadH),3);
-                double RadMinH = Math.Round(rowRadH.Min(),3);
+                double Prom_AnualH = Math.Round(rowRadH.Sum() / 12, 3);
+                double DesvH = Math.Round(Statistics.StandardDeviation(rowRadH), 3);
+                double RadMinH = Math.Round(rowRadH.Min(), 3);
 
-                double Prom_AnualI = Math.Round(rowRadI.Sum() / 12,3);
-                double DesvI = Math.Round(Statistics.StandardDeviation(rowRadI),3);
-                double RadMinI = Math.Round(rowRadI.Min(),3);
+                double Prom_AnualI = Math.Round(rowRadI.Sum() / 12, 3);
+                double DesvI = Math.Round(Statistics.StandardDeviation(rowRadI), 3);
+                double RadMinI = Math.Round(rowRadI.Min(), 3);
 
                 double RadBruto = (Prom_AnualI - DesvI);
                 double DesviationLost = 1 - Climatic_Controller.effTable(RadBruto, null, table.ElementAt(2));
@@ -130,11 +135,13 @@ namespace SolCAD_v2
         private void DisplayComunas(object sender, EventArgs e)
         {
             bool fixer = true;
-            Again:
-            try {
+        Again:
+            try
+            {
                 ListComunas = Comuna_Controller.ComunaList(fixer);
-            } catch (Exception ex) { Debug.WriteLine(ex.Message); fixer = false; goto Again; }
-            
+            }
+            catch (Exception ex) { Debug.WriteLine(ex.Message); fixer = false; goto Again; }
+
             var nombres = (from c in ListComunas where c.Region == cbx_Region.SelectedIndex select c.COMUNA).ToArray();
             cbx_Comuna.Items.AddRange(nombres);
         }
@@ -142,7 +149,16 @@ namespace SolCAD_v2
         private void btnLista_Click(object sender, EventArgs e)
         {
             list.LocationChanged += Inicio_LocationChanged;
-            list.Show();
+            try
+            {
+                list.Show();
+            }
+            catch (Exception ex)
+            {
+                ListaEquipamiento newlist = new ListaEquipamiento();
+                list = newlist;
+                list.Show();
+            }
             ActualizarPosicion();
         }
         private void Inicio_LocationChanged(object sender, EventArgs e)
@@ -166,5 +182,6 @@ namespace SolCAD_v2
         {
             ActualizarPosicion();
         }
+
     }
 }
