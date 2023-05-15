@@ -10,6 +10,11 @@ namespace SolCAD_v2.DAO
     public class Comuna_Controller
     {
         public static bool test;
+        /// <summary>
+        /// Listado de comunas.
+        /// </summary>
+        /// <param name="fixer">Si es false, el separador decimal sera una coma.</param>
+        /// <returns>Listado de comunas</returns>
         public static List<Comuna> ComunaList(bool fixer)
         {
             var tempList = new List<Comuna>();

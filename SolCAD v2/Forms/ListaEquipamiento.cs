@@ -11,14 +11,24 @@ namespace SolCAD_v2.Forms
         {
             InitializeComponent();
 
-            if (Inicio.dgBackup!=null) dgEquipamiento = Inicio.dgBackup;
+            if (Inicio.dgBackup != null)
+            {
+                // Copiar los datos de dgBackup a dgEquipamiento
+                foreach (DataGridViewRow row in Inicio.dgBackup.Rows)
+                {
+                    // Clonar la fila original y agregarla a dgEquipamiento
+                    DataGridViewRow newRow = (DataGridViewRow)row.Clone();
+                    for (int i = 0; i < row.Cells.Count; i++)
+                    {
+                        newRow.Cells[i].Value = row.Cells[i].Value;
+                    }
+                    dgEquipamiento.Rows.Add(newRow);
+                }
+                dgEquipamiento.Rows.RemoveAt(dgEquipamiento.Rows.Count - 2);
+            }
             else
             {
-                dgEquipamiento.Rows[0].Cells[0].Value = 1;
-                dgEquipamiento.Rows[0].Cells[1].Value = "Equipo ejemplo";
-                dgEquipamiento.Rows[0].Cells[2].Value = 123;
-                dgEquipamiento.Rows[0].Cells[3].Value = 60;
-                dgEquipamiento.Rows[0].Cells[4].Value = 23;
+                dgEquipamiento.Rows.Add(1, "Equipo ejemplo", 123, 60, 23);
             }
         }
 
@@ -59,9 +69,9 @@ namespace SolCAD_v2.Forms
                     c.Promedio = (c.PotenciaA * c.PorcentajeA) + (c.PotenciaB * c.PorcentajeB);
                     c.SubTotal = c.Qty * c.Promedio;
 
-                    row.Cells["PorcientoB"].Value = c.PorcentajeB;
-                    row.Cells["Promedio"].Value = c.Promedio;
-                    row.Cells["SubTotal"].Value = c.SubTotal;
+                    row.Cells["PorcientoB"].Value = Math.Truncate(c.PorcentajeB*100);
+                    row.Cells["Promedio"].Value = Math.Round(c.Promedio,2);
+                    row.Cells["SubTotal"].Value = Math.Round(c.SubTotal,2);
                     list.Add(c);
                 }
                 catch (Exception ex) { Debug.WriteLine(ex.Message); return null; }
@@ -97,9 +107,9 @@ namespace SolCAD_v2.Forms
             catch (Exception ex) { Debug.WriteLine(ex.Message); return; }
 
 
-            txtPromedioTotal.Text = Inicio.ConsumoPromedio.ToString();
-            txtPerConversion.Text = Inicio.PerdidasConversion.ToString();
-            txtTotalCorregido.Text = Inicio.TotalCorregido.ToString();
+            txtPromedioTotal.Text = Math.Round(Inicio.ConsumoPromedio,2).ToString();
+            txtPerConversion.Text = Math.Round(Inicio.PerdidasConversion,2).ToString();
+            txtTotalCorregido.Text = Math.Round(Inicio.TotalCorregido,2).ToString();
             //if (ListaEquipo.Count >0) Hide();
         }
 
@@ -144,7 +154,7 @@ namespace SolCAD_v2.Forms
 
         private void ListaEquipamiento_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //pendiente (clase getter y setter en Inicio)
+            Inicio.SetDataGridView(dgEquipamiento);
         }
         //
     }

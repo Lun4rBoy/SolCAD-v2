@@ -8,10 +8,18 @@ namespace SolCAD_v2.Csv_manager
 {
     public class Controller
     {
-        public static List<object?> GetData(string fileName, string c, bool info,bool? fixer)
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <param name="fileName">Nombre del archivo CSV que se utilizara.</param>
+        /// <param name="modelo">El modelo que se utilizara para la creacion de los objetos de la lista.</param>
+        /// <param name="info">if set to <c>true</c> [Culture info cambiara a es-CL y el separador decimal sera un punto].</param>
+        /// <param name="fixer">Si es falso el separador de los decimales sera una coma.</param>
+        /// <returns></returns>
+        public static List<object?> GetData(string fileName, string modelo, bool info,bool? fixer)
         {
             string route = "../Files/" + fileName+".csv";
-            var type = Type.GetType(c);
+            var type = Type.GetType(modelo);
             CsvReader csv = null;
 
             CultureInfo culture = CultureInfo.CurrentCulture;

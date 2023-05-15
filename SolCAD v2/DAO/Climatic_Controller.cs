@@ -26,6 +26,12 @@ namespace SolCAD_v2.DAO
         public static double latRadianes = 0;
         public static double elevRadianes = 0;
 
+        /// <summary>
+        /// Carga la lista de datos.
+        /// </summary>
+        /// <param name="filename">Nombre del CSV que se cargara.</param>
+        /// <param name="fixer">Variable encargada de validar el simbolo de los decimales.</param>
+        /// <returns></returns>
         public static List<AllSheets> dataList(string filename, bool? fixer)
         {
             var tempList = new List<AllSheets>();
@@ -37,6 +43,11 @@ namespace SolCAD_v2.DAO
             }
             return tempList;
         }
+        /// <summary>
+        /// Carga la lista de Radiacion.
+        /// </summary>
+        /// <param name="fixer">Variable encargada de validar el simbolo de los decimales.</param>
+        /// <returns></returns>
         public static List<Radiation> RdataList(bool? fixer)
         {
             var radList = new List<Radiation>();
@@ -48,7 +59,13 @@ namespace SolCAD_v2.DAO
             }
             return radList;
         }
-
+        /// <summary>
+        /// Calculos de temperatura segun datos cargados en CSV.
+        /// </summary>
+        /// <param name="LAT">La lattitud.</param>
+        /// <param name="LON">La longitud.</param>
+        /// <param name="INC">La inclinacion de los paneles.</param>
+        /// <returns></returns>
         public static AllSheets Temp_Calculos(double LAT, double LON, List<AllSheets> data)
         {
             int x1 = (int)Math.Truncate(LAT - 1);
@@ -84,7 +101,14 @@ namespace SolCAD_v2.DAO
 
             return valor_Interpolado(blackList, aux);
         }
-
+        /// <summary>
+        /// Calculos de radiacion H y I.
+        /// </summary>
+        /// <param name="LAT">La lattitud.</param>
+        /// <param name="LON">La longitud.</param>
+        /// <param name="inclination">La inclinacion de los paneles.</param>
+        /// <param name="data">The data.</param>
+        /// <returns></returns>
         public static Tuple<AllSheets, AllSheets> RadTemp_Calculos(double LAT, double LON, int inclination, List<Radiation> data)
         {
             #region Variables
@@ -142,7 +166,12 @@ namespace SolCAD_v2.DAO
 
             return Tuple.Create(valInter, valIncl);
         }
-
+        /// <summary>
+        /// Generacion de Lista para la ayuda del calculo de las temperaturas.
+        /// </summary>
+        /// <param name="fvar">Variable fq correspondiente a la asignacion según tabla en prototipo funcional.</param>
+        /// <param name="f">Formula encargada del calculo.</param>
+        /// <returns></returns>
         public static AllSheets blackHeader_table(AllSheets? fvar, double f)
         {
 
@@ -163,7 +192,12 @@ namespace SolCAD_v2.DAO
 
             return a;
         }
-
+        /// <summary>
+        /// Valor interpolado.
+        /// </summary>
+        /// <param name="list">Lista que se va a interpolar.</param>
+        /// <param name="aux">Formula auxiliar para el calculo.</param>
+        /// <returns></returns>
         public static AllSheets valor_Interpolado(List<AllSheets?> list, int aux)
         {
             AllSheets a = new AllSheets();
@@ -213,7 +247,12 @@ namespace SolCAD_v2.DAO
             a.DIC = Math.Round(a.DIC, 2);
             return a;
         }
-
+        /// <summary>
+        /// Valor inclinado.
+        /// </summary>
+        /// <param name="conditioning">Fila acondicionada según formula de acondicionamiento.</param>
+        /// <param name="valInter">Fila con los valores interpolados.</param>
+        /// <returns></returns>
         public static AllSheets valor_inclinado(AllSheets conditioning, AllSheets valInter)
         {
             AllSheets a = new AllSheets()
@@ -235,11 +274,22 @@ namespace SolCAD_v2.DAO
 
             return a;
         }
+        /// <summary>
+        /// Formula de acondicionamiento.
+        /// </summary>
+        /// <param name="v">The v.</param>
+        /// <returns></returns>
         public static double formula_Acondicionamiento(double v)
         {
             return Math.Cos(Math.Abs(-latRadianes + v - elevRadianes)) / Math.Cos(Math.Abs(-latRadianes + v));
         }
-
+        /// <summary>
+        /// Carga de datos finales segun cordenadas en una lista semejante a la tabla del prototipo funcional.
+        /// </summary>
+        /// <param name="LAT">La lattitud.</param>
+        /// <param name="LON">La longitud.</param>
+        /// <param name="INC">La inclinacion de los paneles.</param>
+        /// <returns>Retorna una lista</returns>
         public static List<AllSheets> finalTable(double LAT, double LON, int INC)
         {
 
@@ -259,7 +309,14 @@ namespace SolCAD_v2.DAO
             
             return list;
         }
-
+        /// <summary>
+        /// Carga los valores complementarios según tabla informacion climatica para
+        /// resumen estadistico.
+        /// </summary>
+        /// <param name="radBruto">La radiacion bruta.</param>
+        /// <param name="respaldo">Variable de respaldo.</param>
+        /// <param name="dSol">Objeto dias sin sol.</param>
+        /// <returns></returns>
         public static double effTable(double radBruto, double? respaldo, AllSheets dSol)
         {
             var arrayHora = new double[10];

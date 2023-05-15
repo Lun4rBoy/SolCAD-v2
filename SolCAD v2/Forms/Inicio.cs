@@ -85,45 +85,59 @@ namespace SolCAD_v2
 
         }
 
+        /// <summary>
+        /// Loads the data table.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void LoadDataTable(object sender, EventArgs e)
         {
-            if (cbx_Comuna.SelectedIndex != 0)
+            if (cbx_Comuna.SelectedIndex == 0) return;
+
+            #region Variables de entrada
+            var comuna = (from c in ListComunas where c.COMUNA == cbx_Comuna.SelectedItem select c).FirstOrDefault();
+            double LAT = comuna.LAT;
+            double LON = comuna.LON;
+            int INC = 0;
+            try
             {
-                #region Variables de entrada
-                var comuna = (from c in ListComunas where c.COMUNA == cbx_Comuna.SelectedItem select c).FirstOrDefault();
-                double LAT = comuna.LAT;
-                double LON = comuna.LON;
-                int INC = 50; //Ver con agustin donde se selecciona el angulo en la APP
-                #endregion Variables de entrada
-                #region Colecciones
-                var table = Climatic_Controller.finalTable(LAT, LON, INC);
+                if (int.TryParse(txtInclinacion.Text, out int value))
+                {
+                    INC = Convert.ToInt32(txtInclinacion.Text);
+                }
+            }catch(Exception ex) { MessageBox.Show("Ingre un entero valido en la inclinacion!");return; }
 
-                var rowRadH = new[] { table.ElementAt(3).ENE, table.ElementAt(3).FEB, table.ElementAt(3).MAR, table.ElementAt(3).ABR,
-                    table.ElementAt(3).MAY, table.ElementAt(3).JUN, table.ElementAt(3).JUL, table.ElementAt(3).AGO, table.ElementAt(3).SEP, table.ElementAt(3).OCT,
-                    table.ElementAt(3).NOV, table.ElementAt(3).DIC };
+            #endregion Variables de entrada
+            #region Colecciones
+            var table = Climatic_Controller.finalTable(LAT, LON, INC);
 
-                var rowRadI = new[] { table.ElementAt(4).ENE, table.ElementAt(4).FEB, table.ElementAt(4).MAR, table.ElementAt(4).ABR,
-                    table.ElementAt(4).MAY, table.ElementAt(4).JUN, table.ElementAt(4).JUL, table.ElementAt(4).AGO, table.ElementAt(4).SEP, table.ElementAt(4).OCT,
-                    table.ElementAt(4).NOV, table.ElementAt(4).DIC };
-                #endregion Colecciones
-                #region Calculos
-                double Prom_AnualH = Math.Round(rowRadH.Sum() / 12, 3);
-                double DesvH = Math.Round(Statistics.StandardDeviation(rowRadH), 3);
-                double RadMinH = Math.Round(rowRadH.Min(), 3);
+            var rowRadH = new[] { table.ElementAt(3).ENE, table.ElementAt(3).FEB, table.ElementAt(3).MAR, table.ElementAt(3).ABR,
+                table.ElementAt(3).MAY, table.ElementAt(3).JUN, table.ElementAt(3).JUL, table.ElementAt(3).AGO, table.ElementAt(3).SEP, table.ElementAt(3).OCT,
+                table.ElementAt(3).NOV, table.ElementAt(3).DIC };
 
-                double Prom_AnualI = Math.Round(rowRadI.Sum() / 12, 3);
-                double DesvI = Math.Round(Statistics.StandardDeviation(rowRadI), 3);
-                double RadMinI = Math.Round(rowRadI.Min(), 3);
+            var rowRadI = new[] { table.ElementAt(4).ENE, table.ElementAt(4).FEB, table.ElementAt(4).MAR, table.ElementAt(4).ABR,
+                table.ElementAt(4).MAY, table.ElementAt(4).JUN, table.ElementAt(4).JUL, table.ElementAt(4).AGO, table.ElementAt(4).SEP, table.ElementAt(4).OCT,
+                table.ElementAt(4).NOV, table.ElementAt(4).DIC };
+            #endregion Colecciones
+            #region Calculos
+            double Prom_AnualH = Math.Round(rowRadH.Sum() / 12, 3);
+            double DesvH = Math.Round(Statistics.StandardDeviation(rowRadH), 3);
+            double RadMinH = Math.Round(rowRadH.Min(), 3);
 
-                double RadBruto = (Prom_AnualI - DesvI);
-                double DesviationLost = 1 - Climatic_Controller.effTable(RadBruto, null, table.ElementAt(2));
-                string test = (DesviationLost * 100).ToString("0.00") + "%";
-                double RadPropose = rowRadI.Average() - DesvI;
-                #endregion Calculos
-            }
+            double Prom_AnualI = Math.Round(rowRadI.Sum() / 12, 3);
+            double DesvI = Math.Round(Statistics.StandardDeviation(rowRadI), 3);
+            double RadMinI = Math.Round(rowRadI.Min(), 3);
+
+            double RadBruto = (Prom_AnualI - DesvI);
+            double DesviationLost = 1 - Climatic_Controller.effTable(RadBruto, null, table.ElementAt(2));
+            string test = (DesviationLost * 100).ToString("0.00") + "%";
+            double RadPropose = rowRadI.Average() - DesvI;
+            #endregion Calculos
 
         }
-
+        /// <summary>
+        /// Cargas las regiones.
+        /// </summary>
         private void CargaRegiones()
         {
             cbx_Region.Items.AddRange(new[]{"Tarapaca","Antofagasta","Atacama","Coquimbo","Valparaiso",
@@ -131,7 +145,11 @@ namespace SolCAD_v2
                     "Lagos","Aysén","Magallanes y Antartica Chilena","Region Metropolitana","Ríos","Arica y Parinacota","Ñuble"});
 
         }
-
+        /// <summary>
+        /// Displays the comunas.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void DisplayComunas(object sender, EventArgs e)
         {
             bool fixer = true;
@@ -183,5 +201,57 @@ namespace SolCAD_v2
             ActualizarPosicion();
         }
 
+        public static void SetDataGridView(DataGridView view)
+        {
+            if (view.Rows.Count > 0)
+            {
+                dgBackup = new DataGridView();
+
+                // Copia las columnas del DataGridView original
+                foreach (DataGridViewColumn column in view.Columns)
+                {
+                    dgBackup.Columns.Add(column.Clone() as DataGridViewColumn);
+                }
+                // Copia las filas y sus valores del DataGridView original
+                foreach (DataGridViewRow row in view.Rows)
+                {
+                    // Verifica si la fila tiene valores en al menos una de las celdas
+                    bool hasValues = false;
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        if (cell.Value != null && !string.IsNullOrEmpty(cell.Value.ToString()))
+                        {
+                            hasValues = true;
+                            break;
+                        }
+                    }
+
+                    // Si la fila tiene valores, se copia al DataGridView de respaldo
+                    if (hasValues)
+                    {
+                        DataGridViewRow newRow = (DataGridViewRow)row.Clone();
+                        for (int i = 0; i < row.Cells.Count; i++)
+                        {
+                            newRow.Cells[i].Value = row.Cells[i].Value;
+                        }
+                        dgBackup.Rows.Add(newRow);
+                    }
+                }
+            }
+            else
+            {
+                dgBackup = null;
+            }
+        }
+
+        private void cbx_Comuna_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbx_Comuna.SelectedIndex != 0)
+            {
+                txtInclinacion.Enabled = true;
+                return;
+            }
+            txtInclinacion.Enabled = false;
+        }
     }
 }
