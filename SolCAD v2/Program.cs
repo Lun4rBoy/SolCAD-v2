@@ -1,6 +1,3 @@
-using SolCAD_v2.DAO;
-using SolCAD_v2.Models;
-
 namespace SolCAD_v2
 {
     public static class Program

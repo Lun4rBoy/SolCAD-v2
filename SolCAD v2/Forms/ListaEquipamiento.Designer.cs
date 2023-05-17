@@ -68,6 +68,7 @@
             this.dgEquipamiento.RowTemplate.Height = 25;
             this.dgEquipamiento.Size = new System.Drawing.Size(514, 426);
             this.dgEquipamiento.TabIndex = 0;
+            this.dgEquipamiento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgEquipamiento_KeyDown);
             // 
             // Qty
             // 
@@ -229,6 +230,7 @@
             this.Controls.Add(this.dgEquipamiento);
             this.Name = "ListaEquipamiento";
             this.Text = "ListaEquipamiento";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ListaEquipamiento_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgEquipamiento)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
