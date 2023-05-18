@@ -40,7 +40,7 @@ namespace SolCAD_v2.Forms
         public List<Consumo> listaEquipos()
         {
             //Validar los valores de los campos acordes a Consumo.
-            var c = new Consumo();
+
             var list = new List<Consumo>();
             for (int x = 0; x < dgEquipamiento.Rows.Count - 1; x++)
             {
@@ -59,7 +59,8 @@ namespace SolCAD_v2.Forms
                 }
                 try
                 {
-                    if (!CellsValidator(row)) return null;
+                    var c = new Consumo();
+                    if (!RowValidator(row)) return null;
                     c.Qty = Convert.ToInt32(row.Cells["Qty"].Value);
                     c.Nombre = row.Cells["Nombre"].Value.ToString()!;
                     c.PotenciaA = Convert.ToInt32(row.Cells["PotenciaA"].Value);
@@ -69,9 +70,6 @@ namespace SolCAD_v2.Forms
                     c.Promedio = (c.PotenciaA * c.PorcentajeA) + (c.PotenciaB * c.PorcentajeB);
                     c.SubTotal = c.Qty * c.Promedio;
 
-                    row.Cells["PorcientoB"].Value = Math.Truncate(c.PorcentajeB*100);
-                    row.Cells["Promedio"].Value = Math.Round(c.Promedio,2);
-                    row.Cells["SubTotal"].Value = Math.Round(c.SubTotal,2);
                     list.Add(c);
                 }
                 catch (Exception ex) { Debug.WriteLine(ex.Message); return null; }
@@ -82,7 +80,15 @@ namespace SolCAD_v2.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            #region Variables
+
+            Inicio.ConsumoPromedio = 0;
+            Inicio.PerdidasConversion = 0;
+            Inicio.TotalCorregido = 0;
             ListaEquipo = listaEquipos();
+
+            #endregion Variables
+
             if (ListaEquipo == null) return;
             if (ListaEquipo.Count == 0)
             {
@@ -95,7 +101,7 @@ namespace SolCAD_v2.Forms
             }
             try
             {
-                Inicio.ConsumoPromedio = Inicio.ConsumoPromedio / ListaEquipo.Count;
+                Inicio.ConsumoPromedio = Inicio.ConsumoPromedio;
                 if (txtPorcientoPer.Text.Equals("") || !int.TryParse(txtPorcientoPer.Text.Replace("%", ""), out int value) || txtPorcientoPer.Text.Equals("0%"))
                 {
                     MessageBox.Show("Valor incorrecto o inexistente en campo Perdidas de Conversión!");
@@ -107,9 +113,9 @@ namespace SolCAD_v2.Forms
             catch (Exception ex) { Debug.WriteLine(ex.Message); return; }
 
 
-            txtPromedioTotal.Text = Math.Round(Inicio.ConsumoPromedio,2).ToString();
-            txtPerConversion.Text = Math.Round(Inicio.PerdidasConversion,2).ToString();
-            txtTotalCorregido.Text = Math.Round(Inicio.TotalCorregido,2).ToString();
+            txtPromedioTotal.Text = Math.Round(Inicio.ConsumoPromedio, 2).ToString();
+            txtPerConversion.Text = Math.Round(Inicio.PerdidasConversion, 2).ToString();
+            txtTotalCorregido.Text = Math.Round(Inicio.TotalCorregido, 2).ToString();
             //if (ListaEquipo.Count >0) Hide();
         }
 
@@ -127,7 +133,7 @@ namespace SolCAD_v2.Forms
                 }
             }
         }
-        private bool CellsValidator(DataGridViewRow row)
+        private bool RowValidator(DataGridViewRow row)
         {
             if (!int.TryParse(row.Cells["Qty"].Value.ToString(), out int value))
             {
@@ -155,6 +161,50 @@ namespace SolCAD_v2.Forms
         private void ListaEquipamiento_FormClosing(object sender, FormClosingEventArgs e)
         {
             Inicio.SetDataGridView(dgEquipamiento);
+        }
+
+        private void dgEquipamiento_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            DataGridViewRow row = dgEquipamiento.Rows[e.RowIndex];
+            if (e.ColumnIndex == 1) return;
+            if (row.Cells[e.ColumnIndex].Value == null) return;
+            if (!int.TryParse(row.Cells[e.ColumnIndex].Value.ToString(),
+                    out int value)) return;
+
+            try
+            {
+                int PowA = Convert.ToInt32(row.Cells["PotenciaA"].Value);
+                int PowB = Convert.ToInt32(row.Cells["PotenciaB"].Value);
+                double PerA = Convert.ToDouble(row.Cells["PorcientoA"].Value) / 100;
+                double PerB = 1 - PerA;
+                var Prom = Math.Round((PowA * PerA) + (PowB * PerB), 2);
+
+                row.Cells["PorcientoB"].Value = PerB * 100;
+                row.Cells["Promedio"].Value = Prom;
+                row.Cells["SubTotal"].Value = Math.Round(Convert.ToInt32(row.Cells["Qty"].Value) * Prom, 2);
+            }
+            catch (Exception ex) { }
+
+        }
+
+        private void dgEquipamiento_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 1) return;
+
+            string value = e.FormattedValue.ToString();
+
+            if(string.IsNullOrEmpty((value))) return;
+            if (int.TryParse(value, out int result)) return;
+
+            dgEquipamiento.Rows[e.RowIndex].ErrorText = "Debe ingresar un valor numérico.";
+            e.Cancel = true;
+
+        }
+
+        private void dgEquipamiento_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            dgEquipamiento.Rows[e.RowIndex].ErrorText = string.Empty;
         }
         //
     }

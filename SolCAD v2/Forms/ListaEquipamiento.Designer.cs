@@ -68,6 +68,9 @@
             this.dgEquipamiento.RowTemplate.Height = 25;
             this.dgEquipamiento.Size = new System.Drawing.Size(514, 426);
             this.dgEquipamiento.TabIndex = 0;
+            this.dgEquipamiento.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEquipamiento_CellEndEdit);
+            this.dgEquipamiento.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgEquipamiento_CellValidating);
+            this.dgEquipamiento.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEquipamiento_CellValueChanged);
             this.dgEquipamiento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgEquipamiento_KeyDown);
             // 
             // Qty
