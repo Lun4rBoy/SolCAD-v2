@@ -30,10 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnCordenadas = new System.Windows.Forms.Button();
+            this.txtLongitud = new System.Windows.Forms.TextBox();
+            this.txtLatitud = new System.Windows.Forms.TextBox();
             this.txtInclinacion = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.Regiónlbl = new System.Windows.Forms.Label();
+            this.lblComuna = new System.Windows.Forms.Label();
+            this.lblRegion = new System.Windows.Forms.Label();
             this.cbx_Comuna = new System.Windows.Forms.ComboBox();
             this.cbx_Region = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -57,9 +60,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cbxPanel = new System.Windows.Forms.ComboBox();
+            this.cbxDescargaMax = new System.Windows.Forms.ComboBox();
+            this.cbxBaterias = new System.Windows.Forms.ComboBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -98,10 +101,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnCordenadas);
+            this.groupBox1.Controls.Add(this.txtLongitud);
+            this.groupBox1.Controls.Add(this.txtLatitud);
             this.groupBox1.Controls.Add(this.txtInclinacion);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.Regiónlbl);
+            this.groupBox1.Controls.Add(this.lblComuna);
+            this.groupBox1.Controls.Add(this.lblRegion);
             this.groupBox1.Controls.Add(this.cbx_Comuna);
             this.groupBox1.Controls.Add(this.cbx_Region);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -112,6 +118,37 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "UBICACION";
             // 
+            // btnCordenadas
+            // 
+            this.btnCordenadas.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnCordenadas.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnCordenadas.Location = new System.Drawing.Point(18, 94);
+            this.btnCordenadas.Name = "btnCordenadas";
+            this.btnCordenadas.Size = new System.Drawing.Size(75, 23);
+            this.btnCordenadas.TabIndex = 10;
+            this.btnCordenadas.Text = "Manual";
+            this.btnCordenadas.UseVisualStyleBackColor = false;
+            this.btnCordenadas.Click += new System.EventHandler(this.btnCordenadas_Click);
+            // 
+            // txtLongitud
+            // 
+            this.txtLongitud.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtLongitud.Location = new System.Drawing.Point(72, 60);
+            this.txtLongitud.Name = "txtLongitud";
+            this.txtLongitud.Size = new System.Drawing.Size(100, 23);
+            this.txtLongitud.TabIndex = 9;
+            this.txtLongitud.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtLongitud.TextChanged += new System.EventHandler(this.txtLongitud_TextChanged);
+            // 
+            // txtLatitud
+            // 
+            this.txtLatitud.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtLatitud.Location = new System.Drawing.Point(72, 29);
+            this.txtLatitud.Name = "txtLatitud";
+            this.txtLatitud.Size = new System.Drawing.Size(100, 23);
+            this.txtLatitud.TabIndex = 8;
+            this.txtLatitud.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // txtInclinacion
             // 
             this.txtInclinacion.Enabled = false;
@@ -119,6 +156,7 @@
             this.txtInclinacion.Name = "txtInclinacion";
             this.txtInclinacion.Size = new System.Drawing.Size(65, 25);
             this.txtInclinacion.TabIndex = 5;
+            this.txtInclinacion.TextChanged += new System.EventHandler(this.txtInclinacion_TextChanged);
             // 
             // label6
             // 
@@ -130,25 +168,25 @@
             this.label6.TabIndex = 4;
             this.label6.Text = "Inclinación Paneles";
             // 
-            // label1
+            // lblComuna
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(6, 66);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 15);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Comuna";
+            this.lblComuna.AutoSize = true;
+            this.lblComuna.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblComuna.Location = new System.Drawing.Point(6, 66);
+            this.lblComuna.Name = "lblComuna";
+            this.lblComuna.Size = new System.Drawing.Size(53, 15);
+            this.lblComuna.TabIndex = 3;
+            this.lblComuna.Text = "Comuna";
             // 
-            // Regiónlbl
+            // lblRegion
             // 
-            this.Regiónlbl.AutoSize = true;
-            this.Regiónlbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Regiónlbl.Location = new System.Drawing.Point(6, 37);
-            this.Regiónlbl.Name = "Regiónlbl";
-            this.Regiónlbl.Size = new System.Drawing.Size(44, 15);
-            this.Regiónlbl.TabIndex = 2;
-            this.Regiónlbl.Text = "Región";
+            this.lblRegion.AutoSize = true;
+            this.lblRegion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblRegion.Location = new System.Drawing.Point(6, 37);
+            this.lblRegion.Name = "lblRegion";
+            this.lblRegion.Size = new System.Drawing.Size(44, 15);
+            this.lblRegion.TabIndex = 2;
+            this.lblRegion.Text = "Región";
             // 
             // cbx_Comuna
             // 
@@ -343,9 +381,9 @@
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Controls.Add(this.comboBox5);
-            this.groupBox4.Controls.Add(this.comboBox4);
-            this.groupBox4.Controls.Add(this.comboBox3);
+            this.groupBox4.Controls.Add(this.cbxPanel);
+            this.groupBox4.Controls.Add(this.cbxDescargaMax);
+            this.groupBox4.Controls.Add(this.cbxBaterias);
             this.groupBox4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox4.Location = new System.Drawing.Point(239, 196);
             this.groupBox4.Name = "groupBox4";
@@ -384,29 +422,45 @@
             this.label8.TabIndex = 3;
             this.label8.Text = "Bateria";
             // 
-            // comboBox5
+            // cbxPanel
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(99, 80);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(95, 25);
-            this.comboBox5.TabIndex = 2;
+            this.cbxPanel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxPanel.Enabled = false;
+            this.cbxPanel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbxPanel.FormattingEnabled = true;
+            this.cbxPanel.Location = new System.Drawing.Point(99, 80);
+            this.cbxPanel.Name = "cbxPanel";
+            this.cbxPanel.Size = new System.Drawing.Size(95, 23);
+            this.cbxPanel.TabIndex = 2;
             // 
-            // comboBox4
+            // cbxDescargaMax
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(99, 54);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(95, 25);
-            this.comboBox4.TabIndex = 1;
+            this.cbxDescargaMax.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxDescargaMax.Enabled = false;
+            this.cbxDescargaMax.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbxDescargaMax.FormattingEnabled = true;
+            this.cbxDescargaMax.Items.AddRange(new object[] {
+            "0%",
+            "10%",
+            "15%",
+            "20%",
+            "25%",
+            "30%"});
+            this.cbxDescargaMax.Location = new System.Drawing.Point(99, 54);
+            this.cbxDescargaMax.Name = "cbxDescargaMax";
+            this.cbxDescargaMax.Size = new System.Drawing.Size(95, 23);
+            this.cbxDescargaMax.TabIndex = 1;
             // 
-            // comboBox3
+            // cbxBaterias
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(99, 27);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(95, 25);
-            this.comboBox3.TabIndex = 0;
+            this.cbxBaterias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxBaterias.Enabled = false;
+            this.cbxBaterias.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbxBaterias.FormattingEnabled = true;
+            this.cbxBaterias.Location = new System.Drawing.Point(99, 27);
+            this.cbxBaterias.Name = "cbxBaterias";
+            this.cbxBaterias.Size = new System.Drawing.Size(95, 23);
+            this.cbxBaterias.TabIndex = 0;
             // 
             // groupBox5
             // 
@@ -728,13 +782,13 @@
         private ProgressBar progressBar1;
         private Button diseñarbtn;
         private TrackBar sliderPotencia;
-        private ComboBox comboBox5;
-        private ComboBox comboBox4;
-        private ComboBox comboBox3;
+        private ComboBox cbxPanel;
+        private ComboBox cbxDescargaMax;
+        private ComboBox cbxBaterias;
         private TrackBar sliderCrecimiento;
         private TrackBar sliderAutonomia;
-        private Label Regiónlbl;
-        private Label label1;
+        private Label lblRegion;
+        private Label lblComuna;
         private Label wattsCrecimiento;
         private Label horaslbl;
         private Label wattsPotencia;
@@ -771,5 +825,8 @@
         private Button btnLista;
         private TextBox txtInclinacion;
         private Label label6;
+        private Button btnCordenadas;
+        private TextBox txtLongitud;
+        private TextBox txtLatitud;
     }
 }

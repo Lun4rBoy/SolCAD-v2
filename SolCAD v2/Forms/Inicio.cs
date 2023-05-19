@@ -3,6 +3,7 @@ using SolCAD_v2.DAO;
 using SolCAD_v2.Forms;
 using SolCAD_v2.Models;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace SolCAD_v2
 {
@@ -14,15 +15,28 @@ namespace SolCAD_v2
         public static double ConsumoPromedio = 0;
         public static double PerdidasConversion = 0;
         public static double TotalCorregido = 0;
+        private bool comboBoxVisible = true;
+        private ToolTip tooltip;
+        private ErrorProvider errorProvider;
+
 
         public Inicio()
         {
             InitializeComponent();
+            txtLatitud.Visible = false;
+            txtLongitud.Visible = false;
             cbx_Region.Items.Add("Seleccione...");
             cbx_Comuna.Items.Add("Seleccione...");
+            cbxBaterias.Items.Add("Ninguna");
+            cbxPanel.Items.Add("Ninguno");
             cbx_Comuna.SelectedIndex = 0;
             cbx_Region.SelectedIndex = 0;
+            cbxBaterias.SelectedIndex= 0;
+            cbxDescargaMax.SelectedIndex = 0;
+            cbxPanel.SelectedIndex = 0;
+            txtInclinacion.TextChanged += txtInclinacion_TextChanged;
             CargaRegiones();
+            
 
             list.Hide();
             //ConfigurarSlider();
@@ -109,7 +123,7 @@ namespace SolCAD_v2
 
             #endregion Variables de entrada
             #region Colecciones
-            var table = Climatic_Controller.finalTable(LAT, LON, INC);
+            var table = Controller_Climatic.finalTable(LAT, LON, INC);
 
             var rowRadH = new[] { table.ElementAt(3).ENE, table.ElementAt(3).FEB, table.ElementAt(3).MAR, table.ElementAt(3).ABR,
                 table.ElementAt(3).MAY, table.ElementAt(3).JUN, table.ElementAt(3).JUL, table.ElementAt(3).AGO, table.ElementAt(3).SEP, table.ElementAt(3).OCT,
@@ -129,7 +143,7 @@ namespace SolCAD_v2
             double RadMinI = Math.Round(rowRadI.Min(), 3);
 
             double RadBruto = (Prom_AnualI - DesvI);
-            double DesviationLost = 1 - Climatic_Controller.effTable(RadBruto, null, table.ElementAt(2));
+            double DesviationLost = 1 - Controller_Climatic.effTable(RadBruto, null, table.ElementAt(2));
             string test = (DesviationLost * 100).ToString("0.00") + "%";
             double RadPropose = rowRadI.Average() - DesvI;
             #endregion Calculos
@@ -145,6 +159,21 @@ namespace SolCAD_v2
                     "Lagos","Aysén","Magallanes y Antartica Chilena","Region Metropolitana","Ríos","Arica y Parinacota","Ñuble"});
 
         }
+
+        private void CargarEquipos()
+        {
+            try
+            {
+                var listaBaterias = Controller_Equipo.ListaBaterias().Select(x=> x.Tipo).ToArray();
+                var listaPaneles = Controller_Equipo.ListaPaneles().Select(x=> x.Tipo).ToArray();
+                cbxBaterias.Items.AddRange(listaBaterias);
+                cbxPanel.Items.AddRange(listaPaneles);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
         /// <summary>
         /// Displays the comunas.
         /// </summary>
@@ -156,12 +185,13 @@ namespace SolCAD_v2
         Again:
             try
             {
-                ListComunas = Comuna_Controller.ComunaList(fixer);
+                ListComunas = Controller_Comuna.ComunaList(fixer);
             }
             catch (Exception ex) { Debug.WriteLine(ex.Message); fixer = false; goto Again; }
 
             var nombres = (from c in ListComunas where c.Region == cbx_Region.SelectedIndex select c.COMUNA).ToArray();
             cbx_Comuna.Items.AddRange(nombres);
+            CargarEquipos();
         }
 
         private void btnLista_Click(object sender, EventArgs e)
@@ -246,12 +276,66 @@ namespace SolCAD_v2
 
         private void cbx_Comuna_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbx_Comuna.SelectedIndex != 0)
+            if (cbx_Comuna.SelectedIndex != 0 && txtLatitud.Visible==false)
             {
                 txtInclinacion.Enabled = true;
                 return;
             }
             txtInclinacion.Enabled = false;
+        }
+
+        private void txtInclinacion_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtInclinacion.Text))
+            {
+                cbxBaterias.Enabled = false;
+                cbxDescargaMax.Enabled = false;
+                cbxPanel.Enabled = false;
+            }
+            else
+            {
+
+                cbxBaterias.Enabled = true;
+                cbxDescargaMax.Enabled = true;
+                cbxPanel.Enabled = true;
+            }
+        }
+
+        private void btnCordenadas_Click(object sender, EventArgs e)
+        {
+            cbx_Region.Visible = !comboBoxVisible;
+            cbx_Comuna.Visible = !comboBoxVisible;
+            txtLatitud.Visible = comboBoxVisible;
+            txtLongitud.Visible = comboBoxVisible;
+            comboBoxVisible = !comboBoxVisible;
+            txtInclinacion.Enabled = false;
+
+            if (!comboBoxVisible)
+            {
+                lblRegion.Text = "Latitud";
+                lblComuna.Text = "Longitud";
+                lblRegion.Location = txtLatitud.Location with { X = txtLatitud.Location.X - lblRegion.Width };
+                lblComuna.Location = txtLongitud.Location with { X = txtLongitud.Location.X - lblComuna.Width };
+            }
+            else
+            {
+                lblRegion.Text = "Región";
+                lblComuna.Text = "Comuna";
+                lblRegion.Location = new Point(6, 37);
+                lblComuna.Location = new Point(6, 66);
+            }
+        }
+
+        private void txtLongitud_TextChanged(object sender, EventArgs e)
+        {
+            if (cbx_Comuna.Visible) return;
+            if (!string.IsNullOrEmpty(txtLatitud.Text) || !string.IsNullOrEmpty(txtLongitud.Text))
+            {
+                txtInclinacion.Enabled = false;
+                return;
+            }
+
+            txtInclinacion.Enabled = true;
         }
     }
 }

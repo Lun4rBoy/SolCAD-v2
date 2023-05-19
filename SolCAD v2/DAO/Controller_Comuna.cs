@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace SolCAD_v2.DAO
 {
-    public class Comuna_Controller
+    public class Controller_Comuna
     {
-        public static bool test;
+        public static bool test=true;
         /// <summary>
         /// Listado de comunas.
         /// </summary>
@@ -18,7 +18,6 @@ namespace SolCAD_v2.DAO
         public static List<Comuna> ComunaList(bool fixer)
         {
             var tempList = new List<Comuna>();
-            test = true;
             var genericList = Csv_manager.Controller.GetData("Comunas", "SolCAD_v2.Models.Comuna",false, fixer);
             again:
             foreach (var g in genericList)

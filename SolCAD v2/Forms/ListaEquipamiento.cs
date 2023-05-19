@@ -104,10 +104,17 @@ namespace SolCAD_v2.Forms
                 Inicio.ConsumoPromedio = Inicio.ConsumoPromedio;
                 if (txtPorcientoPer.Text.Equals("") || !int.TryParse(txtPorcientoPer.Text.Replace("%", ""), out int value) || txtPorcientoPer.Text.Equals("0%"))
                 {
+                    
                     MessageBox.Show("Valor incorrecto o inexistente en campo Perdidas de Conversión!");
                     return;
                 };
-                Inicio.PerdidasConversion = Inicio.ConsumoPromedio * (Convert.ToDouble(txtPorcientoPer.Text.Replace("%", "")) / 100);
+                double porcientoPer = Convert.ToDouble(txtPorcientoPer.Text.Replace("%", ""));
+                if (porcientoPer > 100 || porcientoPer < 0)
+                {
+                    MessageBox.Show("Ingrese un entero entre 0 y 100 en campo Perdidas de Conversión!");
+                    return;
+                }
+                Inicio.PerdidasConversion = Inicio.ConsumoPromedio * (porcientoPer / 100);
                 Inicio.TotalCorregido = Inicio.ConsumoPromedio + Inicio.PerdidasConversion;
             }
             catch (Exception ex) { Debug.WriteLine(ex.Message); return; }

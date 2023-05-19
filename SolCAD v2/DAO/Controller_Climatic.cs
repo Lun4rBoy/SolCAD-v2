@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace SolCAD_v2.DAO
 {
-    public class Climatic_Controller
+    public class Controller_Climatic
     {
         public static AllSheets decline = new AllSheets()
         {
@@ -35,7 +35,7 @@ namespace SolCAD_v2.DAO
         public static List<AllSheets> dataList(string filename, bool? fixer)
         {
             var tempList = new List<AllSheets>();
-            var genericList = Csv_manager.Controller.GetData(filename, "SolCAD_v2.Models.AllSheets", Comuna_Controller.test,fixer);
+            var genericList = Csv_manager.Controller.GetData(filename, "SolCAD_v2.Models.AllSheets", Controller_Comuna.test,fixer);
 
             foreach (var g in genericList)
             {
@@ -51,7 +51,7 @@ namespace SolCAD_v2.DAO
         public static List<Radiation> RdataList(bool? fixer)
         {
             var radList = new List<Radiation>();
-            var genericList = Csv_manager.Controller.GetData("Radiacion", "SolCAD_v2.Models.Radiation", Comuna_Controller.test,fixer);
+            var genericList = Csv_manager.Controller.GetData("Radiacion", "SolCAD_v2.Models.Radiation", Controller_Comuna.test,fixer);
 
             foreach (var g in genericList)
             {
