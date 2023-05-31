@@ -90,6 +90,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.diseñarbtn = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnCondicionesDiseño = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbxCondiciones.SuspendLayout();
@@ -97,6 +99,7 @@
             this.toolStrip1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -253,7 +256,7 @@
             this.gbxCondiciones.Size = new System.Drawing.Size(221, 122);
             this.gbxCondiciones.TabIndex = 2;
             this.gbxCondiciones.TabStop = false;
-            this.gbxCondiciones.Text = "CONDICIONES";
+            this.gbxCondiciones.Text = "EQUIPAMIENTO";
             // 
             // btnLista
             // 
@@ -489,7 +492,7 @@
             this.groupBox5.Controls.Add(this.textBox2);
             this.groupBox5.Controls.Add(this.textBox1);
             this.groupBox5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox5.Location = new System.Drawing.Point(12, 324);
+            this.groupBox5.Location = new System.Drawing.Point(12, 507);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(291, 122);
             this.groupBox5.TabIndex = 6;
@@ -702,7 +705,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 465);
+            this.progressBar1.Location = new System.Drawing.Point(12, 648);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(436, 23);
             this.progressBar1.TabIndex = 7;
@@ -712,18 +715,43 @@
             this.diseñarbtn.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.diseñarbtn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.diseñarbtn.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.diseñarbtn.Location = new System.Drawing.Point(321, 398);
+            this.diseñarbtn.Location = new System.Drawing.Point(321, 581);
             this.diseñarbtn.Name = "diseñarbtn";
             this.diseñarbtn.Size = new System.Drawing.Size(98, 47);
             this.diseñarbtn.TabIndex = 8;
             this.diseñarbtn.Text = "DISEÑAR";
             this.diseñarbtn.UseVisualStyleBackColor = false;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btnCondicionesDiseño);
+            this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.groupBox3.Location = new System.Drawing.Point(12, 324);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(221, 122);
+            this.groupBox3.TabIndex = 9;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "CONDICIONES PARA EL DISEÑO";
+            // 
+            // btnCondicionesDiseño
+            // 
+            this.btnCondicionesDiseño.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnCondicionesDiseño.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCondicionesDiseño.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnCondicionesDiseño.Location = new System.Drawing.Point(20, 38);
+            this.btnCondicionesDiseño.Name = "btnCondicionesDiseño";
+            this.btnCondicionesDiseño.Size = new System.Drawing.Size(181, 47);
+            this.btnCondicionesDiseño.TabIndex = 10;
+            this.btnCondicionesDiseño.Text = "Variables";
+            this.btnCondicionesDiseño.UseVisualStyleBackColor = false;
+            this.btnCondicionesDiseño.Click += new System.EventHandler(this.btnCondicionesDiseño_Click);
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(460, 504);
+            this.ClientSize = new System.Drawing.Size(460, 686);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.diseñarbtn);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.groupBox5);
@@ -735,6 +763,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Inicio";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SolCAD - MCD 2023";
             this.LocationChanged += new System.EventHandler(this.Inicio_LocationChanged);
             this.DragOver += new System.Windows.Forms.DragEventHandler(this.Inicio_DragOver);
@@ -751,6 +780,7 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -828,5 +858,7 @@
         private Button btnCordenadas;
         private TextBox txtLongitud;
         private TextBox txtLatitud;
+        private GroupBox groupBox3;
+        private Button btnCondicionesDiseño;
     }
 }

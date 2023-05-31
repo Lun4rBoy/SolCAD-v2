@@ -187,7 +187,7 @@ namespace SolCAD_v2.Forms
                 double PerB = 1 - PerA;
                 var Prom = Math.Round((PowA * PerA) + (PowB * PerB), 2);
 
-                row.Cells["PorcientoB"].Value = PerB * 100;
+                row.Cells["PorcientoB"].Value = Math.Round(PerB * 100);
                 row.Cells["Promedio"].Value = Prom;
                 row.Cells["SubTotal"].Value = Math.Round(Convert.ToInt32(row.Cells["Qty"].Value) * Prom, 2);
             }

@@ -300,8 +300,8 @@ namespace SolCAD_v2.DAO
             {
                 var rad = RdataList(fixer);
                 list.Add(Temp_Calculos(LAT, LON, dataList("Temp",fixer)));
-                list.Add(Temp_Calculos(LAT, LON, dataList("D_sol",fixer)));
                 list.Add(Temp_Calculos(LAT, LON, dataList("Tminima", fixer)));
+                list.Add(Temp_Calculos(LAT, LON, dataList("D_sol",fixer)));
                 list.Add(RadTemp_Calculos(LAT, LON, INC, rad).Item1);
                 list.Add(RadTemp_Calculos(LAT, LON, INC, rad).Item2);
 

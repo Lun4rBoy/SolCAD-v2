@@ -41,6 +41,23 @@ namespace SolCAD_v2.Models
             this.DIC = DIC;
         }
 
-        
+        public double SumarMeses()
+        {
+            double suma = 0;
+            suma += ENE;
+            suma += FEB;
+            suma += MAR;
+            suma += ABR;
+            suma += MAY;
+            suma += JUN;
+            suma += JUL;
+            suma += AGO;
+            suma += SEP;
+            suma += OCT;
+            suma += NOV;
+            suma += DIC;
+            return suma;
+        }
+
     }
 }
