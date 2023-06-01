@@ -8,9 +8,13 @@ namespace SolCAD_v2;
 
 public partial class Inicio : Form
 {
+    #region VariablesGlobales
+
+    private AppState appState;
     public static DataGridView dgBackup;
     public static List<AllSheets> InformacionClimatica = new();
 
+    //considerar armar una clase con estas variables
     public static double ConsumoPromedio = 0;
     public static double PerdidasConversion = 0;
     public static double TotalCorregido = 0;
@@ -19,6 +23,7 @@ public partial class Inicio : Form
     public static int Paneles = 0;
     public static int Ramas = 0;
     public static double AlturaInferior = 0;
+    public static double EnergiaDiaria = 0;
 
     private bool comboBoxVisible = true;
     public Condiciones cond;
@@ -27,6 +32,7 @@ public partial class Inicio : Form
     private List<Comuna> ListComunas;
     private ToolTip tooltip;
 
+    #endregion VariablesGlobales
 
     public Inicio()
     {
@@ -52,11 +58,6 @@ public partial class Inicio : Form
         list.Hide();
     }
 
-    /// <summary>
-    ///     Loads the data table.
-    /// </summary>
-    /// <param name="sender">The sender.</param>
-    /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
     private void LoadDataTable()
     {
         if (cbx_Comuna.SelectedIndex == 0) return;
@@ -131,9 +132,6 @@ public partial class Inicio : Form
         #endregion Calculos
     }
 
-    /// <summary>
-    ///     Cargas las regiones.
-    /// </summary>
     private void CargaRegiones()
     {
         cbx_Region.Items.AddRange(new[]
@@ -160,11 +158,6 @@ public partial class Inicio : Form
         }
     }
 
-    /// <summary>
-    ///     Displays the comunas.
-    /// </summary>
-    /// <param name="sender">The sender.</param>
-    /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
     private void DisplayComunas(object sender, EventArgs e)
     {
         var fixer = true;
@@ -215,11 +208,6 @@ public partial class Inicio : Form
     }
 
     private void Inicio_DragOver(object sender, DragEventArgs e)
-    {
-        ActualizarPosicion();
-    }
-
-    private void progressBar1_Move(object sender, EventArgs e)
     {
         ActualizarPosicion();
     }
@@ -345,5 +333,40 @@ public partial class Inicio : Form
             cond = newCond;
             cond.Show();
         }
+    }
+
+    private void chxAhorro_CheckedChanged(object sender, EventArgs e)
+    {
+        gbxBoleta.Visible = chxAhorro.Checked;
+    }
+
+    private void Inicio_Load(object sender, EventArgs e)
+    {
+        // Cargar el estado guardado si existe, de lo contrario, inicializar un nuevo estado
+        if (File.Exists("appstate.bin"))
+        {
+            appState = Controller_AppState.DeserializeAppState("appstate.bin");
+        }
+        else
+        {
+            appState = new AppState();
+            // Realiza cualquier inicialización adicional para un nuevo estado
+        }
+
+        //cargar variables aqui:
+    }
+
+    private void Inicio_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        //aqui las variables a guardar:
+        /*
+         *Ejemplo:
+         *  appState.DataGrid2Data = (DataTable)dataGridView2.DataSource;
+            appState.TextBoxText = textBox.Text;
+            appState.CheckBoxChecked = checkBox.Checked;
+            appState.ComboBoxSelectedValue = comboBox.SelectedValue?.ToString();
+         */
+
+        Controller_AppState.SerializeAppState(appState, "appstate.bin");
     }
 }

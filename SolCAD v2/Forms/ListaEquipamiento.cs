@@ -29,11 +29,13 @@ namespace SolCAD_v2.Forms
             else
             {
                 dgEquipamiento.Rows.Add(1, "Equipo ejemplo", 123, 60, 23);
+                DinamicCell(dgEquipamiento.Rows[0]);
             }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            Inicio.SetDataGridView(dgEquipamiento);
             Hide();
         }
 
@@ -178,21 +180,7 @@ namespace SolCAD_v2.Forms
             if (row.Cells[e.ColumnIndex].Value == null) return;
             if (!int.TryParse(row.Cells[e.ColumnIndex].Value.ToString(),
                     out int value)) return;
-
-            try
-            {
-                int PowA = Convert.ToInt32(row.Cells["PotenciaA"].Value);
-                int PowB = Convert.ToInt32(row.Cells["PotenciaB"].Value);
-                double PerA = Convert.ToDouble(row.Cells["PorcientoA"].Value) / 100;
-                double PerB = 1 - PerA;
-                var Prom = Math.Round((PowA * PerA) + (PowB * PerB), 2);
-
-                row.Cells["PorcientoB"].Value = Math.Round(PerB * 100);
-                row.Cells["Promedio"].Value = Prom;
-                row.Cells["SubTotal"].Value = Math.Round(Convert.ToInt32(row.Cells["Qty"].Value) * Prom, 2);
-            }
-            catch (Exception ex) { }
-
+            DinamicCell(row);
         }
 
         private void dgEquipamiento_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
@@ -214,5 +202,21 @@ namespace SolCAD_v2.Forms
             dgEquipamiento.Rows[e.RowIndex].ErrorText = string.Empty;
         }
         //
+        private void DinamicCell(DataGridViewRow row)
+        {
+            try
+            {
+                int PowA = Convert.ToInt32(row.Cells["PotenciaA"].Value);
+                int PowB = Convert.ToInt32(row.Cells["PotenciaB"].Value);
+                double PerA = Convert.ToDouble(row.Cells["PorcientoA"].Value) / 100;
+                double PerB = 1 - PerA;
+                var Prom = Math.Round((PowA * PerA) + (PowB * PerB), 2);
+
+                row.Cells["PorcientoB"].Value = Math.Round(PerB * 100);
+                row.Cells["Promedio"].Value = Prom;
+                row.Cells["SubTotal"].Value = Math.Round(Convert.ToInt32(row.Cells["Qty"].Value) * Prom, 2);
+            }
+            catch (Exception ex) { }
+        }
     }
 }

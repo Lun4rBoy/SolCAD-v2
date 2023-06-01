@@ -40,9 +40,8 @@
             this.cbx_Comuna = new System.Windows.Forms.ComboBox();
             this.cbx_Region = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.chxAhorro = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.gbxCondiciones = new System.Windows.Forms.GroupBox();
             this.btnLista = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,7 +62,7 @@
             this.cbxPanel = new System.Windows.Forms.ComboBox();
             this.cbxDescargaMax = new System.Windows.Forms.ComboBox();
             this.cbxBaterias = new System.Windows.Forms.ComboBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.gbxBoleta = new System.Windows.Forms.GroupBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -88,17 +87,15 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.diseñarbtn = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnCondicionesDiseño = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.gbxCondiciones.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.gbxBoleta.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -157,7 +154,7 @@
             this.txtInclinacion.Enabled = false;
             this.txtInclinacion.Location = new System.Drawing.Point(225, 94);
             this.txtInclinacion.Name = "txtInclinacion";
-            this.txtInclinacion.Size = new System.Drawing.Size(65, 25);
+            this.txtInclinacion.Size = new System.Drawing.Size(56, 25);
             this.txtInclinacion.TabIndex = 5;
             this.txtInclinacion.TextChanged += new System.EventHandler(this.txtInclinacion_TextChanged);
             // 
@@ -198,7 +195,7 @@
             this.cbx_Comuna.FormattingEnabled = true;
             this.cbx_Comuna.Location = new System.Drawing.Point(72, 60);
             this.cbx_Comuna.Name = "cbx_Comuna";
-            this.cbx_Comuna.Size = new System.Drawing.Size(219, 25);
+            this.cbx_Comuna.Size = new System.Drawing.Size(209, 25);
             this.cbx_Comuna.TabIndex = 1;
             this.cbx_Comuna.SelectedIndexChanged += new System.EventHandler(this.cbx_Comuna_SelectedIndexChanged);
             // 
@@ -209,32 +206,35 @@
             this.cbx_Region.FormattingEnabled = true;
             this.cbx_Region.Location = new System.Drawing.Point(72, 29);
             this.cbx_Region.Name = "cbx_Region";
-            this.cbx_Region.Size = new System.Drawing.Size(219, 25);
+            this.cbx_Region.Size = new System.Drawing.Size(209, 25);
             this.cbx_Region.TabIndex = 0;
             this.cbx_Region.SelectedValueChanged += new System.EventHandler(this.DisplayComunas);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.checkBox2);
+            this.groupBox2.Controls.Add(this.chxAhorro);
             this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox2.Location = new System.Drawing.Point(321, 52);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(127, 138);
+            this.groupBox2.Size = new System.Drawing.Size(120, 139);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "HERRAMIENTAS";
             // 
-            // checkBox2
+            // chxAhorro
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.checkBox2.Location = new System.Drawing.Point(11, 60);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(63, 19);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "Ahorro";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.chxAhorro.AutoSize = true;
+            this.chxAhorro.Checked = true;
+            this.chxAhorro.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chxAhorro.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.chxAhorro.Location = new System.Drawing.Point(11, 60);
+            this.chxAhorro.Name = "chxAhorro";
+            this.chxAhorro.Size = new System.Drawing.Size(63, 19);
+            this.chxAhorro.TabIndex = 1;
+            this.chxAhorro.Text = "Ahorro";
+            this.chxAhorro.UseVisualStyleBackColor = true;
+            this.chxAhorro.CheckedChanged += new System.EventHandler(this.chxAhorro_CheckedChanged);
             // 
             // checkBox1
             // 
@@ -247,25 +247,14 @@
             this.checkBox1.Text = "Globos";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // gbxCondiciones
-            // 
-            this.gbxCondiciones.Controls.Add(this.btnLista);
-            this.gbxCondiciones.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.gbxCondiciones.Location = new System.Drawing.Point(12, 196);
-            this.gbxCondiciones.Name = "gbxCondiciones";
-            this.gbxCondiciones.Size = new System.Drawing.Size(221, 122);
-            this.gbxCondiciones.TabIndex = 2;
-            this.gbxCondiciones.TabStop = false;
-            this.gbxCondiciones.Text = "EQUIPAMIENTO";
-            // 
             // btnLista
             // 
             this.btnLista.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnLista.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnLista.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnLista.Location = new System.Drawing.Point(22, 38);
+            this.btnLista.Location = new System.Drawing.Point(20, 24);
             this.btnLista.Name = "btnLista";
-            this.btnLista.Size = new System.Drawing.Size(181, 47);
+            this.btnLista.Size = new System.Drawing.Size(181, 36);
             this.btnLista.TabIndex = 9;
             this.btnLista.Text = "Lista Equipamiento";
             this.btnLista.UseVisualStyleBackColor = false;
@@ -280,7 +269,7 @@
             this.toolStripMenuItem3});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(460, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(447, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -316,7 +305,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.toolStrip1.Size = new System.Drawing.Size(460, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(447, 31);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -388,9 +377,9 @@
             this.groupBox4.Controls.Add(this.cbxDescargaMax);
             this.groupBox4.Controls.Add(this.cbxBaterias);
             this.groupBox4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox4.Location = new System.Drawing.Point(239, 196);
+            this.groupBox4.Location = new System.Drawing.Point(237, 197);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(209, 122);
+            this.groupBox4.Size = new System.Drawing.Size(204, 135);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "BATERIAS Y PANELES";
@@ -433,7 +422,7 @@
             this.cbxPanel.FormattingEnabled = true;
             this.cbxPanel.Location = new System.Drawing.Point(99, 80);
             this.cbxPanel.Name = "cbxPanel";
-            this.cbxPanel.Size = new System.Drawing.Size(95, 23);
+            this.cbxPanel.Size = new System.Drawing.Size(81, 23);
             this.cbxPanel.TabIndex = 2;
             // 
             // cbxDescargaMax
@@ -451,7 +440,7 @@
             "30%"});
             this.cbxDescargaMax.Location = new System.Drawing.Point(99, 54);
             this.cbxDescargaMax.Name = "cbxDescargaMax";
-            this.cbxDescargaMax.Size = new System.Drawing.Size(95, 23);
+            this.cbxDescargaMax.Size = new System.Drawing.Size(81, 23);
             this.cbxDescargaMax.TabIndex = 1;
             // 
             // cbxBaterias
@@ -462,42 +451,42 @@
             this.cbxBaterias.FormattingEnabled = true;
             this.cbxBaterias.Location = new System.Drawing.Point(99, 27);
             this.cbxBaterias.Name = "cbxBaterias";
-            this.cbxBaterias.Size = new System.Drawing.Size(95, 23);
+            this.cbxBaterias.Size = new System.Drawing.Size(81, 23);
             this.cbxBaterias.TabIndex = 0;
             // 
-            // groupBox5
+            // gbxBoleta
             // 
-            this.groupBox5.Controls.Add(this.label16);
-            this.groupBox5.Controls.Add(this.label17);
-            this.groupBox5.Controls.Add(this.label18);
-            this.groupBox5.Controls.Add(this.label19);
-            this.groupBox5.Controls.Add(this.label20);
-            this.groupBox5.Controls.Add(this.label21);
-            this.groupBox5.Controls.Add(this.label15);
-            this.groupBox5.Controls.Add(this.label14);
-            this.groupBox5.Controls.Add(this.label13);
-            this.groupBox5.Controls.Add(this.label12);
-            this.groupBox5.Controls.Add(this.label11);
-            this.groupBox5.Controls.Add(this.label5);
-            this.groupBox5.Controls.Add(this.textBox12);
-            this.groupBox5.Controls.Add(this.textBox11);
-            this.groupBox5.Controls.Add(this.textBox10);
-            this.groupBox5.Controls.Add(this.textBox9);
-            this.groupBox5.Controls.Add(this.textBox8);
-            this.groupBox5.Controls.Add(this.textBox7);
-            this.groupBox5.Controls.Add(this.textBox6);
-            this.groupBox5.Controls.Add(this.textBox5);
-            this.groupBox5.Controls.Add(this.textBox4);
-            this.groupBox5.Controls.Add(this.textBox3);
-            this.groupBox5.Controls.Add(this.textBox2);
-            this.groupBox5.Controls.Add(this.textBox1);
-            this.groupBox5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox5.Location = new System.Drawing.Point(12, 507);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(291, 122);
-            this.groupBox5.TabIndex = 6;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "BOLETA DE ENERGIA";
+            this.gbxBoleta.Controls.Add(this.label16);
+            this.gbxBoleta.Controls.Add(this.label17);
+            this.gbxBoleta.Controls.Add(this.label18);
+            this.gbxBoleta.Controls.Add(this.label19);
+            this.gbxBoleta.Controls.Add(this.label20);
+            this.gbxBoleta.Controls.Add(this.label21);
+            this.gbxBoleta.Controls.Add(this.label15);
+            this.gbxBoleta.Controls.Add(this.label14);
+            this.gbxBoleta.Controls.Add(this.label13);
+            this.gbxBoleta.Controls.Add(this.label12);
+            this.gbxBoleta.Controls.Add(this.label11);
+            this.gbxBoleta.Controls.Add(this.label5);
+            this.gbxBoleta.Controls.Add(this.textBox12);
+            this.gbxBoleta.Controls.Add(this.textBox11);
+            this.gbxBoleta.Controls.Add(this.textBox10);
+            this.gbxBoleta.Controls.Add(this.textBox9);
+            this.gbxBoleta.Controls.Add(this.textBox8);
+            this.gbxBoleta.Controls.Add(this.textBox7);
+            this.gbxBoleta.Controls.Add(this.textBox6);
+            this.gbxBoleta.Controls.Add(this.textBox5);
+            this.gbxBoleta.Controls.Add(this.textBox4);
+            this.gbxBoleta.Controls.Add(this.textBox3);
+            this.gbxBoleta.Controls.Add(this.textBox2);
+            this.gbxBoleta.Controls.Add(this.textBox1);
+            this.gbxBoleta.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.gbxBoleta.Location = new System.Drawing.Point(12, 338);
+            this.gbxBoleta.Name = "gbxBoleta";
+            this.gbxBoleta.Size = new System.Drawing.Size(291, 121);
+            this.gbxBoleta.TabIndex = 6;
+            this.gbxBoleta.TabStop = false;
+            this.gbxBoleta.Text = "BOLETA DE ENERGIA";
             // 
             // label16
             // 
@@ -703,19 +692,12 @@
             this.textBox1.Size = new System.Drawing.Size(38, 25);
             this.textBox1.TabIndex = 0;
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 648);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(436, 23);
-            this.progressBar1.TabIndex = 7;
-            // 
             // diseñarbtn
             // 
             this.diseñarbtn.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.diseñarbtn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.diseñarbtn.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.diseñarbtn.Location = new System.Drawing.Point(321, 581);
+            this.diseñarbtn.Location = new System.Drawing.Point(321, 377);
             this.diseñarbtn.Name = "diseñarbtn";
             this.diseñarbtn.Size = new System.Drawing.Size(98, 47);
             this.diseñarbtn.TabIndex = 8;
@@ -725,10 +707,11 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.btnCondicionesDiseño);
+            this.groupBox3.Controls.Add(this.btnLista);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox3.Location = new System.Drawing.Point(12, 324);
+            this.groupBox3.Location = new System.Drawing.Point(12, 197);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(221, 122);
+            this.groupBox3.Size = new System.Drawing.Size(221, 135);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "CONDICIONES PARA EL DISEÑO";
@@ -738,9 +721,9 @@
             this.btnCondicionesDiseño.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnCondicionesDiseño.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnCondicionesDiseño.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnCondicionesDiseño.Location = new System.Drawing.Point(20, 38);
+            this.btnCondicionesDiseño.Location = new System.Drawing.Point(20, 77);
             this.btnCondicionesDiseño.Name = "btnCondicionesDiseño";
-            this.btnCondicionesDiseño.Size = new System.Drawing.Size(181, 47);
+            this.btnCondicionesDiseño.Size = new System.Drawing.Size(181, 36);
             this.btnCondicionesDiseño.TabIndex = 10;
             this.btnCondicionesDiseño.Text = "Variables";
             this.btnCondicionesDiseño.UseVisualStyleBackColor = false;
@@ -750,14 +733,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(460, 686);
+            this.ClientSize = new System.Drawing.Size(447, 461);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.diseñarbtn);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.gbxBoleta);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.gbxCondiciones);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
@@ -765,21 +746,22 @@
             this.Name = "Inicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SolCAD - MCD 2023";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Inicio_FormClosing);
+            this.Load += new System.EventHandler(this.Inicio_Load);
             this.LocationChanged += new System.EventHandler(this.Inicio_LocationChanged);
             this.DragOver += new System.Windows.Forms.DragEventHandler(this.Inicio_DragOver);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.gbxCondiciones.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
+            this.gbxBoleta.ResumeLayout(false);
+            this.gbxBoleta.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -790,14 +772,13 @@
 
         private GroupBox groupBox1;
         private GroupBox groupBox2;
-        private GroupBox gbxCondiciones;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem toolStripMenuItem2;
         private ToolStripMenuItem toolStripMenuItem3;
         private ComboBox cbx_Comuna;
         private ComboBox cbx_Region;
-        private CheckBox checkBox2;
+        private CheckBox chxAhorro;
         private CheckBox checkBox1;
         private ToolStrip toolStrip1;
         private ToolStripButton toolStripButton1;
@@ -808,8 +789,7 @@
         private ToolStripButton toolStripButton5;
         private ToolStripButton toolStripButton6;
         private GroupBox groupBox4;
-        private GroupBox groupBox5;
-        private ProgressBar progressBar1;
+        private GroupBox gbxBoleta;
         private Button diseñarbtn;
         private TrackBar sliderPotencia;
         private ComboBox cbxPanel;

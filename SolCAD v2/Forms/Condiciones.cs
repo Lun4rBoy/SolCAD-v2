@@ -13,6 +13,7 @@ namespace SolCAD_v2.Forms
     public partial class Condiciones : Form
     {
         public TextBox texttest = new();
+        public double calculo = 0;
         public Condiciones()
         {
             InitializeComponent();
@@ -32,7 +33,7 @@ namespace SolCAD_v2.Forms
                 dSol.NOV, dSol.DIC
             };
 
-            var calculo = Math.Truncate(rowDSol.Max()*24);
+            calculo = Math.Truncate(rowDSol.Max()*24);
             txtRespaldoPropuesto.Text = calculo.ToString();
         }
 
@@ -45,6 +46,9 @@ namespace SolCAD_v2.Forms
                 Inicio.Paneles = int.TryParse(txtPaneles.Text, out int paneles) ? paneles : 0;
                 Inicio.Ramas = int.TryParse(txtRamas.Text, out int ramas) ? ramas : 0;
                 Inicio.AlturaInferior = double.TryParse(txtAlturaInferior.Text, out double alturaInferior) ? alturaInferior : 0.0;
+                Inicio.EnergiaDiaria = respaldoArbitrario != 0
+                    ? (respaldoArbitrario / 24) * Inicio.TotalCorregido * 24
+                    : (calculo / 24) * Inicio.TotalCorregido * 24;
             }
             catch(Exception ex){}
             
