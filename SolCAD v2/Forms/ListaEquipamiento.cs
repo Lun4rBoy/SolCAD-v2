@@ -7,7 +7,8 @@ namespace SolCAD_v2.Forms
     public partial class ListaEquipamiento : Form
     {
         public static List<Consumo>? ListaEquipo;
-        public ListaEquipamiento()
+        private Inicio formInicio;
+        public ListaEquipamiento(Inicio inicio)
         {
             InitializeComponent();
 
@@ -31,6 +32,8 @@ namespace SolCAD_v2.Forms
                 dgEquipamiento.Rows.Add(1, "Equipo ejemplo", 123, 60, 23);
                 DinamicCell(dgEquipamiento.Rows[0]);
             }
+
+            formInicio = inicio;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -106,7 +109,7 @@ namespace SolCAD_v2.Forms
                 Inicio.ConsumoPromedio = Inicio.ConsumoPromedio;
                 if (txtPorcientoPer.Text.Equals("") || !int.TryParse(txtPorcientoPer.Text.Replace("%", ""), out int value) || txtPorcientoPer.Text.Equals("0%"))
                 {
-                    
+
                     MessageBox.Show("Valor incorrecto o inexistente en campo Perdidas de Conversión!");
                     return;
                 };
@@ -121,6 +124,7 @@ namespace SolCAD_v2.Forms
             }
             catch (Exception ex) { Debug.WriteLine(ex.Message); return; }
 
+            formInicio.btnCondicionesDiseño.Enabled = true;
 
             txtPromedioTotal.Text = Math.Round(Inicio.ConsumoPromedio, 2).ToString();
             txtPerConversion.Text = Math.Round(Inicio.PerdidasConversion, 2).ToString();

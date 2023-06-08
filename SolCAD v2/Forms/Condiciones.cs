@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SolCAD_v2.Models;
 
 namespace SolCAD_v2.Forms
 {
@@ -14,10 +16,22 @@ namespace SolCAD_v2.Forms
     {
         public TextBox texttest = new();
         public double calculo = 0;
-        public Condiciones()
+        private Inicio formInicio;
+        public Condiciones(Condicion c,Inicio inicio)
         {
             InitializeComponent();
+            try
+            {
+                txtVoltaje.Text = c.Voltaje.ToString();
+                txtRespaldo.Text = c.RespaldoArbitrario.ToString();
+                txtPaneles.Text = c.Paneles.ToString();
+                txtRamas.Text = c.Ramas.ToString();
+                txtAlturaInferior.Text = c.AlturaInferior.ToString();
+
+            }
+            catch (Exception ex) { }
             CalculoRespaldo();
+            formInicio = inicio;
         }
 
         public void CalculoRespaldo()
@@ -39,19 +53,28 @@ namespace SolCAD_v2.Forms
 
         public void RescatarVariables()
         {
+            var c = new Condicion();
             try
             {
-                Inicio.Voltaje = int.TryParse(txtVoltaje.Text, out int voltaje) ? voltaje : 0;
-                Inicio.RespaldoArbitrario = int.TryParse(txtRespaldo.Text, out int respaldoArbitrario) ? respaldoArbitrario : 0;
-                Inicio.Paneles = int.TryParse(txtPaneles.Text, out int paneles) ? paneles : 0;
-                Inicio.Ramas = int.TryParse(txtRamas.Text, out int ramas) ? ramas : 0;
-                Inicio.AlturaInferior = double.TryParse(txtAlturaInferior.Text, out double alturaInferior) ? alturaInferior : 0.0;
-                Inicio.EnergiaDiaria = respaldoArbitrario != 0
+                c.Voltaje = int.TryParse(txtVoltaje.Text, out int voltaje) ? voltaje : 0;
+                c.RespaldoArbitrario =
+                    int.TryParse(txtRespaldo.Text, out int respaldoArbitrario) ? respaldoArbitrario : 0;
+                c.Paneles = int.TryParse(txtPaneles.Text, out int paneles) ? paneles : 0;
+                c.Ramas = int.TryParse(txtRamas.Text, out int ramas) ? ramas : 0;
+                c.AlturaInferior = double.TryParse(txtAlturaInferior.Text, out double alturaInferior)
+                    ? alturaInferior
+                    : 0.0;
+                c.EnergiaDiaria = respaldoArbitrario != 0
                     ? (respaldoArbitrario / 24) * Inicio.TotalCorregido * 24
                     : (calculo / 24) * Inicio.TotalCorregido * 24;
             }
-            catch(Exception ex){}
-            
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                formInicio.btnDiseñar.Enabled = false;
+            }
+            Inicio.c = c;
+            formInicio.btnDiseñar.Enabled = true;
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)

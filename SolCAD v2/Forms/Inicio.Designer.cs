@@ -87,7 +87,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.diseñarbtn = new System.Windows.Forms.Button();
+            this.btnDiseñar = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnCondicionesDiseño = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -692,17 +692,18 @@
             this.textBox1.Size = new System.Drawing.Size(38, 25);
             this.textBox1.TabIndex = 0;
             // 
-            // diseñarbtn
+            // btnDiseñar
             // 
-            this.diseñarbtn.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.diseñarbtn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.diseñarbtn.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.diseñarbtn.Location = new System.Drawing.Point(321, 377);
-            this.diseñarbtn.Name = "diseñarbtn";
-            this.diseñarbtn.Size = new System.Drawing.Size(98, 47);
-            this.diseñarbtn.TabIndex = 8;
-            this.diseñarbtn.Text = "DISEÑAR";
-            this.diseñarbtn.UseVisualStyleBackColor = false;
+            this.btnDiseñar.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnDiseñar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnDiseñar.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnDiseñar.Location = new System.Drawing.Point(321, 377);
+            this.btnDiseñar.Name = "btnDiseñar";
+            this.btnDiseñar.Size = new System.Drawing.Size(98, 47);
+            this.btnDiseñar.TabIndex = 8;
+            this.btnDiseñar.Text = "DISEÑAR";
+            this.btnDiseñar.UseVisualStyleBackColor = false;
+            this.btnDiseñar.Click += new System.EventHandler(this.btnDiseñar_Click);
             // 
             // groupBox3
             // 
@@ -735,7 +736,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(447, 461);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.diseñarbtn);
+            this.Controls.Add(this.btnDiseñar);
             this.Controls.Add(this.gbxBoleta);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.toolStrip1);
@@ -790,7 +791,7 @@
         private ToolStripButton toolStripButton6;
         private GroupBox groupBox4;
         private GroupBox gbxBoleta;
-        private Button diseñarbtn;
+        public Button btnDiseñar;
         private TrackBar sliderPotencia;
         private ComboBox cbxPanel;
         private ComboBox cbxDescargaMax;
@@ -839,6 +840,6 @@
         private TextBox txtLongitud;
         private TextBox txtLatitud;
         private GroupBox groupBox3;
-        private Button btnCondicionesDiseño;
+        public Button btnCondicionesDiseño;
     }
 }

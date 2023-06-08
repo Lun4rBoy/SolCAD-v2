@@ -1,8 +1,12 @@
+using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
+using System.Windows.Forms;
 using MathNet.Numerics.Statistics;
 using SolCAD_v2.DAO;
 using SolCAD_v2.Forms;
 using SolCAD_v2.Models;
+using Panel = SolCAD_v2.Models.Panel;
 
 namespace SolCAD_v2;
 
@@ -13,17 +17,14 @@ public partial class Inicio : Form
     private AppState appState;
     public static DataGridView dgBackup;
     public static List<AllSheets> InformacionClimatica = new();
+    public static Condicion c = new();
 
-    //considerar armar una clase con estas variables
-    public static double ConsumoPromedio = 0;
-    public static double PerdidasConversion = 0;
+    public static List<Bateria> listaBaterias = Controller_Equipo.ListaBaterias();
+    public static List<Panel> listaPaneles = Controller_Equipo.ListaPaneles();
+
+    public static double ConsumoPromedio=0;
+    public static double PerdidasConversion=0;
     public static double TotalCorregido = 0;
-    public static int Voltaje = 0;
-    public static int RespaldoArbitrario = 0;
-    public static int Paneles = 0;
-    public static int Ramas = 0;
-    public static double AlturaInferior = 0;
-    public static double EnergiaDiaria = 0;
 
     private bool comboBoxVisible = true;
     public Condiciones cond;
@@ -37,9 +38,10 @@ public partial class Inicio : Form
     public Inicio()
     {
         InitializeComponent();
-        list = new ListaEquipamiento();
-        cond = new Condiciones();
+        list = new ListaEquipamiento(this);
+        cond = new Condiciones(c,this);
         btnCondicionesDiseño.Enabled = false;
+        btnDiseñar.Enabled = false;
         txtLatitud.Visible = false;
         txtLongitud.Visible = false;
         cbx_Region.Items.Add("Seleccione...");
@@ -54,6 +56,7 @@ public partial class Inicio : Form
         txtInclinacion.TextChanged += txtInclinacion_TextChanged;
         CargaRegiones();
 
+        dgBackup = new DataGridView();
 
         list.Hide();
     }
@@ -147,10 +150,8 @@ public partial class Inicio : Form
     {
         try
         {
-            var listaBaterias = Controller_Equipo.ListaBaterias().Select(x => x.Tipo).ToArray();
-            var listaPaneles = Controller_Equipo.ListaPaneles().Select(x => x.Tipo).ToArray();
-            cbxBaterias.Items.AddRange(listaBaterias);
-            cbxPanel.Items.AddRange(listaPaneles);
+            cbxBaterias.Items.AddRange(listaBaterias.Select(x => x.Tipo).ToArray());
+            cbxPanel.Items.AddRange(listaPaneles.Select(x => x.Tipo).ToArray());
         }
         catch (Exception ex)
         {
@@ -187,7 +188,7 @@ public partial class Inicio : Form
         }
         catch (Exception ex)
         {
-            var newlist = new ListaEquipamiento();
+            var newlist = new ListaEquipamiento(this);
             list = newlist;
             list.Show();
         }
@@ -263,7 +264,6 @@ public partial class Inicio : Form
     {
         if (string.IsNullOrEmpty(txtInclinacion.Text))
         {
-            btnCondicionesDiseño.Enabled = false;
             cbxBaterias.Enabled = false;
             cbxDescargaMax.Enabled = false;
             cbxPanel.Enabled = false;
@@ -271,7 +271,6 @@ public partial class Inicio : Form
         else
         {
             if (!InformacionClimatica.Any()) LoadDataTable();
-            btnCondicionesDiseño.Enabled = true;
             cbxBaterias.Enabled = true;
             cbxDescargaMax.Enabled = true;
             cbxPanel.Enabled = true;
@@ -329,7 +328,7 @@ public partial class Inicio : Form
         }
         catch (Exception ex)
         {
-            var newCond = new Condiciones();
+            var newCond = new Condiciones(c,this);
             cond = newCond;
             cond.Show();
         }
@@ -340,6 +339,8 @@ public partial class Inicio : Form
         gbxBoleta.Visible = chxAhorro.Checked;
     }
 
+
+    //Carga de datos (Instancia previa al cierre)
     private void Inicio_Load(object sender, EventArgs e)
     {
         // Cargar el estado guardado si existe, de lo contrario, inicializar un nuevo estado
@@ -354,6 +355,7 @@ public partial class Inicio : Form
         }
 
         //cargar variables aqui:
+        //dgBackup.DataSource = appState.ListaEquipos;
     }
 
     private void Inicio_FormClosing(object sender, FormClosingEventArgs e)
@@ -361,12 +363,34 @@ public partial class Inicio : Form
         //aqui las variables a guardar:
         /*
          *Ejemplo:
-         *  appState.DataGrid2Data = (DataTable)dataGridView2.DataSource;
+         *  
             appState.TextBoxText = textBox.Text;
             appState.CheckBoxChecked = checkBox.Checked;
             appState.ComboBoxSelectedValue = comboBox.SelectedValue?.ToString();
          */
+        //appState.ListaEquipos = dgBackup;
 
         Controller_AppState.SerializeAppState(appState, "appstate.bin");
+    }
+    //
+
+    public void CalculosCondiciones()
+    {
+        try
+        {
+            var bateria = listaBaterias.Where(x=> x.Tipo == cbxBaterias.SelectedItem.ToString()).Select(x => x).FirstOrDefault();
+            var panel = listaPaneles.Where(x => x.Tipo == cbxPanel.SelectedItem.ToString()).Select(x => x).FirstOrDefault();
+
+            c.PesoArreglo = Convert.ToDouble(panel.Peso) * c.TotalPaneles;
+            c.AreaArreglo = Convert.ToDouble(panel.Area) * c.TotalPaneles;
+            c.PesoBanco = Convert.ToDouble(bateria.Peso) * c.TotalBaterias;
+            c.VolumenBanco = Convert.ToDouble(bateria.Volumen) * c.TotalBaterias;
+
+        }catch(Exception ex){}
+    }
+
+    private void btnDiseñar_Click(object sender, EventArgs e)
+    {
+        CalculosCondiciones();
     }
 }

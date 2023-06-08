@@ -6,7 +6,7 @@ namespace SolCAD_v2.Models;
 [Serializable]
 public class AppState
 {
-    public DataTable ListaEquipos { get; set; }
+    public DataGridView ListaEquipos { get; set; }
     //las variables a rescatar
 
     /* Ejemplo de Constructor
