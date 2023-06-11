@@ -17,19 +17,28 @@ namespace SolCAD_v2.Forms
         public TextBox texttest = new();
         public double calculo = 0;
         private Inicio formInicio;
-        public Condiciones(Condicion c,Inicio inicio)
+        public Condiciones(Condicion c, Inicio inicio)
         {
             InitializeComponent();
+            cbxVoltaje.Items.AddRange(new[] { "12", "24", "36", "48", "72" });
             try
             {
-                txtVoltaje.Text = c.Voltaje.ToString();
+                foreach (var i in cbxVoltaje.Items)
+                {
+                    if (!c.Voltaje.ToString().Equals(i)) continue;
+                    cbxVoltaje.SelectedItem = i;
+                    break;
+                }
                 txtRespaldo.Text = c.RespaldoArbitrario.ToString();
                 txtPaneles.Text = c.Paneles.ToString();
                 txtRamas.Text = c.Ramas.ToString();
                 txtAlturaInferior.Text = c.AlturaInferior.ToString();
 
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                cbxVoltaje.SelectedIndex = 0;
+            }
             CalculoRespaldo();
             formInicio = inicio;
         }
@@ -47,7 +56,7 @@ namespace SolCAD_v2.Forms
                 dSol.NOV, dSol.DIC
             };
 
-            calculo = Math.Truncate(rowDSol.Max()*24);
+            calculo = Math.Truncate(rowDSol.Max() * 24);
             txtRespaldoPropuesto.Text = calculo.ToString();
         }
 
@@ -56,7 +65,7 @@ namespace SolCAD_v2.Forms
             var c = new Condicion();
             try
             {
-                c.Voltaje = int.TryParse(txtVoltaje.Text, out int voltaje) ? voltaje : 0;
+                c.Voltaje = int.TryParse(cbxVoltaje.SelectedText, out int voltaje) ? voltaje : 0;
                 c.RespaldoArbitrario =
                     int.TryParse(txtRespaldo.Text, out int respaldoArbitrario) ? respaldoArbitrario : 0;
                 c.Paneles = int.TryParse(txtPaneles.Text, out int paneles) ? paneles : 0;
