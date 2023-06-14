@@ -28,237 +28,276 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtVoltaje = new System.Windows.Forms.TextBox();
-            this.txtRespaldo = new System.Windows.Forms.TextBox();
-            this.txtPaneles = new System.Windows.Forms.TextBox();
-            this.txtRamas = new System.Windows.Forms.TextBox();
-            this.txtAlturaInferior = new System.Windows.Forms.TextBox();
-            this.txtRespaldoPropuesto = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.btnCondiciones = new System.Windows.Forms.Button();
-            this.btnCerrar = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            txtRespaldo = new TextBox();
+            txtPaneles = new TextBox();
+            txtRamas = new TextBox();
+            txtAlturaInferior = new TextBox();
+            txtRespaldoPropuesto = new TextBox();
+            label7 = new Label();
+            label8 = new Label();
+            label9 = new Label();
+            label10 = new Label();
+            label11 = new Label();
+            label12 = new Label();
+            btnCondiciones = new Button();
+            btnCerrar = new Button();
+            cbxVoltaje = new ComboBox();
+            label13 = new Label();
+            textBox1 = new TextBox();
+            textBox2 = new TextBox();
+            label14 = new Label();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Voltaje del sistema";
+            label1.AutoSize = true;
+            label1.Location = new Point(14, 18);
+            label1.Name = "label1";
+            label1.Size = new Size(104, 15);
+            label1.TabIndex = 0;
+            label1.Text = "Voltaje del sistema";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 47);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(112, 15);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Respaldo Propuesto";
+            label2.AutoSize = true;
+            label2.Location = new Point(14, 47);
+            label2.Name = "label2";
+            label2.Size = new Size(112, 15);
+            label2.TabIndex = 1;
+            label2.Text = "Respaldo Propuesto";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 76);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 15);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Respaldo Arbitrario";
+            label3.AutoSize = true;
+            label3.Location = new Point(14, 76);
+            label3.Name = "label3";
+            label3.Size = new Size(108, 15);
+            label3.TabIndex = 2;
+            label3.Text = "Respaldo Arbitrario";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 105);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(90, 15);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Paneles en serie";
+            label4.AutoSize = true;
+            label4.Location = new Point(14, 105);
+            label4.Name = "label4";
+            label4.Size = new Size(90, 15);
+            label4.TabIndex = 3;
+            label4.Text = "Paneles en serie";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 136);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(103, 15);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Ramas en Paralelo";
+            label5.AutoSize = true;
+            label5.Location = new Point(14, 136);
+            label5.Name = "label5";
+            label5.Size = new Size(103, 15);
+            label5.TabIndex = 4;
+            label5.Text = "Ramas en Paralelo";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(14, 165);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(80, 15);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Altura Inferior";
-            // 
-            // txtVoltaje
-            // 
-            this.txtVoltaje.Location = new System.Drawing.Point(135, 15);
-            this.txtVoltaje.Name = "txtVoltaje";
-            this.txtVoltaje.Size = new System.Drawing.Size(38, 23);
-            this.txtVoltaje.TabIndex = 6;
-            this.txtVoltaje.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            label6.AutoSize = true;
+            label6.Location = new Point(14, 165);
+            label6.Name = "label6";
+            label6.Size = new Size(80, 15);
+            label6.TabIndex = 5;
+            label6.Text = "Altura Inferior";
             // 
             // txtRespaldo
             // 
-            this.txtRespaldo.Location = new System.Drawing.Point(135, 73);
-            this.txtRespaldo.Name = "txtRespaldo";
-            this.txtRespaldo.Size = new System.Drawing.Size(38, 23);
-            this.txtRespaldo.TabIndex = 8;
-            this.txtRespaldo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtRespaldo.Location = new Point(135, 73);
+            txtRespaldo.Name = "txtRespaldo";
+            txtRespaldo.Size = new Size(38, 23);
+            txtRespaldo.TabIndex = 8;
+            txtRespaldo.TextAlign = HorizontalAlignment.Center;
             // 
             // txtPaneles
             // 
-            this.txtPaneles.Location = new System.Drawing.Point(135, 102);
-            this.txtPaneles.Name = "txtPaneles";
-            this.txtPaneles.Size = new System.Drawing.Size(38, 23);
-            this.txtPaneles.TabIndex = 9;
-            this.txtPaneles.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtPaneles.Location = new Point(135, 102);
+            txtPaneles.Name = "txtPaneles";
+            txtPaneles.Size = new Size(38, 23);
+            txtPaneles.TabIndex = 9;
+            txtPaneles.TextAlign = HorizontalAlignment.Center;
             // 
             // txtRamas
             // 
-            this.txtRamas.Location = new System.Drawing.Point(135, 133);
-            this.txtRamas.Name = "txtRamas";
-            this.txtRamas.Size = new System.Drawing.Size(38, 23);
-            this.txtRamas.TabIndex = 10;
-            this.txtRamas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtRamas.Location = new Point(135, 133);
+            txtRamas.Name = "txtRamas";
+            txtRamas.Size = new Size(38, 23);
+            txtRamas.TabIndex = 10;
+            txtRamas.TextAlign = HorizontalAlignment.Center;
             // 
             // txtAlturaInferior
             // 
-            this.txtAlturaInferior.Location = new System.Drawing.Point(135, 162);
-            this.txtAlturaInferior.Name = "txtAlturaInferior";
-            this.txtAlturaInferior.Size = new System.Drawing.Size(38, 23);
-            this.txtAlturaInferior.TabIndex = 11;
-            this.txtAlturaInferior.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtAlturaInferior.Location = new Point(135, 162);
+            txtAlturaInferior.Name = "txtAlturaInferior";
+            txtAlturaInferior.Size = new Size(38, 23);
+            txtAlturaInferior.TabIndex = 11;
+            txtAlturaInferior.TextAlign = HorizontalAlignment.Center;
             // 
             // txtRespaldoPropuesto
             // 
-            this.txtRespaldoPropuesto.Location = new System.Drawing.Point(135, 44);
-            this.txtRespaldoPropuesto.Name = "txtRespaldoPropuesto";
-            this.txtRespaldoPropuesto.ReadOnly = true;
-            this.txtRespaldoPropuesto.Size = new System.Drawing.Size(38, 23);
-            this.txtRespaldoPropuesto.TabIndex = 7;
-            this.txtRespaldoPropuesto.Text = "0";
-            this.txtRespaldoPropuesto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtRespaldoPropuesto.Location = new Point(135, 44);
+            txtRespaldoPropuesto.Name = "txtRespaldoPropuesto";
+            txtRespaldoPropuesto.ReadOnly = true;
+            txtRespaldoPropuesto.Size = new Size(38, 23);
+            txtRespaldoPropuesto.TabIndex = 7;
+            txtRespaldoPropuesto.Text = "0";
+            txtRespaldoPropuesto.TextAlign = HorizontalAlignment.Center;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(179, 18);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(32, 15);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Volts";
+            label7.AutoSize = true;
+            label7.Location = new Point(179, 18);
+            label7.Name = "label7";
+            label7.Size = new Size(32, 15);
+            label7.TabIndex = 12;
+            label7.Text = "Volts";
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(179, 47);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(38, 15);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Horas";
+            label8.AutoSize = true;
+            label8.Location = new Point(179, 47);
+            label8.Name = "label8";
+            label8.Size = new Size(38, 15);
+            label8.TabIndex = 13;
+            label8.Text = "Horas";
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(179, 76);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(38, 15);
-            this.label9.TabIndex = 14;
-            this.label9.Text = "Horas";
+            label9.AutoSize = true;
+            label9.Location = new Point(179, 76);
+            label9.Name = "label9";
+            label9.Size = new Size(38, 15);
+            label9.TabIndex = 14;
+            label9.Text = "Horas";
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(179, 105);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(56, 15);
-            this.label10.TabIndex = 15;
-            this.label10.Text = "Unidades";
+            label10.AutoSize = true;
+            label10.Location = new Point(179, 105);
+            label10.Name = "label10";
+            label10.Size = new Size(56, 15);
+            label10.TabIndex = 15;
+            label10.Text = "Unidades";
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(179, 136);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(56, 15);
-            this.label11.TabIndex = 16;
-            this.label11.Text = "Unidades";
+            label11.AutoSize = true;
+            label11.Location = new Point(179, 136);
+            label11.Name = "label11";
+            label11.Size = new Size(56, 15);
+            label11.TabIndex = 16;
+            label11.Text = "Unidades";
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(179, 165);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(44, 15);
-            this.label12.TabIndex = 17;
-            this.label12.Text = "Metros";
+            label12.AutoSize = true;
+            label12.Location = new Point(179, 165);
+            label12.Name = "label12";
+            label12.Size = new Size(44, 15);
+            label12.TabIndex = 17;
+            label12.Text = "Metros";
             // 
             // btnCondiciones
             // 
-            this.btnCondiciones.Location = new System.Drawing.Point(160, 205);
-            this.btnCondiciones.Name = "btnCondiciones";
-            this.btnCondiciones.Size = new System.Drawing.Size(75, 23);
-            this.btnCondiciones.TabIndex = 18;
-            this.btnCondiciones.Text = "Guardar";
-            this.btnCondiciones.UseVisualStyleBackColor = true;
-            this.btnCondiciones.Click += new System.EventHandler(this.btnCondiciones_Click);
+            btnCondiciones.Location = new Point(163, 270);
+            btnCondiciones.Name = "btnCondiciones";
+            btnCondiciones.Size = new Size(75, 23);
+            btnCondiciones.TabIndex = 18;
+            btnCondiciones.Text = "Guardar";
+            btnCondiciones.UseVisualStyleBackColor = true;
+            btnCondiciones.Click += btnCondiciones_Click;
             // 
             // btnCerrar
             // 
-            this.btnCerrar.Location = new System.Drawing.Point(14, 205);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(75, 23);
-            this.btnCerrar.TabIndex = 19;
-            this.btnCerrar.Text = "Cerrar";
-            this.btnCerrar.UseVisualStyleBackColor = true;
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            btnCerrar.Location = new Point(12, 270);
+            btnCerrar.Name = "btnCerrar";
+            btnCerrar.Size = new Size(75, 23);
+            btnCerrar.TabIndex = 19;
+            btnCerrar.Text = "Cerrar";
+            btnCerrar.UseVisualStyleBackColor = true;
+            btnCerrar.Click += btnCerrar_Click;
+            // 
+            // cbxVoltaje
+            // 
+            cbxVoltaje.FormattingEnabled = true;
+            cbxVoltaje.Location = new Point(135, 17);
+            cbxVoltaje.Name = "cbxVoltaje";
+            cbxVoltaje.Size = new Size(38, 23);
+            cbxVoltaje.TabIndex = 20;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(14, 194);
+            label13.Name = "label13";
+            label13.Size = new Size(109, 15);
+            label13.TabIndex = 21;
+            label13.Text = "Baterias propuestas";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(135, 191);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(38, 23);
+            textBox1.TabIndex = 22;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(135, 220);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(38, 23);
+            textBox2.TabIndex = 23;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(14, 223);
+            label14.Name = "label14";
+            label14.Size = new Size(109, 15);
+            label14.TabIndex = 24;
+            label14.Text = "Paneles propuestos";
             // 
             // Condiciones
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(249, 240);
-            this.Controls.Add(this.btnCerrar);
-            this.Controls.Add(this.btnCondiciones);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtAlturaInferior);
-            this.Controls.Add(this.txtRamas);
-            this.Controls.Add(this.txtPaneles);
-            this.Controls.Add(this.txtRespaldo);
-            this.Controls.Add(this.txtRespaldoPropuesto);
-            this.Controls.Add(this.txtVoltaje);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Name = "Condiciones";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Condiciones";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(250, 305);
+            Controls.Add(label14);
+            Controls.Add(textBox2);
+            Controls.Add(textBox1);
+            Controls.Add(label13);
+            Controls.Add(cbxVoltaje);
+            Controls.Add(btnCerrar);
+            Controls.Add(btnCondiciones);
+            Controls.Add(label12);
+            Controls.Add(label11);
+            Controls.Add(label10);
+            Controls.Add(label9);
+            Controls.Add(label8);
+            Controls.Add(label7);
+            Controls.Add(txtAlturaInferior);
+            Controls.Add(txtRamas);
+            Controls.Add(txtPaneles);
+            Controls.Add(txtRespaldo);
+            Controls.Add(txtRespaldoPropuesto);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Name = "Condiciones";
+            StartPosition = FormStartPosition.Manual;
+            Text = "Condiciones";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -269,7 +308,6 @@
         private Label label4;
         private Label label5;
         private Label label6;
-        private TextBox txtVoltaje;
         private TextBox txtRespaldo;
         private TextBox txtPaneles;
         private TextBox txtRamas;
@@ -283,5 +321,10 @@
         private Label label12;
         private Button btnCondiciones;
         private Button btnCerrar;
+        private ComboBox cbxVoltaje;
+        private Label label13;
+        private TextBox textBox1;
+        private TextBox textBox2;
+        private Label label14;
     }
 }
