@@ -64,7 +64,7 @@ namespace SolCAD_v2.Forms
                 c.AlturaInferior = double.TryParse(txtAlturaInferior.Text, out double alturaInferior)
                     ? alturaInferior
                     : 0.0;
-                c.EnergiaDiaria = respaldoArbitrario != 0
+                c.EnergiaDiariaRequerida = respaldoArbitrario != 0
                     ? (respaldoArbitrario / 24) * Inicio.TotalCorregido * 24
                     : (calculo / 24) * Inicio.TotalCorregido * 24;
             }

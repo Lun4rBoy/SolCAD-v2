@@ -33,6 +33,9 @@ public partial class Inicio : Form
     private List<Comuna> ListComunas;
     private ToolTip tooltip;
 
+    private static double RadPropose;
+    private static double DesviationLost;
+
     #endregion VariablesGlobales
 
     public Inicio()
@@ -128,9 +131,9 @@ public partial class Inicio : Form
         var RadMinI = Math.Round(rowRadI.Min(), 3);
 
         var RadBruto = Prom_AnualI - DesvI;
-        var DesviationLost = 1 - Controller_Climatic.effTable(RadBruto, null, table.ElementAt(2));
+        DesviationLost = 1 - Controller_Climatic.effTable(RadBruto, null, table.ElementAt(2));
         var test = (DesviationLost * 100).ToString("0.00") + "%";
-        var RadPropose = rowRadI.Average() - DesvI;
+        RadPropose = rowRadI.Average() - DesvI;
 
         #endregion Calculos
     }
@@ -380,6 +383,11 @@ public partial class Inicio : Form
         {
             var bateria = listaBaterias.Where(x=> x.Tipo == cbxBaterias.SelectedItem.ToString()).Select(x => x).FirstOrDefault();
             var panel = listaPaneles.Where(x => x.Tipo == cbxPanel.SelectedItem.ToString()).Select(x => x).FirstOrDefault();
+            c.PotenciaTotalBruta = panel.Pot * c.Ramas * c.Paneles * RadPropose;
+            c.PotenciaTotalCorregida = c.PotenciaTotalBruta * (1 - DesviationLost);
+            c.EnergiaDiaria = c.PotenciaTotalBruta * RadPropose;
+
+            c.CapacidadBateria = Convert.ToInt32(bateria.Cap);
 
             c.PesoArreglo = Convert.ToDouble(panel.Peso) * c.TotalPaneles;
             c.AreaArreglo = Convert.ToDouble(panel.Area) * c.TotalPaneles;
@@ -392,5 +400,8 @@ public partial class Inicio : Form
     private void btnDiseñar_Click(object sender, EventArgs e)
     {
         CalculosCondiciones();
+        Hide();
+        Diseño dis = new(c);
+        dis.Show();
     }
 }

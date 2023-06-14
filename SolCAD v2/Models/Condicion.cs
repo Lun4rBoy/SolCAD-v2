@@ -7,7 +7,7 @@ public class Condicion
     public int Paneles { get; set; }
     public int Ramas { get; set; }
     public double AlturaInferior { get; set; }
-    public double EnergiaDiaria { get; set; }
+    public double EnergiaDiariaRequerida { get; set; }
     public int TotalPaneles => Paneles * Ramas;
     public int UnionesSerie => (Paneles - 1) * Ramas;
     public int UnionesParalelas => 2 * Ramas - 1;
@@ -21,4 +21,10 @@ public class Condicion
     public double PesoArreglo { get; set; }
     public double AreaArreglo { get; set; }
     public double SombraPoryectada { get; set; }
+    public double PotenciaTotalBruta { get; set; }
+    public double PotenciaTotalCorregida { get; set; }
+    public double EnergiaDiaria { get; set; }
+    public int CapacidadBateria { get; set; }
+    public double CapacidadCorregida => CapacidadBateria * 0.86;
+    public double EnergiaRama => Voltaje * CapacidadCorregida;
 }
