@@ -22,9 +22,14 @@ namespace SolCAD_v2.Forms
             obj = c;
             
             series.ChartType = SeriesChartType.Line;
+            series.ShadowColor = Color.Gray;
+            series.ShadowOffset = 2;
+            series.Name = "Comportamiento Bateria";
+            chrBaterias.Invalidate();
+            CalculosCargaBateria();
         }
 
-        public static void CalculosCargaBateria()
+        public void CalculosCargaBateria()
         {
             var x = 0;
             double aporte = 0;
@@ -33,7 +38,7 @@ namespace SolCAD_v2.Forms
             var primerRedondeado = Math.Truncate(obj.NroRamas) * obj.EnergiaRama;
             var nivel = primerRedondeado - consumo + aporte;
             var porciento = nivel / primerRedondeado;
-            series.Points.AddXY(1, porciento);
+            series.Points.AddXY(1, porciento*100);
 
             for (var y = 1; y < 312; y++)
             {
@@ -45,8 +50,9 @@ namespace SolCAD_v2.Forms
                 var simple = redondeado - consumo + aporte;
                 nivel = simple > primerRedondeado ? primerRedondeado : simple;
                 porciento = nivel / primerRedondeado;
-                series.Points.AddXY(y, porciento);
+                series.Points.AddXY(y, porciento*100);
             }
+            chrBaterias.Series.Add(series);
         }
     }
 }

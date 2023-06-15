@@ -26,15 +26,19 @@ public partial class Inicio : Form
     public static double PerdidasConversion=0;
     public static double TotalCorregido = 0;
 
+    public static Bateria bateria = new();
+    public static Panel panel = new();
+    public static double descarga = 0;
+
     private bool comboBoxVisible = true;
-    public Condiciones cond;
-    private ErrorProvider errorProvider;
+    public static Condiciones cond;
     private ListaEquipamiento list;
     private List<Comuna> ListComunas;
-    private ToolTip tooltip;
 
-    private static double RadPropose;
-    private static double DesviationLost;
+    public static double RadPropose;
+    public static double DesviationLost;
+
+    public static int INC;
 
     #endregion VariablesGlobales
 
@@ -58,6 +62,7 @@ public partial class Inicio : Form
         cbxPanel.SelectedIndex = 0;
         txtInclinacion.TextChanged += txtInclinacion_TextChanged;
         CargaRegiones();
+        CargarEquipos();
 
         dgBackup = new DataGridView();
 
@@ -83,7 +88,6 @@ public partial class Inicio : Form
             Debug.WriteLine(ex.Message);
         }
 
-        var INC = 0;
         try
         {
             if (int.TryParse(txtInclinacion.Text, out var value)) INC = Convert.ToInt32(txtInclinacion.Text);
@@ -179,7 +183,6 @@ public partial class Inicio : Form
 
         var nombres = (from c in ListComunas where c.Region == cbx_Region.SelectedIndex select c.COMUNA).ToArray();
         cbx_Comuna.Items.AddRange(nombres);
-        CargarEquipos();
     }
 
     private void btnLista_Click(object sender, EventArgs e)
@@ -206,9 +209,9 @@ public partial class Inicio : Form
 
     public void ActualizarPosicion()
     {
-        if (list != null && !list.IsDisposed) list.Location = new Point(Right, Top);
-        if (cond != null && !cond.IsDisposed)
-            cond.Location = list.Visible ? new Point(list.Right, list.Top) : new Point(Right, Top);
+        if (!list.IsDisposed || list.Visible) list.Location = new Point(Right, Top);
+        if (!cond.IsDisposed || cond.Visible)
+            cond.Location = list.Visible ? new Point(list.Right, list.Top) : new Point(this.Right, this.Top);
     }
 
     private void Inicio_DragOver(object sender, DragEventArgs e)
@@ -273,7 +276,7 @@ public partial class Inicio : Form
         }
         else
         {
-            if (!InformacionClimatica.Any()) LoadDataTable();
+            LoadDataTable();
             cbxBaterias.Enabled = true;
             cbxDescargaMax.Enabled = true;
             cbxPanel.Enabled = true;
@@ -323,6 +326,18 @@ public partial class Inicio : Form
 
     private void btnCondicionesDiseño_Click(object sender, EventArgs e)
     {
+        if (cbxBaterias.SelectedIndex == 0)
+        {
+            MessageBox.Show("Seleccione una bateria!");
+            return;
+        }
+        if (cbxPanel.SelectedIndex == 0)
+        {
+            MessageBox.Show("Seleccione un panel!");
+            return;
+        }
+
+        cond.Location = list.IsDisposed || !list.Visible ? new Point(Right, Top) : new Point(list.Right,list.Top);
         cond.LocationChanged += Inicio_LocationChanged;
         try
         {
@@ -347,7 +362,7 @@ public partial class Inicio : Form
     private void Inicio_Load(object sender, EventArgs e)
     {
         // Cargar el estado guardado si existe, de lo contrario, inicializar un nuevo estado
-        if (File.Exists("appstate.bin"))
+        /*if (File.Exists("appstate.bin"))
         {
             appState = Controller_AppState.DeserializeAppState("appstate.bin");
         }
@@ -358,7 +373,7 @@ public partial class Inicio : Form
         }
 
         //cargar variables aqui:
-        //dgBackup.DataSource = appState.ListaEquipos;
+        //dgBackup.DataSource = appState.ListaEquipos*/
     }
 
     private void Inicio_FormClosing(object sender, FormClosingEventArgs e)
@@ -373,35 +388,28 @@ public partial class Inicio : Form
          */
         //appState.ListaEquipos = dgBackup;
 
-        Controller_AppState.SerializeAppState(appState, "appstate.bin");
+        //Controller_AppState.SerializeAppState(appState, "appstate.bin");
     }
     //
-
-    public void CalculosCondiciones()
-    {
-        try
-        {
-            var bateria = listaBaterias.Where(x=> x.Tipo == cbxBaterias.SelectedItem.ToString()).Select(x => x).FirstOrDefault();
-            var panel = listaPaneles.Where(x => x.Tipo == cbxPanel.SelectedItem.ToString()).Select(x => x).FirstOrDefault();
-            c.PotenciaTotalBruta = panel.Pot * c.Ramas * c.Paneles * RadPropose;
-            c.PotenciaTotalCorregida = c.PotenciaTotalBruta * (1 - DesviationLost);
-            c.EnergiaDiaria = c.PotenciaTotalBruta * RadPropose;
-
-            c.CapacidadBateria = Convert.ToInt32(bateria.Cap);
-
-            c.PesoArreglo = Convert.ToDouble(panel.Peso) * c.TotalPaneles;
-            c.AreaArreglo = Convert.ToDouble(panel.Area) * c.TotalPaneles;
-            c.PesoBanco = Convert.ToDouble(bateria.Peso) * c.TotalBaterias;
-            c.VolumenBanco = Convert.ToDouble(bateria.Volumen) * c.TotalBaterias;
-
-        }catch(Exception ex){}
-    }
-
     private void btnDiseñar_Click(object sender, EventArgs e)
     {
-        CalculosCondiciones();
         Hide();
         Diseño dis = new(c);
         dis.Show();
+    }
+
+    private void cbxBaterias_SelectedValueChanged(object sender, EventArgs e)
+    {
+        bateria = listaBaterias.Where(x => x.Tipo == cbxBaterias.SelectedItem.ToString()).Select(x => x).FirstOrDefault();
+    }
+
+    private void cbxDescargaMax_SelectedValueChanged(object sender, EventArgs e)
+    {
+        descarga = Convert.ToDouble(cbxDescargaMax.SelectedItem.ToString().Replace("%", ""));
+    }
+
+    private void cbxPanel_SelectedValueChanged(object sender, EventArgs e)
+    {
+        panel = listaPaneles.Where(x => x.Tipo == cbxPanel.SelectedItem.ToString()).Select(x => x).FirstOrDefault();
     }
 }

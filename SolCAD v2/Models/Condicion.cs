@@ -9,6 +9,8 @@ public class Condicion
     public double AlturaInferior { get; set; }
     public double EnergiaDiariaRequerida { get; set; }
     public int TotalPaneles => Paneles * Ramas;
+    public int TotalPanelesArbitrario { get; set; }
+    public int TotalBateriasArbitrario { get; set; }
     public int UnionesSerie => (Paneles - 1) * Ramas;
     public int UnionesParalelas => 2 * Ramas - 1;
     public double BateriasSerie => Voltaje / 12;

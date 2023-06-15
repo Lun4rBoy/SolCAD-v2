@@ -234,6 +234,7 @@
             this.Name = "ListaEquipamiento";
             this.Text = "ListaEquipamiento";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ListaEquipamiento_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ListaEquipamiento_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dgEquipamiento)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

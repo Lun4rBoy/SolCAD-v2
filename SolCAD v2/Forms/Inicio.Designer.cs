@@ -424,6 +424,7 @@
             this.cbxPanel.Name = "cbxPanel";
             this.cbxPanel.Size = new System.Drawing.Size(81, 23);
             this.cbxPanel.TabIndex = 2;
+            this.cbxPanel.SelectedValueChanged += new System.EventHandler(this.cbxPanel_SelectedValueChanged);
             // 
             // cbxDescargaMax
             // 
@@ -442,6 +443,7 @@
             this.cbxDescargaMax.Name = "cbxDescargaMax";
             this.cbxDescargaMax.Size = new System.Drawing.Size(81, 23);
             this.cbxDescargaMax.TabIndex = 1;
+            this.cbxDescargaMax.SelectedValueChanged += new System.EventHandler(this.cbxDescargaMax_SelectedValueChanged);
             // 
             // cbxBaterias
             // 
@@ -453,6 +455,7 @@
             this.cbxBaterias.Name = "cbxBaterias";
             this.cbxBaterias.Size = new System.Drawing.Size(81, 23);
             this.cbxBaterias.TabIndex = 0;
+            this.cbxBaterias.SelectedValueChanged += new System.EventHandler(this.cbxBaterias_SelectedValueChanged);
             // 
             // gbxBoleta
             // 

@@ -40,6 +40,7 @@ namespace SolCAD_v2.Forms
         {
             Inicio.SetDataGridView(dgEquipamiento);
             Hide();
+            formInicio.ActualizarPosicion();
         }
 
         public List<Consumo> listaEquipos()
@@ -221,6 +222,12 @@ namespace SolCAD_v2.Forms
                 row.Cells["SubTotal"].Value = Math.Round(Convert.ToInt32(row.Cells["Qty"].Value) * Prom, 2);
             }
             catch (Exception ex) { }
+        }
+
+        private void ListaEquipamiento_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Hide();
+            formInicio.ActualizarPosicion();
         }
     }
 }
