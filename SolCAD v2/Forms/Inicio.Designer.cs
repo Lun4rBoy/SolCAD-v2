@@ -75,18 +75,18 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDic = new System.Windows.Forms.TextBox();
+            this.txtNov = new System.Windows.Forms.TextBox();
+            this.txtOct = new System.Windows.Forms.TextBox();
+            this.txtSep = new System.Windows.Forms.TextBox();
+            this.txtAgo = new System.Windows.Forms.TextBox();
+            this.txtJul = new System.Windows.Forms.TextBox();
+            this.txtJun = new System.Windows.Forms.TextBox();
+            this.txtMay = new System.Windows.Forms.TextBox();
+            this.txtAbr = new System.Windows.Forms.TextBox();
+            this.txtMar = new System.Windows.Forms.TextBox();
+            this.txtFeb = new System.Windows.Forms.TextBox();
+            this.txtEne = new System.Windows.Forms.TextBox();
             this.btnDiseñar = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnCondicionesDiseño = new System.Windows.Forms.Button();
@@ -471,18 +471,18 @@
             this.gbxBoleta.Controls.Add(this.label12);
             this.gbxBoleta.Controls.Add(this.label11);
             this.gbxBoleta.Controls.Add(this.label5);
-            this.gbxBoleta.Controls.Add(this.textBox12);
-            this.gbxBoleta.Controls.Add(this.textBox11);
-            this.gbxBoleta.Controls.Add(this.textBox10);
-            this.gbxBoleta.Controls.Add(this.textBox9);
-            this.gbxBoleta.Controls.Add(this.textBox8);
-            this.gbxBoleta.Controls.Add(this.textBox7);
-            this.gbxBoleta.Controls.Add(this.textBox6);
-            this.gbxBoleta.Controls.Add(this.textBox5);
-            this.gbxBoleta.Controls.Add(this.textBox4);
-            this.gbxBoleta.Controls.Add(this.textBox3);
-            this.gbxBoleta.Controls.Add(this.textBox2);
-            this.gbxBoleta.Controls.Add(this.textBox1);
+            this.gbxBoleta.Controls.Add(this.txtDic);
+            this.gbxBoleta.Controls.Add(this.txtNov);
+            this.gbxBoleta.Controls.Add(this.txtOct);
+            this.gbxBoleta.Controls.Add(this.txtSep);
+            this.gbxBoleta.Controls.Add(this.txtAgo);
+            this.gbxBoleta.Controls.Add(this.txtJul);
+            this.gbxBoleta.Controls.Add(this.txtJun);
+            this.gbxBoleta.Controls.Add(this.txtMay);
+            this.gbxBoleta.Controls.Add(this.txtAbr);
+            this.gbxBoleta.Controls.Add(this.txtMar);
+            this.gbxBoleta.Controls.Add(this.txtFeb);
+            this.gbxBoleta.Controls.Add(this.txtEne);
             this.gbxBoleta.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.gbxBoleta.Location = new System.Drawing.Point(12, 338);
             this.gbxBoleta.Name = "gbxBoleta";
@@ -611,89 +611,89 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "ENE";
             // 
-            // textBox12
+            // txtDic
             // 
-            this.textBox12.Location = new System.Drawing.Point(238, 92);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(38, 25);
-            this.textBox12.TabIndex = 11;
+            this.txtDic.Location = new System.Drawing.Point(238, 92);
+            this.txtDic.Name = "txtDic";
+            this.txtDic.Size = new System.Drawing.Size(38, 25);
+            this.txtDic.TabIndex = 11;
             // 
-            // textBox11
+            // txtNov
             // 
-            this.textBox11.Location = new System.Drawing.Point(194, 92);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(38, 25);
-            this.textBox11.TabIndex = 10;
+            this.txtNov.Location = new System.Drawing.Point(194, 92);
+            this.txtNov.Name = "txtNov";
+            this.txtNov.Size = new System.Drawing.Size(38, 25);
+            this.txtNov.TabIndex = 10;
             // 
-            // textBox10
+            // txtOct
             // 
-            this.textBox10.Location = new System.Drawing.Point(150, 92);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(38, 25);
-            this.textBox10.TabIndex = 9;
+            this.txtOct.Location = new System.Drawing.Point(150, 92);
+            this.txtOct.Name = "txtOct";
+            this.txtOct.Size = new System.Drawing.Size(38, 25);
+            this.txtOct.TabIndex = 9;
             // 
-            // textBox9
+            // txtSep
             // 
-            this.textBox9.Location = new System.Drawing.Point(105, 92);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(38, 25);
-            this.textBox9.TabIndex = 8;
+            this.txtSep.Location = new System.Drawing.Point(105, 92);
+            this.txtSep.Name = "txtSep";
+            this.txtSep.Size = new System.Drawing.Size(38, 25);
+            this.txtSep.TabIndex = 8;
             // 
-            // textBox8
+            // txtAgo
             // 
-            this.textBox8.Location = new System.Drawing.Point(62, 92);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(38, 25);
-            this.textBox8.TabIndex = 7;
+            this.txtAgo.Location = new System.Drawing.Point(62, 92);
+            this.txtAgo.Name = "txtAgo";
+            this.txtAgo.Size = new System.Drawing.Size(38, 25);
+            this.txtAgo.TabIndex = 7;
             // 
-            // textBox7
+            // txtJul
             // 
-            this.textBox7.Location = new System.Drawing.Point(18, 92);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(38, 25);
-            this.textBox7.TabIndex = 6;
+            this.txtJul.Location = new System.Drawing.Point(18, 92);
+            this.txtJul.Name = "txtJul";
+            this.txtJul.Size = new System.Drawing.Size(38, 25);
+            this.txtJul.TabIndex = 6;
             // 
-            // textBox6
+            // txtJun
             // 
-            this.textBox6.Location = new System.Drawing.Point(238, 39);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(38, 25);
-            this.textBox6.TabIndex = 5;
+            this.txtJun.Location = new System.Drawing.Point(238, 39);
+            this.txtJun.Name = "txtJun";
+            this.txtJun.Size = new System.Drawing.Size(38, 25);
+            this.txtJun.TabIndex = 5;
             // 
-            // textBox5
+            // txtMay
             // 
-            this.textBox5.Location = new System.Drawing.Point(194, 39);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(38, 25);
-            this.textBox5.TabIndex = 4;
+            this.txtMay.Location = new System.Drawing.Point(194, 39);
+            this.txtMay.Name = "txtMay";
+            this.txtMay.Size = new System.Drawing.Size(38, 25);
+            this.txtMay.TabIndex = 4;
             // 
-            // textBox4
+            // txtAbr
             // 
-            this.textBox4.Location = new System.Drawing.Point(150, 39);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(38, 25);
-            this.textBox4.TabIndex = 3;
+            this.txtAbr.Location = new System.Drawing.Point(150, 39);
+            this.txtAbr.Name = "txtAbr";
+            this.txtAbr.Size = new System.Drawing.Size(38, 25);
+            this.txtAbr.TabIndex = 3;
             // 
-            // textBox3
+            // txtMar
             // 
-            this.textBox3.Location = new System.Drawing.Point(106, 39);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(38, 25);
-            this.textBox3.TabIndex = 2;
+            this.txtMar.Location = new System.Drawing.Point(106, 39);
+            this.txtMar.Name = "txtMar";
+            this.txtMar.Size = new System.Drawing.Size(38, 25);
+            this.txtMar.TabIndex = 2;
             // 
-            // textBox2
+            // txtFeb
             // 
-            this.textBox2.Location = new System.Drawing.Point(62, 39);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(38, 25);
-            this.textBox2.TabIndex = 1;
+            this.txtFeb.Location = new System.Drawing.Point(62, 39);
+            this.txtFeb.Name = "txtFeb";
+            this.txtFeb.Size = new System.Drawing.Size(38, 25);
+            this.txtFeb.TabIndex = 1;
             // 
-            // textBox1
+            // txtEne
             // 
-            this.textBox1.Location = new System.Drawing.Point(18, 39);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(38, 25);
-            this.textBox1.TabIndex = 0;
+            this.txtEne.Location = new System.Drawing.Point(18, 39);
+            this.txtEne.Name = "txtEne";
+            this.txtEne.Size = new System.Drawing.Size(38, 25);
+            this.txtEne.TabIndex = 0;
             // 
             // btnDiseñar
             // 
@@ -812,7 +812,7 @@
         private Label label10;
         private Label label9;
         private Label label8;
-        private TextBox textBox1;
+        private TextBox txtEne;
         private Label label16;
         private Label label17;
         private Label label18;
@@ -825,17 +825,17 @@
         private Label label12;
         private Label label11;
         private Label label5;
-        private TextBox textBox12;
-        private TextBox textBox11;
-        private TextBox textBox10;
-        private TextBox textBox9;
-        private TextBox textBox8;
-        private TextBox textBox7;
-        private TextBox textBox6;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
+        private TextBox txtDic;
+        private TextBox txtNov;
+        private TextBox txtOct;
+        private TextBox txtSep;
+        private TextBox txtAgo;
+        private TextBox txtJul;
+        private TextBox txtJun;
+        private TextBox txtMay;
+        private TextBox txtAbr;
+        private TextBox txtMar;
+        private TextBox txtFeb;
         private Button btnLista;
         private TextBox txtInclinacion;
         private Label label6;

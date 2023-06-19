@@ -21,6 +21,17 @@ namespace SolCAD_v2.Models
         public double OCT { get; set; }
         public double NOV { get; set; }
         public double DIC { get; set; }
+
+        public int[] ToIntArray()
+        {
+            return new int[] { (int)ENE, (int)FEB, (int)MAR, (int)ABR, (int)MAY, (int)JUN, (int)JUL, (int)AGO, (int)SEP, (int)OCT, (int)NOV, (int)DIC };
+        }
+
+        public double[] ToDoubleArray()
+        {
+            return new double[] { ENE, FEB, MAR, ABR, MAY, JUN, JUL, AGO, SEP, OCT, NOV, DIC };
+        }
+
         public AllSheets() {}
 
         public AllSheets(string aux, double ENE, double FEB, double MAR, double ABR, double MAY,
@@ -40,7 +51,6 @@ namespace SolCAD_v2.Models
             this.NOV = NOV;
             this.DIC = DIC;
         }
-
         public double SumarMeses()
         {
             double suma = 0;

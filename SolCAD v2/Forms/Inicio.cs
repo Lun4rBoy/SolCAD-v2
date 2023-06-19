@@ -6,6 +6,7 @@ using MathNet.Numerics.Statistics;
 using SolCAD_v2.DAO;
 using SolCAD_v2.Forms;
 using SolCAD_v2.Models;
+using Exception = System.Exception;
 using Panel = SolCAD_v2.Models.Panel;
 
 namespace SolCAD_v2;
@@ -33,6 +34,7 @@ public partial class Inicio : Form
     private bool comboBoxVisible = true;
     public static Condiciones cond;
     private ListaEquipamiento list;
+    private Diseño dis;
     private List<Comuna> ListComunas;
 
     public static double RadPropose;
@@ -106,21 +108,9 @@ public partial class Inicio : Form
         if (InformacionClimatica.Any()) InformacionClimatica.Clear();
         InformacionClimatica = table;
 
-        var rowRadH = new[]
-        {
-            table.ElementAt(3).ENE, table.ElementAt(3).FEB, table.ElementAt(3).MAR, table.ElementAt(3).ABR,
-            table.ElementAt(3).MAY, table.ElementAt(3).JUN, table.ElementAt(3).JUL, table.ElementAt(3).AGO,
-            table.ElementAt(3).SEP, table.ElementAt(3).OCT,
-            table.ElementAt(3).NOV, table.ElementAt(3).DIC
-        };
+        var rowRadH = table.ElementAt(3).ToDoubleArray();
 
-        var rowRadI = new[]
-        {
-            table.ElementAt(4).ENE, table.ElementAt(4).FEB, table.ElementAt(4).MAR, table.ElementAt(4).ABR,
-            table.ElementAt(4).MAY, table.ElementAt(4).JUN, table.ElementAt(4).JUL, table.ElementAt(4).AGO,
-            table.ElementAt(4).SEP, table.ElementAt(4).OCT,
-            table.ElementAt(4).NOV, table.ElementAt(4).DIC
-        };
+        var rowRadI = table.ElementAt(4).ToDoubleArray();
 
         #endregion Colecciones
 
@@ -393,9 +383,27 @@ public partial class Inicio : Form
     //
     private void btnDiseñar_Click(object sender, EventArgs e)
     {
+        
+        AllSheets? a = null;
+        if (chxAhorro.Checked)
+        {
+            a = AhorroSheets();
+            if (a == null) return;
+        }
+
+        try
+        {
+            dis.Show();
+        }
+        catch (Exception ex)
+        {
+            var newDis = new Diseño(this, c, a);
+            dis = newDis;
+            dis.Show();
+        }
+        
         Hide();
-        Diseño dis = new(c);
-        dis.Show();
+        
     }
 
     private void cbxBaterias_SelectedValueChanged(object sender, EventArgs e)
@@ -411,5 +419,59 @@ public partial class Inicio : Form
     private void cbxPanel_SelectedValueChanged(object sender, EventArgs e)
     {
         panel = listaPaneles.Where(x => x.Tipo == cbxPanel.SelectedItem.ToString()).Select(x => x).FirstOrDefault();
+    }
+
+    private AllSheets? AhorroSheets()
+    {
+        AllSheets a = new();
+        int ene = 0, feb = 0, mar = 0, abr = 0, may = 0, jun = 0, jul = 0, ago = 0, sep = 0, oct = 0, nov = 0, dic = 0;
+
+        TextBox[] textBoxes = { txtEne, txtFeb, txtMar, txtAbr, txtMay,
+            txtJun, txtJul, txtAgo, txtSep, txtOct, txtNov, txtDic };
+        string[] meses = { "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic" };
+
+        for (int i = 0; i < textBoxes.Length; i++)
+        {
+            if (!int.TryParse(textBoxes[i].Text, out int valor) || string.IsNullOrWhiteSpace(textBoxes[i].Text))
+            {
+                MessageBox.Show($"Por favor, ingresa solo valores enteros en el campo {meses[i]}.",
+                    "Error de validación");
+                textBoxes[i].Focus();
+                return null;
+            }
+
+            // Asignar el valor entero a la variable correspondiente
+            switch (i)
+            {
+                case 0: ene = valor; break;
+                case 1: feb = valor; break;
+                case 2: mar = valor; break;
+                case 3: abr = valor; break;
+                case 4: may = valor; break;
+                case 5: jun = valor; break;
+                case 6: jul = valor; break;
+                case 7: ago = valor; break;
+                case 8: sep = valor; break;
+                case 9: oct = valor; break;
+                case 10: nov = valor; break;
+                case 11: dic = valor; break;
+            }
+        }
+
+        a.aux = "Consumo";
+        a.ENE = ene;
+        a.FEB = feb;
+        a.MAR = mar;
+        a.ABR = abr;
+        a.MAY = may;
+        a.JUN = jun;
+        a.JUL = jul;
+        a.AGO = ago;
+        a.SEP = sep;
+        a.OCT = oct;
+        a.NOV = nov;
+        a.DIC = dic;
+
+        return a;
     }
 }
