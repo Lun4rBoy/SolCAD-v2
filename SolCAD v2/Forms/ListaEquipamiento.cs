@@ -4,6 +4,7 @@ using System.Windows.Forms;
 
 namespace SolCAD_v2.Forms
 {
+    [Serializable]
     public partial class ListaEquipamiento : Form
     {
         public static List<Consumo>? ListaEquipo;

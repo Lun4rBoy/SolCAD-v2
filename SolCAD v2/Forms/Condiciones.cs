@@ -13,6 +13,7 @@ using SolCAD_v2.Models;
 
 namespace SolCAD_v2.Forms
 {
+    [Serializable]
     public partial class Condiciones : Form
     {
         public TextBox texttest = new();

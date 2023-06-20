@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics.Metrics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿
 using System.Windows.Forms.DataVisualization.Charting;
 using MathNet.Numerics.Statistics;
 using SolCAD_v2.Models;
@@ -40,8 +31,8 @@ namespace SolCAD_v2.Forms
 
                 seriesGeneracion = new Series("Generacion KWh");
                 seriesConsumo = new Series("Consumo KWh");
-                seriesGeneracion.ChartType = SeriesChartType.Bar;
-                seriesConsumo.ChartType = SeriesChartType.Bar;
+                seriesGeneracion.ChartType = SeriesChartType.Column;
+                seriesConsumo.ChartType = SeriesChartType.Column;
 
                 Axis ejeY = new Axis();
                 ejeY.Title = "KWh";

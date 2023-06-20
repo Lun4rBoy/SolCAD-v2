@@ -3,6 +3,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Windows.Forms;
 using MathNet.Numerics.Statistics;
+using Newtonsoft.Json;
 using SolCAD_v2.DAO;
 using SolCAD_v2.Forms;
 using SolCAD_v2.Models;
@@ -11,6 +12,7 @@ using Panel = SolCAD_v2.Models.Panel;
 
 namespace SolCAD_v2;
 
+[Serializable]
 public partial class Inicio : Form
 {
     #region VariablesGlobales
@@ -47,6 +49,7 @@ public partial class Inicio : Form
     public Inicio()
     {
         InitializeComponent();
+        appState = new AppState();
         list = new ListaEquipamiento(this);
         cond = new Condiciones(c,this);
         btnCondicionesDiseño.Enabled = false;
@@ -54,10 +57,10 @@ public partial class Inicio : Form
         txtLatitud.Visible = false;
         txtLongitud.Visible = false;
         cbx_Region.Items.Add("Seleccione...");
-        cbx_Comuna.Items.Add("Seleccione...");
         cbxBaterias.Items.Add("Ninguna");
         cbxPanel.Items.Add("Ninguno");
-        cbx_Comuna.SelectedIndex = 0;
+        
+        cbx_Comuna.Enabled = false;
         cbx_Region.SelectedIndex = 0;
         cbxBaterias.SelectedIndex = 0;
         cbxDescargaMax.SelectedIndex = 0;
@@ -141,23 +144,6 @@ public partial class Inicio : Form
             "Lagos", "Aysén", "Magallanes y Antartica Chilena", "Region Metropolitana", "Ríos", "Arica y Parinacota",
             "Ñuble"
         });
-    }
-
-    private void CargarEquipos()
-    {
-        try
-        {
-            cbxBaterias.Items.AddRange(listaBaterias.Select(x => x.Tipo).ToArray());
-            cbxPanel.Items.AddRange(listaPaneles.Select(x => x.Tipo).ToArray());
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine(ex.Message);
-        }
-    }
-
-    private void DisplayComunas(object sender, EventArgs e)
-    {
         var fixer = true;
         Again:
         try
@@ -171,8 +157,19 @@ public partial class Inicio : Form
             goto Again;
         }
 
-        var nombres = (from c in ListComunas where c.Region == cbx_Region.SelectedIndex select c.COMUNA).ToArray();
-        cbx_Comuna.Items.AddRange(nombres);
+    }
+
+    private void CargarEquipos()
+    {
+        try
+        {
+            cbxBaterias.Items.AddRange(listaBaterias.Select(x => x.Tipo).ToArray());
+            cbxPanel.Items.AddRange(listaPaneles.Select(x => x.Tipo).ToArray());
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        }
     }
 
     private void btnLista_Click(object sender, EventArgs e)
@@ -347,40 +344,6 @@ public partial class Inicio : Form
         gbxBoleta.Visible = chxAhorro.Checked;
     }
 
-
-    //Carga de datos (Instancia previa al cierre)
-    private void Inicio_Load(object sender, EventArgs e)
-    {
-        // Cargar el estado guardado si existe, de lo contrario, inicializar un nuevo estado
-        /*if (File.Exists("appstate.bin"))
-        {
-            appState = Controller_AppState.DeserializeAppState("appstate.bin");
-        }
-        else
-        {
-            appState = new AppState();
-            // Realiza cualquier inicialización adicional para un nuevo estado
-        }
-
-        //cargar variables aqui:
-        //dgBackup.DataSource = appState.ListaEquipos*/
-    }
-
-    private void Inicio_FormClosing(object sender, FormClosingEventArgs e)
-    {
-        //aqui las variables a guardar:
-        /*
-         *Ejemplo:
-         *  
-            appState.TextBoxText = textBox.Text;
-            appState.CheckBoxChecked = checkBox.Checked;
-            appState.ComboBoxSelectedValue = comboBox.SelectedValue?.ToString();
-         */
-        //appState.ListaEquipos = dgBackup;
-
-        //Controller_AppState.SerializeAppState(appState, "appstate.bin");
-    }
-    //
     private void btnDiseñar_Click(object sender, EventArgs e)
     {
         
@@ -473,5 +436,110 @@ public partial class Inicio : Form
         a.DIC = dic;
 
         return a;
+    }
+
+    private void cbx_Region_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        cbx_Comuna.Items.Clear();
+        cbx_Comuna.Items.Add("Seleccione...");
+        cbx_Comuna.SelectedIndex = 0;
+        if (cbx_Region.SelectedIndex == 0)
+        {
+            cbx_Comuna.Enabled = false;
+            return;
+        }
+        cbx_Comuna.Enabled = true;
+        var nombres = (from c in ListComunas where c.Region == cbx_Region.SelectedIndex select c.COMUNA).ToArray();
+        cbx_Comuna.Items.AddRange(nombres);
+    }
+
+    private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        appState = new AppState()
+        {
+            InformacionClimatica = InformacionClimatica,
+            C = c,
+            ListaBaterias = listaBaterias,
+            ListaPaneles = listaPaneles,
+            ConsumoPromedio = ConsumoPromedio,
+            PerdidasConversion = PerdidasConversion,
+            TotalCorregido = TotalCorregido,
+            Bateria = bateria,
+            Panel = panel,
+            Descarga = descarga,
+            RadPropose = RadPropose,
+            DesviationLost = DesviationLost,
+            INC = INC,
+            ComunaSelectedIndex = cbx_Comuna.SelectedIndex,
+            RegionSelectedIndex = cbx_Region.SelectedIndex,
+            PanelSelectedIndex = cbxPanel.SelectedIndex,
+            DescargaMaxSelectedIndex = cbxDescargaMax.SelectedIndex,
+            BateriasSelectedIndex = cbxBaterias.SelectedIndex,
+            TxtEne = txtEne.Text,
+            TxtFeb = txtFeb.Text,
+            TxtMar = txtMar.Text,
+            TxtAbr = txtAbr.Text,
+            TxtMay = txtMay.Text,
+            TxtJun = txtJun.Text,
+            TxtJul = txtJul.Text,
+            TxtAgo = txtAgo.Text,
+            TxtSep = txtSep.Text,
+            TxtOct = txtOct.Text,
+            TxtNov = txtNov.Text,
+            TxtDic = txtDic.Text
+        };
+
+
+
+        string json = JsonConvert.SerializeObject(appState);
+        File.WriteAllText("appState.json", json);
+    }
+
+    private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        using (OpenFileDialog openFileDialog = new OpenFileDialog())
+        {
+            openFileDialog.Filter = "Archivos JSON (*.json)|*.json";
+            openFileDialog.RestoreDirectory = true;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string json = File.ReadAllText("appState.json");
+                appState = JsonConvert.DeserializeObject<AppState>(json);
+
+                InformacionClimatica = appState.InformacionClimatica;
+                c = appState.C;
+                listaBaterias = appState.ListaBaterias;
+                listaPaneles = appState.ListaPaneles;
+                ConsumoPromedio = appState.ConsumoPromedio;
+                PerdidasConversion = appState.PerdidasConversion;
+                TotalCorregido = appState.TotalCorregido;
+                bateria = appState.Bateria;
+                panel = appState.Panel;
+                descarga = appState.Descarga;
+                RadPropose = appState.RadPropose;
+                DesviationLost = appState.DesviationLost;
+                INC = appState.INC;
+                cbx_Region.SelectedIndex = appState.RegionSelectedIndex;
+                cbx_Comuna.SelectedIndex = appState.ComunaSelectedIndex;
+                
+                cbxPanel.SelectedIndex = appState.PanelSelectedIndex;
+                cbxDescargaMax.SelectedIndex = appState.DescargaMaxSelectedIndex;
+                cbxBaterias.SelectedIndex = appState.BateriasSelectedIndex;
+
+                txtEne.Text = appState.TxtEne;
+                txtFeb.Text = appState.TxtFeb;
+                txtMar.Text = appState.TxtMar;
+                txtAbr.Text = appState.TxtAbr;
+                txtMay.Text = appState.TxtMay;
+                txtJun.Text = appState.TxtJun;
+                txtJul.Text = appState.TxtJul;
+                txtAgo.Text = appState.TxtAgo;
+                txtSep.Text = appState.TxtSep;
+                txtOct.Text = appState.TxtOct;
+                txtNov.Text = appState.TxtNov;
+                txtDic.Text = appState.TxtDic;
+            }
+        }
     }
 }

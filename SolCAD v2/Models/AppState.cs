@@ -6,17 +6,37 @@ namespace SolCAD_v2.Models;
 [Serializable]
 public class AppState
 {
-    public DataGridView ListaEquipos { get; set; }
-    //las variables a rescatar
+    public List<AllSheets> InformacionClimatica { get; set; }
+    public Condicion C { get; set; }
+    public List<Bateria> ListaBaterias { get; set; }
+    public List<Panel> ListaPaneles { get; set; }
+    public double ConsumoPromedio { get; set; }
+    public double PerdidasConversion { get; set; }
+    public double TotalCorregido { get; set; }
+    public Bateria Bateria { get; set; }
+    public Panel Panel { get; set; }
+    public double Descarga { get; set; }
+    public double RadPropose { get; set; }
+    public double DesviationLost { get; set; }
+    public int INC { get; set; }
 
-    /* Ejemplo de Constructor
-     * public AppState()
-    {
-        DataGrid1Data = new DataTable();
-        DataGrid2Data = new DataTable();
-        TextBoxText = string.Empty;
-        CheckBoxChecked = false;
-        ComboBoxSelectedValue = null;
-    }
-     */
+    public int ComunaSelectedIndex { get; set; }
+    public int RegionSelectedIndex { get; set; }
+    public int PanelSelectedIndex { get; set; }
+    public int DescargaMaxSelectedIndex { get; set; }
+    public int BateriasSelectedIndex { get; set; }
+
+    public string TxtEne { get; set; }
+    public string TxtFeb { get; set; }
+    public string TxtMar { get; set; }
+    public string TxtAbr { get; set; }
+    public string TxtMay { get; set; }
+    public string TxtJun { get; set; }
+    public string TxtJul { get; set; }
+    public string TxtAgo { get; set; }
+    public string TxtSep { get; set; }
+    public string TxtOct { get; set; }
+    public string TxtNov { get; set; }
+    public string TxtDic { get; set; }
+
 }
