@@ -8,8 +8,6 @@ public class AppState
 {
     public List<AllSheets> InformacionClimatica { get; set; }
     public Condicion C { get; set; }
-    public List<Bateria> ListaBaterias { get; set; }
-    public List<Panel> ListaPaneles { get; set; }
     public double ConsumoPromedio { get; set; }
     public double PerdidasConversion { get; set; }
     public double TotalCorregido { get; set; }
@@ -19,7 +17,7 @@ public class AppState
     public double RadPropose { get; set; }
     public double DesviationLost { get; set; }
     public int INC { get; set; }
-
+    public string inclinacion { get; set; }
     public int ComunaSelectedIndex { get; set; }
     public int RegionSelectedIndex { get; set; }
     public int PanelSelectedIndex { get; set; }

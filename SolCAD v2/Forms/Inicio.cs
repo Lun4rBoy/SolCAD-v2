@@ -459,8 +459,6 @@ public partial class Inicio : Form
         {
             InformacionClimatica = InformacionClimatica,
             C = c,
-            ListaBaterias = listaBaterias,
-            ListaPaneles = listaPaneles,
             ConsumoPromedio = ConsumoPromedio,
             PerdidasConversion = PerdidasConversion,
             TotalCorregido = TotalCorregido,
@@ -470,6 +468,7 @@ public partial class Inicio : Form
             RadPropose = RadPropose,
             DesviationLost = DesviationLost,
             INC = INC,
+            inclinacion = txtInclinacion.Text,
             ComunaSelectedIndex = cbx_Comuna.SelectedIndex,
             RegionSelectedIndex = cbx_Region.SelectedIndex,
             PanelSelectedIndex = cbxPanel.SelectedIndex,
@@ -509,8 +508,6 @@ public partial class Inicio : Form
 
                 InformacionClimatica = appState.InformacionClimatica;
                 c = appState.C;
-                listaBaterias = appState.ListaBaterias;
-                listaPaneles = appState.ListaPaneles;
                 ConsumoPromedio = appState.ConsumoPromedio;
                 PerdidasConversion = appState.PerdidasConversion;
                 TotalCorregido = appState.TotalCorregido;
@@ -522,7 +519,7 @@ public partial class Inicio : Form
                 INC = appState.INC;
                 cbx_Region.SelectedIndex = appState.RegionSelectedIndex;
                 cbx_Comuna.SelectedIndex = appState.ComunaSelectedIndex;
-                
+                txtInclinacion.Text = appState.inclinacion;
                 cbxPanel.SelectedIndex = appState.PanelSelectedIndex;
                 cbxDescargaMax.SelectedIndex = appState.DescargaMaxSelectedIndex;
                 cbxBaterias.SelectedIndex = appState.BateriasSelectedIndex;
