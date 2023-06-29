@@ -41,7 +41,7 @@
             this.cbx_Region = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chxAhorro = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.chxGlobos = new System.Windows.Forms.CheckBox();
             this.btnLista = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -216,7 +216,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.chxAhorro);
-            this.groupBox2.Controls.Add(this.checkBox1);
+            this.groupBox2.Controls.Add(this.chxGlobos);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox2.Location = new System.Drawing.Point(321, 52);
             this.groupBox2.Name = "groupBox2";
@@ -239,16 +239,16 @@
             this.chxAhorro.UseVisualStyleBackColor = true;
             this.chxAhorro.CheckedChanged += new System.EventHandler(this.chxAhorro_CheckedChanged);
             // 
-            // checkBox1
+            // chxGlobos
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.checkBox1.Location = new System.Drawing.Point(12, 31);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(63, 19);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Globos";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chxGlobos.AutoSize = true;
+            this.chxGlobos.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.chxGlobos.Location = new System.Drawing.Point(12, 31);
+            this.chxGlobos.Name = "chxGlobos";
+            this.chxGlobos.Size = new System.Drawing.Size(63, 19);
+            this.chxGlobos.TabIndex = 0;
+            this.chxGlobos.Text = "Globos";
+            this.chxGlobos.UseVisualStyleBackColor = true;
             // 
             // btnLista
             // 
@@ -289,21 +289,21 @@
             // abrirToolStripMenuItem
             // 
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.abrirToolStripMenuItem.Text = "Abrir";
             this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
             // 
             // guardarToolStripMenuItem
             // 
             this.guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
-            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.guardarToolStripMenuItem.Text = "Guardar";
             this.guardarToolStripMenuItem.Click += new System.EventHandler(this.guardarToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             // 
             // toolStripMenuItem2
@@ -807,8 +807,8 @@
         private ToolStripMenuItem toolStripMenuItem3;
         private ComboBox cbx_Comuna;
         private ComboBox cbx_Region;
-        private CheckBox chxAhorro;
-        private CheckBox checkBox1;
+        public CheckBox chxAhorro;
+        public CheckBox chxGlobos;
         private ToolStrip toolStrip1;
         private ToolStripButton toolStripButton1;
         private ToolStripButton toolStripButton2;

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Diagnostics;
 using System.Windows.Forms;
 using MathNet.Numerics.Statistics;
@@ -18,7 +19,7 @@ public partial class Inicio : Form
     #region VariablesGlobales
 
     private AppState appState;
-    public static DataGridView dgBackup;
+    public static DataGridView? dgBackup = null;
     public static List<AllSheets> InformacionClimatica = new();
     public static Condicion c = new();
 
@@ -41,7 +42,8 @@ public partial class Inicio : Form
 
     public static double RadPropose;
     public static double DesviationLost;
-
+    public static string PorcentajePerdidas = "0%";
+    public static GridData grid;
     public static int INC;
 
     #endregion VariablesGlobales
@@ -211,13 +213,22 @@ public partial class Inicio : Form
         if (view.Rows.Count > 0)
         {
             dgBackup = new DataGridView();
-
+            grid = new GridData
+            {
+                Headers = new List<string>(),
+                Rows = new List<List<object>>()
+            };
             // Copia las columnas del DataGridView original
             foreach (DataGridViewColumn column in view.Columns)
+            {
                 dgBackup.Columns.Add(column.Clone() as DataGridViewColumn);
+                grid.Headers.Add(column.Name);
+            }
+                
             // Copia las filas y sus valores del DataGridView original
             foreach (DataGridViewRow row in view.Rows)
             {
+                List<object> rowData = new List<object>();
                 // Verifica si la fila tiene valores en al menos una de las celdas
                 var hasValues = false;
                 foreach (DataGridViewCell cell in row.Cells)
@@ -231,8 +242,13 @@ public partial class Inicio : Form
                 if (hasValues)
                 {
                     var newRow = (DataGridViewRow)row.Clone();
-                    for (var i = 0; i < row.Cells.Count; i++) newRow.Cells[i].Value = row.Cells[i].Value;
+                    for (var i = 0; i < row.Cells.Count; i++)
+                    {
+                        newRow.Cells[i].Value = row.Cells[i].Value;
+                        rowData.Add(row.Cells[i].Value);
+                    }
                     dgBackup.Rows.Add(newRow);
+                    grid.Rows.Add(rowData);
                 }
             }
         }
@@ -249,7 +265,6 @@ public partial class Inicio : Form
             txtInclinacion.Enabled = true;
             return;
         }
-
         txtInclinacion.Enabled = false;
     }
 
@@ -277,10 +292,26 @@ public partial class Inicio : Form
         txtLatitud.Visible = comboBoxVisible;
         txtLongitud.Visible = comboBoxVisible;
         comboBoxVisible = !comboBoxVisible;
-        txtInclinacion.Enabled = false;
+        if (string.IsNullOrEmpty(txtLatitud.Text) || string.IsNullOrEmpty(txtLongitud.Text))
+        {
+            txtInclinacion.Enabled = false;
+        }
+        else
+        {
+            txtInclinacion.Enabled = true;
+        }
 
         if (!comboBoxVisible)
         {
+            try
+            {
+                var comuna = (from l in ListComunas where l.COMUNA == cbx_Comuna.SelectedItem.ToString() select l)
+                    .FirstOrDefault();
+                txtLatitud.Text = comuna.LAT.ToString();
+                txtLongitud.Text = comuna.LON.ToString();
+            }
+            catch { }
+
             lblRegion.Text = "Latitud";
             lblComuna.Text = "Longitud";
             btnCordenadas.Width = 95;
@@ -302,7 +333,7 @@ public partial class Inicio : Form
     private void txtLongitud_TextChanged(object sender, EventArgs e)
     {
         if (cbx_Comuna.Visible) return;
-        if (!string.IsNullOrEmpty(txtLatitud.Text) || !string.IsNullOrEmpty(txtLongitud.Text))
+        if (string.IsNullOrEmpty(txtLatitud.Text) || string.IsNullOrEmpty(txtLongitud.Text))
         {
             txtInclinacion.Enabled = false;
             return;
@@ -458,6 +489,9 @@ public partial class Inicio : Form
         appState = new AppState()
         {
             InformacionClimatica = InformacionClimatica,
+            GridData = grid,
+            Ahorro = chxAhorro.Checked,
+            Help = chxGlobos.Checked,
             C = c,
             ConsumoPromedio = ConsumoPromedio,
             PerdidasConversion = PerdidasConversion,
@@ -485,7 +519,8 @@ public partial class Inicio : Form
             TxtSep = txtSep.Text,
             TxtOct = txtOct.Text,
             TxtNov = txtNov.Text,
-            TxtDic = txtDic.Text
+            TxtDic = txtDic.Text,
+            PorcentajePerdidas = PorcentajePerdidas
         };
 
 
@@ -505,12 +540,38 @@ public partial class Inicio : Form
             {
                 string json = File.ReadAllText("appState.json");
                 appState = JsonConvert.DeserializeObject<AppState>(json);
+                dgBackup.Columns.Clear();
+                dgBackup.Rows.Clear();
+                try
+                {
+                    foreach (var header in appState.GridData.Headers)
+                    {
+                        dgBackup.Columns.Add(header, header);
+                    }
+
+                    var rows = appState.GridData.Rows;
+                    for (int x =0;x<rows.Count;x++)
+                    {
+                        DataGridViewRow r = new();
+                        var data = rows[x].ToArray();
+                        for (int i = 0; i < data.Length; i++)
+                        {
+                            DataGridViewCell? cell = new DataGridViewTextBoxCell();
+                            cell.Value = data[i];
+                            r.Cells.Add(cell);
+                        }
+                        dgBackup.Rows.Add(r);
+                    }
+                }catch{}
 
                 InformacionClimatica = appState.InformacionClimatica;
+                chxAhorro.Checked = appState.Ahorro;
+                chxGlobos.Checked = appState.Help;
                 c = appState.C;
                 ConsumoPromedio = appState.ConsumoPromedio;
                 PerdidasConversion = appState.PerdidasConversion;
                 TotalCorregido = appState.TotalCorregido;
+                
                 bateria = appState.Bateria;
                 panel = appState.Panel;
                 descarga = appState.Descarga;
@@ -536,6 +597,11 @@ public partial class Inicio : Form
                 txtOct.Text = appState.TxtOct;
                 txtNov.Text = appState.TxtNov;
                 txtDic.Text = appState.TxtDic;
+                PorcentajePerdidas = appState.PorcentajePerdidas;
+
+                list = new ListaEquipamiento(this);
+                cond = new Condiciones(c, this);
+                btnCondicionesDiseño.Enabled = TotalCorregido > 0;
             }
         }
     }

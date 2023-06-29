@@ -7,9 +7,13 @@ namespace SolCAD_v2.Models;
 public class AppState
 {
     public List<AllSheets> InformacionClimatica { get; set; }
+    public GridData GridData { get; set; }
     public Condicion C { get; set; }
+    public bool Ahorro { get; set; }
+    public bool Help { get; set; }
     public double ConsumoPromedio { get; set; }
     public double PerdidasConversion { get; set; }
+    public string PorcentajePerdidas { get; set; }
     public double TotalCorregido { get; set; }
     public Bateria Bateria { get; set; }
     public Panel Panel { get; set; }

@@ -16,6 +16,7 @@ namespace SolCAD_v2.Forms
             if (Inicio.dgBackup != null)
             {
                 // Copiar los datos de dgBackup a dgEquipamiento
+                dgEquipamiento.Rows.Clear();
                 foreach (DataGridViewRow row in Inicio.dgBackup.Rows)
                 {
                     // Clonar la fila original y agregarla a dgEquipamiento
@@ -26,13 +27,26 @@ namespace SolCAD_v2.Forms
                     }
                     dgEquipamiento.Rows.Add(newRow);
                 }
-                dgEquipamiento.Rows.RemoveAt(dgEquipamiento.Rows.Count - 2);
+
+                try
+                {
+                    dgEquipamiento.Rows.RemoveAt(dgEquipamiento.Rows.Count - 2);
+                }catch{}
+                
             }
             else
             {
                 dgEquipamiento.Rows.Add(1, "Equipo ejemplo", 123, 60, 23);
                 DinamicCell(dgEquipamiento.Rows[0]);
             }
+
+            try
+            {
+                txtPromedioTotal.Text = Inicio.ConsumoPromedio.ToString();
+                txtPerConversion.Text = Inicio.PerdidasConversion.ToString();
+                txtTotalCorregido.Text = Inicio.TotalCorregido.ToString();
+                txtPorcientoPer.Text = Inicio.PorcentajePerdidas;
+            }catch{}
 
             formInicio = inicio;
         }
@@ -131,6 +145,7 @@ namespace SolCAD_v2.Forms
             txtPromedioTotal.Text = Math.Round(Inicio.ConsumoPromedio, 2).ToString();
             txtPerConversion.Text = Math.Round(Inicio.PerdidasConversion, 2).ToString();
             txtTotalCorregido.Text = Math.Round(Inicio.TotalCorregido, 2).ToString();
+            Inicio.PorcentajePerdidas = txtPorcientoPer.Text;
             //if (ListaEquipo.Count >0) Hide();
         }
 
@@ -227,6 +242,7 @@ namespace SolCAD_v2.Forms
 
         private void ListaEquipamiento_FormClosed(object sender, FormClosedEventArgs e)
         {
+            Inicio.SetDataGridView(dgEquipamiento);
             Hide();
             formInicio.ActualizarPosicion();
         }

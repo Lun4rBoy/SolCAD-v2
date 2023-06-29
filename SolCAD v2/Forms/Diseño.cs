@@ -20,7 +20,6 @@ namespace SolCAD_v2.Forms
             inicio = ini;
             obj = new Condicion();
             obj = c;
-            tbcDiseño.TabPages[3].Visible = false;
 
             if (al != null)
             {
@@ -56,8 +55,7 @@ namespace SolCAD_v2.Forms
                 dgAhorro.Rows[2].Cells[0].Value = "Resultado KWh:";
                 dgAhorro.Rows[3].Cells[0].Value = "Ahorro:";
 
-                tbcDiseño.TabPages[3].Visible = true;
-                CalculosAhorro();
+                
             }
             series = new Series("Comportamiento Bateria");
             series.ChartType = SeriesChartType.Line;
@@ -65,7 +63,10 @@ namespace SolCAD_v2.Forms
             series.ShadowOffset = 2;
             chrBaterias.Invalidate();
 
-
+            if (ini.chxAhorro.Checked)
+            {
+                CalculosAhorro();
+            }
             CalculosCargaBateria();
         }
 

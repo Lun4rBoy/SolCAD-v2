@@ -35,7 +35,7 @@ namespace SolCAD_v2.Forms
                 txtPaneles.Text = c.Paneles.ToString();
                 txtRamas.Text = c.Ramas.ToString();
                 txtAlturaInferior.Text = c.AlturaInferior.ToString();
-
+                txtBaterias.Text = c.TotalBaterias.ToString();
             }
             catch (Exception ex)
             {
