@@ -525,84 +525,132 @@ public partial class Inicio : Form
 
 
 
-        string json = JsonConvert.SerializeObject(appState);
-        File.WriteAllText("appState.json", json);
+        var json = JsonConvert.SerializeObject(appState);
+        SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+        // Establecer el filtro para mostrar solo archivos con extensión .json
+        saveFileDialog.Filter = "Archivos JSON (*.json)|*.json";
+
+        // Restaurar el directorio anterior utilizado
+        saveFileDialog.RestoreDirectory = true;
+
+        // Mostrar el cuadro de diálogo y comprobar si el usuario hizo clic en "Guardar"
+        if (saveFileDialog.ShowDialog() != DialogResult.OK) return;
+        try
+        {
+            var filePath = saveFileDialog.FileName;
+
+            File.WriteAllText(filePath, json);
+            MessageBox.Show("El archivo se ha guardado correctamente.", "Guardar archivo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        catch(Exception ex)
+        {
+            MessageBox.Show("Error al guardar el archivo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 
     private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        using (OpenFileDialog openFileDialog = new OpenFileDialog())
+        using (var openFileDialog = new OpenFileDialog())
         {
             openFileDialog.Filter = "Archivos JSON (*.json)|*.json";
             openFileDialog.RestoreDirectory = true;
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() != DialogResult.OK) return;
+            try
             {
-                string json = File.ReadAllText("appState.json");
+                var json = File.ReadAllText(openFileDialog.FileName);
                 appState = JsonConvert.DeserializeObject<AppState>(json);
-                dgBackup.Columns.Clear();
-                dgBackup.Rows.Clear();
-                try
+                list.Close();
+                cond.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al abrir el archivo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            dgBackup.Columns.Clear();
+            dgBackup.Rows.Clear();
+            try
+            {
+                foreach (var header in appState.GridData.Headers)
                 {
-                    foreach (var header in appState.GridData.Headers)
+                    dgBackup.Columns.Add(header, header);
+                }
+
+                var rows = appState.GridData.Rows;
+                for (int x = 0; x < rows.Count; x++)
+                {
+                    DataGridViewRow r = new();
+                    var data = rows[x].ToArray();
+                    for (int i = 0; i < data.Length; i++)
                     {
-                        dgBackup.Columns.Add(header, header);
+                        DataGridViewCell? cell = new DataGridViewTextBoxCell();
+                        cell.Value = data[i];
+                        r.Cells.Add(cell);
                     }
 
-                    var rows = appState.GridData.Rows;
-                    for (int x =0;x<rows.Count;x++)
-                    {
-                        DataGridViewRow r = new();
-                        var data = rows[x].ToArray();
-                        for (int i = 0; i < data.Length; i++)
-                        {
-                            DataGridViewCell? cell = new DataGridViewTextBoxCell();
-                            cell.Value = data[i];
-                            r.Cells.Add(cell);
-                        }
-                        dgBackup.Rows.Add(r);
-                    }
-                }catch{}
-
-                InformacionClimatica = appState.InformacionClimatica;
-                chxAhorro.Checked = appState.Ahorro;
-                chxGlobos.Checked = appState.Help;
-                c = appState.C;
+                    dgBackup.Rows.Add(r);
+                }
                 ConsumoPromedio = appState.ConsumoPromedio;
+                PorcentajePerdidas = appState.PorcentajePerdidas;
                 PerdidasConversion = appState.PerdidasConversion;
                 TotalCorregido = appState.TotalCorregido;
-                
-                bateria = appState.Bateria;
-                panel = appState.Panel;
-                descarga = appState.Descarga;
-                RadPropose = appState.RadPropose;
-                DesviationLost = appState.DesviationLost;
-                INC = appState.INC;
-                cbx_Region.SelectedIndex = appState.RegionSelectedIndex;
-                cbx_Comuna.SelectedIndex = appState.ComunaSelectedIndex;
-                txtInclinacion.Text = appState.inclinacion;
-                cbxPanel.SelectedIndex = appState.PanelSelectedIndex;
-                cbxDescargaMax.SelectedIndex = appState.DescargaMaxSelectedIndex;
-                cbxBaterias.SelectedIndex = appState.BateriasSelectedIndex;
-
-                txtEne.Text = appState.TxtEne;
-                txtFeb.Text = appState.TxtFeb;
-                txtMar.Text = appState.TxtMar;
-                txtAbr.Text = appState.TxtAbr;
-                txtMay.Text = appState.TxtMay;
-                txtJun.Text = appState.TxtJun;
-                txtJul.Text = appState.TxtJul;
-                txtAgo.Text = appState.TxtAgo;
-                txtSep.Text = appState.TxtSep;
-                txtOct.Text = appState.TxtOct;
-                txtNov.Text = appState.TxtNov;
-                txtDic.Text = appState.TxtDic;
-                PorcentajePerdidas = appState.PorcentajePerdidas;
-
                 list = new ListaEquipamiento(this);
-                cond = new Condiciones(c, this);
-                btnCondicionesDiseño.Enabled = TotalCorregido > 0;
             }
+            catch
+            {
+                dgBackup = null;
+            }
+
+            InformacionClimatica = appState.InformacionClimatica;
+            chxAhorro.Checked = appState.Ahorro;
+            chxGlobos.Checked = appState.Help;
+            c = appState.C;
+
+            bateria = appState.Bateria;
+            panel = appState.Panel;
+            descarga = appState.Descarga;
+            RadPropose = appState.RadPropose;
+            DesviationLost = appState.DesviationLost;
+            INC = appState.INC;
+            cbx_Region.SelectedIndex = appState.RegionSelectedIndex;
+            cbx_Comuna.SelectedIndex = appState.ComunaSelectedIndex;
+            txtInclinacion.Text = appState.inclinacion;
+            cbxPanel.SelectedIndex = appState.PanelSelectedIndex;
+            cbxDescargaMax.SelectedIndex = appState.DescargaMaxSelectedIndex;
+            cbxBaterias.SelectedIndex = appState.BateriasSelectedIndex;
+
+            txtEne.Text = appState.TxtEne;
+            txtFeb.Text = appState.TxtFeb;
+            txtMar.Text = appState.TxtMar;
+            txtAbr.Text = appState.TxtAbr;
+            txtMay.Text = appState.TxtMay;
+            txtJun.Text = appState.TxtJun;
+            txtJul.Text = appState.TxtJul;
+            txtAgo.Text = appState.TxtAgo;
+            txtSep.Text = appState.TxtSep;
+            txtOct.Text = appState.TxtOct;
+            txtNov.Text = appState.TxtNov;
+            txtDic.Text = appState.TxtDic;
+            
+
+            
+            cond = new Condiciones(c, this);
+            btnCondicionesDiseño.Enabled = TotalCorregido > 0;
+            btnDiseñar.Enabled = c.TotalBaterias > 0 && c.TotalPanelesArbitrario > 0;
+        }
+    }
+
+    private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        DialogResult result = MessageBox.Show("¿Estás seguro que deseas salir de la aplicación?", "Salir de la aplicación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+        // Comprobar la respuesta del usuario
+        if (result == DialogResult.Yes)
+        {
+            // Si el usuario hizo clic en "Yes", cerrar la aplicación
+            Application.Exit();
         }
     }
 }

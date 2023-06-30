@@ -67,6 +67,10 @@ namespace SolCAD_v2.Forms
             {
                 CalculosAhorro();
             }
+            else
+            {
+                tbcDiseño.TabPages.RemoveAt(3);
+            }
             CalculosCargaBateria();
         }
 
