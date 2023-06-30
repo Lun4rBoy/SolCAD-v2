@@ -231,6 +231,8 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgEquipamiento);
+            this.MaximumSize = new System.Drawing.Size(555, 655);
+            this.MinimumSize = new System.Drawing.Size(555, 655);
             this.Name = "ListaEquipamiento";
             this.Text = "ListaEquipamiento";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ListaEquipamiento_FormClosing);

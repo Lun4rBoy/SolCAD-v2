@@ -1,14 +1,9 @@
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
 using System.Diagnostics;
-using System.Windows.Forms;
 using MathNet.Numerics.Statistics;
 using Newtonsoft.Json;
 using SolCAD_v2.DAO;
 using SolCAD_v2.Forms;
 using SolCAD_v2.Models;
-using Exception = System.Exception;
 using Panel = SolCAD_v2.Models.Panel;
 
 namespace SolCAD_v2;
@@ -16,44 +11,13 @@ namespace SolCAD_v2;
 [Serializable]
 public partial class Inicio : Form
 {
-    #region VariablesGlobales
-
-    private AppState appState;
-    public static DataGridView? dgBackup = null;
-    public static List<AllSheets> InformacionClimatica = new();
-    public static Condicion c = new();
-
-    public static List<Bateria> listaBaterias = Controller_Equipo.ListaBaterias();
-    public static List<Panel> listaPaneles = Controller_Equipo.ListaPaneles();
-
-    public static double ConsumoPromedio=0;
-    public static double PerdidasConversion=0;
-    public static double TotalCorregido = 0;
-
-    public static Bateria bateria = new();
-    public static Panel panel = new();
-    public static double descarga = 0;
-
-    private bool comboBoxVisible = true;
-    public static Condiciones cond;
-    private ListaEquipamiento list;
-    private Diseño dis;
-    private List<Comuna> ListComunas;
-
-    public static double RadPropose;
-    public static double DesviationLost;
-    public static string PorcentajePerdidas = "0%";
-    public static GridData grid;
-    public static int INC;
-
-    #endregion VariablesGlobales
-
     public Inicio()
     {
         InitializeComponent();
         appState = new AppState();
+        g = globo();
         list = new ListaEquipamiento(this);
-        cond = new Condiciones(c,this);
+        cond = new Condiciones(c, this);
         btnCondicionesDiseño.Enabled = false;
         btnDiseñar.Enabled = false;
         txtLatitud.Visible = false;
@@ -61,7 +25,8 @@ public partial class Inicio : Form
         cbx_Region.Items.Add("Seleccione...");
         cbxBaterias.Items.Add("Ninguna");
         cbxPanel.Items.Add("Ninguno");
-        
+        chxGlobos.Checked = true;
+
         cbx_Comuna.Enabled = false;
         cbx_Region.SelectedIndex = 0;
         cbxBaterias.SelectedIndex = 0;
@@ -74,6 +39,8 @@ public partial class Inicio : Form
         dgBackup = new DataGridView();
 
         list.Hide();
+
+        
     }
 
     private void LoadDataTable()
@@ -158,7 +125,6 @@ public partial class Inicio : Form
             fixer = false;
             goto Again;
         }
-
     }
 
     private void CargarEquipos()
@@ -200,7 +166,7 @@ public partial class Inicio : Form
     {
         if (!list.IsDisposed || list.Visible) list.Location = new Point(Right, Top);
         if (!cond.IsDisposed || cond.Visible)
-            cond.Location = list.Visible ? new Point(list.Right, list.Top) : new Point(this.Right, this.Top);
+            cond.Location = list.Visible ? new Point(list.Right, list.Top) : new Point(Right, Top);
     }
 
     private void Inicio_DragOver(object sender, DragEventArgs e)
@@ -224,11 +190,11 @@ public partial class Inicio : Form
                 dgBackup.Columns.Add(column.Clone() as DataGridViewColumn);
                 grid.Headers.Add(column.Name);
             }
-                
+
             // Copia las filas y sus valores del DataGridView original
             foreach (DataGridViewRow row in view.Rows)
             {
-                List<object> rowData = new List<object>();
+                var rowData = new List<object>();
                 // Verifica si la fila tiene valores en al menos una de las celdas
                 var hasValues = false;
                 foreach (DataGridViewCell cell in row.Cells)
@@ -247,6 +213,7 @@ public partial class Inicio : Form
                         newRow.Cells[i].Value = row.Cells[i].Value;
                         rowData.Add(row.Cells[i].Value);
                     }
+
                     dgBackup.Rows.Add(newRow);
                     grid.Rows.Add(rowData);
                 }
@@ -265,6 +232,7 @@ public partial class Inicio : Form
             txtInclinacion.Enabled = true;
             return;
         }
+
         txtInclinacion.Enabled = false;
     }
 
@@ -293,13 +261,9 @@ public partial class Inicio : Form
         txtLongitud.Visible = comboBoxVisible;
         comboBoxVisible = !comboBoxVisible;
         if (string.IsNullOrEmpty(txtLatitud.Text) || string.IsNullOrEmpty(txtLongitud.Text))
-        {
             txtInclinacion.Enabled = false;
-        }
         else
-        {
             txtInclinacion.Enabled = true;
-        }
 
         if (!comboBoxVisible)
         {
@@ -310,7 +274,9 @@ public partial class Inicio : Form
                 txtLatitud.Text = comuna.LAT.ToString();
                 txtLongitud.Text = comuna.LON.ToString();
             }
-            catch { }
+            catch
+            {
+            }
 
             lblRegion.Text = "Latitud";
             lblComuna.Text = "Longitud";
@@ -349,13 +315,14 @@ public partial class Inicio : Form
             MessageBox.Show("Seleccione una bateria!");
             return;
         }
+
         if (cbxPanel.SelectedIndex == 0)
         {
             MessageBox.Show("Seleccione un panel!");
             return;
         }
 
-        cond.Location = list.IsDisposed || !list.Visible ? new Point(Right, Top) : new Point(list.Right,list.Top);
+        cond.Location = list.IsDisposed || !list.Visible ? new Point(Right, Top) : new Point(list.Right, list.Top);
         cond.LocationChanged += Inicio_LocationChanged;
         try
         {
@@ -364,7 +331,7 @@ public partial class Inicio : Form
         }
         catch (Exception ex)
         {
-            var newCond = new Condiciones(c,this);
+            var newCond = new Condiciones(c, this);
             cond = newCond;
             cond.Show();
         }
@@ -377,7 +344,6 @@ public partial class Inicio : Form
 
     private void btnDiseñar_Click(object sender, EventArgs e)
     {
-        
         AllSheets? a = null;
         if (chxAhorro.Checked)
         {
@@ -395,14 +361,14 @@ public partial class Inicio : Form
             dis = newDis;
             dis.Show();
         }
-        
+
         Hide();
-        
     }
 
     private void cbxBaterias_SelectedValueChanged(object sender, EventArgs e)
     {
-        bateria = listaBaterias.Where(x => x.Tipo == cbxBaterias.SelectedItem.ToString()).Select(x => x).FirstOrDefault();
+        bateria = listaBaterias.Where(x => x.Tipo == cbxBaterias.SelectedItem.ToString()).Select(x => x)
+            .FirstOrDefault();
     }
 
     private void cbxDescargaMax_SelectedValueChanged(object sender, EventArgs e)
@@ -420,13 +386,16 @@ public partial class Inicio : Form
         AllSheets a = new();
         int ene = 0, feb = 0, mar = 0, abr = 0, may = 0, jun = 0, jul = 0, ago = 0, sep = 0, oct = 0, nov = 0, dic = 0;
 
-        TextBox[] textBoxes = { txtEne, txtFeb, txtMar, txtAbr, txtMay,
-            txtJun, txtJul, txtAgo, txtSep, txtOct, txtNov, txtDic };
+        TextBox[] textBoxes =
+        {
+            txtEne, txtFeb, txtMar, txtAbr, txtMay,
+            txtJun, txtJul, txtAgo, txtSep, txtOct, txtNov, txtDic
+        };
         string[] meses = { "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic" };
 
-        for (int i = 0; i < textBoxes.Length; i++)
+        for (var i = 0; i < textBoxes.Length; i++)
         {
-            if (!int.TryParse(textBoxes[i].Text, out int valor) || string.IsNullOrWhiteSpace(textBoxes[i].Text))
+            if (!int.TryParse(textBoxes[i].Text, out var valor) || string.IsNullOrWhiteSpace(textBoxes[i].Text))
             {
                 MessageBox.Show($"Por favor, ingresa solo valores enteros en el campo {meses[i]}.",
                     "Error de validación");
@@ -437,18 +406,42 @@ public partial class Inicio : Form
             // Asignar el valor entero a la variable correspondiente
             switch (i)
             {
-                case 0: ene = valor; break;
-                case 1: feb = valor; break;
-                case 2: mar = valor; break;
-                case 3: abr = valor; break;
-                case 4: may = valor; break;
-                case 5: jun = valor; break;
-                case 6: jul = valor; break;
-                case 7: ago = valor; break;
-                case 8: sep = valor; break;
-                case 9: oct = valor; break;
-                case 10: nov = valor; break;
-                case 11: dic = valor; break;
+                case 0:
+                    ene = valor;
+                    break;
+                case 1:
+                    feb = valor;
+                    break;
+                case 2:
+                    mar = valor;
+                    break;
+                case 3:
+                    abr = valor;
+                    break;
+                case 4:
+                    may = valor;
+                    break;
+                case 5:
+                    jun = valor;
+                    break;
+                case 6:
+                    jul = valor;
+                    break;
+                case 7:
+                    ago = valor;
+                    break;
+                case 8:
+                    sep = valor;
+                    break;
+                case 9:
+                    oct = valor;
+                    break;
+                case 10:
+                    nov = valor;
+                    break;
+                case 11:
+                    dic = valor;
+                    break;
             }
         }
 
@@ -479,6 +472,7 @@ public partial class Inicio : Form
             cbx_Comuna.Enabled = false;
             return;
         }
+
         cbx_Comuna.Enabled = true;
         var nombres = (from c in ListComunas where c.Region == cbx_Region.SelectedIndex select c.COMUNA).ToArray();
         cbx_Comuna.Items.AddRange(nombres);
@@ -486,7 +480,22 @@ public partial class Inicio : Form
 
     private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        appState = new AppState()
+        GuardarProyecto();
+    }
+
+    private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        AbrirProyecto();
+    }
+
+    private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        Salir();
+    }
+
+    private void GuardarProyecto()
+    {
+        appState = new AppState
         {
             InformacionClimatica = InformacionClimatica,
             GridData = grid,
@@ -524,9 +533,8 @@ public partial class Inicio : Form
         };
 
 
-
         var json = JsonConvert.SerializeObject(appState);
-        SaveFileDialog saveFileDialog = new SaveFileDialog();
+        var saveFileDialog = new SaveFileDialog();
 
         // Establecer el filtro para mostrar solo archivos con extensión .json
         saveFileDialog.Filter = "Archivos JSON (*.json)|*.json";
@@ -541,15 +549,17 @@ public partial class Inicio : Form
             var filePath = saveFileDialog.FileName;
 
             File.WriteAllText(filePath, json);
-            MessageBox.Show("El archivo se ha guardado correctamente.", "Guardar archivo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("El archivo se ha guardado correctamente.", "Guardar archivo", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-            MessageBox.Show("Error al guardar el archivo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Error al guardar el archivo: " + ex.Message, "Error", MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
         }
     }
 
-    private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
+    private void AbrirProyecto()
     {
         using (var openFileDialog = new OpenFileDialog())
         {
@@ -566,24 +576,23 @@ public partial class Inicio : Form
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al abrir el archivo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al abrir el archivo: " + ex.Message, "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
+
             dgBackup.Columns.Clear();
             dgBackup.Rows.Clear();
             try
             {
-                foreach (var header in appState.GridData.Headers)
-                {
-                    dgBackup.Columns.Add(header, header);
-                }
+                foreach (var header in appState.GridData.Headers) dgBackup.Columns.Add(header, header);
 
                 var rows = appState.GridData.Rows;
-                for (int x = 0; x < rows.Count; x++)
+                for (var x = 0; x < rows.Count; x++)
                 {
                     DataGridViewRow r = new();
                     var data = rows[x].ToArray();
-                    for (int i = 0; i < data.Length; i++)
+                    for (var i = 0; i < data.Length; i++)
                     {
                         DataGridViewCell? cell = new DataGridViewTextBoxCell();
                         cell.Value = data[i];
@@ -592,6 +601,7 @@ public partial class Inicio : Form
 
                     dgBackup.Rows.Add(r);
                 }
+
                 ConsumoPromedio = appState.ConsumoPromedio;
                 PorcentajePerdidas = appState.PorcentajePerdidas;
                 PerdidasConversion = appState.PerdidasConversion;
@@ -633,24 +643,139 @@ public partial class Inicio : Form
             txtOct.Text = appState.TxtOct;
             txtNov.Text = appState.TxtNov;
             txtDic.Text = appState.TxtDic;
-            
 
-            
             cond = new Condiciones(c, this);
             btnCondicionesDiseño.Enabled = TotalCorregido > 0;
             btnDiseñar.Enabled = c.TotalBaterias > 0 && c.TotalPanelesArbitrario > 0;
         }
     }
 
-    private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+    private void Salir()
     {
-        DialogResult result = MessageBox.Show("¿Estás seguro que deseas salir de la aplicación?", "Salir de la aplicación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        var result = MessageBox.Show("¿Estás seguro que deseas salir de la aplicación?", "Salir de la aplicación",
+            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
         // Comprobar la respuesta del usuario
         if (result == DialogResult.Yes)
-        {
             // Si el usuario hizo clic en "Yes", cerrar la aplicación
             Application.Exit();
-        }
+    }
+
+    private void Ayuda()
+    {
+        //Aqui lo de agustin
+    }
+
+    private void Info()
+    {
+        //Aqui lo de agustin
+    }
+
+    private void Inicio_FormClosed(object sender, FormClosedEventArgs e)
+    {
+        Application.Exit();
+    }
+
+    private void toolStripButton1_Click(object sender, EventArgs e)
+    {
+        AbrirProyecto();
+    }
+
+    private void toolStripButton2_Click(object sender, EventArgs e)
+    {
+        GuardarProyecto();
+    }
+
+    private void toolStripButton3_Click(object sender, EventArgs e)
+    {
+        Salir();
+    }
+
+    private void toolStripMenuItem2_Click(object sender, EventArgs e)
+    {
+        Ayuda();
+    }
+
+    private void toolStripMenuItem3_Click(object sender, EventArgs e)
+    {
+        Info();
+    }
+
+    private void toolStripButton4_Click(object sender, EventArgs e)
+    {
+        Ayuda();
+    }
+
+    private void toolStripButton5_Click(object sender, EventArgs e)
+    {
+        Info();
+    }
+
+    #region VariablesGlobales
+
+    private AppState appState;
+    public static DataGridView? dgBackup;
+    public static List<AllSheets> InformacionClimatica = new();
+    public static Condicion c = new();
+
+    public static List<Bateria> listaBaterias = Controller_Equipo.ListaBaterias();
+    public static List<Panel> listaPaneles = Controller_Equipo.ListaPaneles();
+
+    public static double ConsumoPromedio;
+    public static double PerdidasConversion;
+    public static double TotalCorregido;
+
+    public static Bateria bateria = new();
+    public static Panel panel = new();
+    public static double descarga;
+
+    private bool comboBoxVisible = true;
+    public static Condiciones cond;
+    private ListaEquipamiento list;
+    private Diseño dis;
+    private List<Comuna> ListComunas;
+
+    public ToolTip globo()
+    {
+        ToolTip toolTip = new ToolTip();
+        toolTip.AutoPopDelay = 5000;
+        toolTip.InitialDelay = 200; // Tiempo de espera antes de mostrar el globo en milisegundos (1 segundo)
+        toolTip.ReshowDelay = 500;   // Tiempo de espera antes de volver a mostrar el globo en milisegundos (0.5 segundos)
+        toolTip.ShowAlways = true;
+
+        return toolTip;
+    }
+
+    public ToolTip g;
+    public static double RadPropose;
+    public static double DesviationLost;
+    public static string PorcentajePerdidas = "0%";
+    public static GridData grid;
+    public static int INC;
+
+    #endregion VariablesGlobales
+
+    private void chxGlobos_CheckedChanged(object sender, EventArgs e)
+    {
+        SetGlobos();
+        cond.SetGlobos(chxGlobos.Checked);
+        list.SetGlobos(chxGlobos.Checked);
+    }
+
+    private void SetGlobos()
+    {
+        g.Active = chxGlobos.Checked;
+        g.SetToolTip(chxGlobos, "Active o descative con un click los globos de ayuda");
+        g.SetToolTip(chxAhorro, "Active o descative con un click el modulo de ahorro, este se despliega al final de la ventana");
+        g.SetToolTip(cbx_Region, "Escoja dentro de las regiones de chile, al escoger una region podra seleccionar la comuna de esta");
+        g.SetToolTip(cbx_Comuna, "Seleccione una comuna de la region escogida");
+        g.SetToolTip(txtInclinacion, "Grados de inclinacion que tendra el panel");
+        g.SetToolTip(btnLista, "Presione para abrir la ventana para ingresar los equipos electricos a utilizar");
+        g.SetToolTip(cbxBaterias, "Seleccione el tipo de bateria que utilizara el sistema");
+        g.SetToolTip(cbxPanel, "Seleccione el tipo de panel que utilizara el sistema");
+        g.SetToolTip(cbxDescargaMax, "Seleccione el porentaje de descarga previsto que utilizara el sistema");
+        g.SetToolTip(btnCondicionesDiseño, "Presione para abrir la ventana para ingresar los valores a utilizar");
+        g.SetToolTip(btnCordenadas, "Presione para ingresar de forma manual o automaticas las coordenadas Latitud y Longitud del sistema");
+        g.SetToolTip(btnDiseñar, "Una vez listo los parametros del sistema, presione para ver el diseño de este");
     }
 }

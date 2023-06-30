@@ -19,6 +19,7 @@ namespace SolCAD_v2.Forms
         public TextBox texttest = new();
         public double calculo = 0;
         private Inicio formInicio;
+        public ToolTip g;
         public Condiciones(Condicion c, Inicio inicio)
         {
             InitializeComponent();
@@ -43,6 +44,8 @@ namespace SolCAD_v2.Forms
             }
             CalculoRespaldo();
             formInicio = inicio;
+            g = inicio.globo();
+            SetGlobos(inicio.chxGlobos.Checked);
         }
 
         public void CalculoRespaldo()
@@ -182,6 +185,21 @@ namespace SolCAD_v2.Forms
             if(aux!=0)return;
             MessageBox.Show("Ingrese un numero valido mayor a 0!");
             txtAlturaInferior.Focus();
+        }
+
+        public void SetGlobos(bool active)
+        {
+            g.Active = active;
+            g.SetToolTip(cbxVoltaje, "Cantidad de voltios a utilizar en el sistema");
+            g.SetToolTip(txtRespaldoPropuesto, "Respaldo en horas recomendado por el sistema");
+            g.SetToolTip(txtRespaldo, "Establece manualmente el respaldo en horas, si el campo tiene un valor se omitira el valor propuesto");
+            g.SetToolTip(txtPaneles, "Cantidad de paneles que tendra el sistema");
+            g.SetToolTip(txtRamas, "Cantidad de ramas que manejara el sistema");
+            g.SetToolTip(txtAlturaInferior, "Altura desde el suelo a la que se encontrara el sistema");
+            g.SetToolTip(txtPanelesPropuestos, "Cantidad de paneles propuestos por el sistema");
+            g.SetToolTip(txtBaterias, "Cantidad de baterias propuestas por el sistema");
+            g.SetToolTip(btnCerrar, "Boton para cerrar la ventana");
+            g.SetToolTip(btnCondiciones,"Boton para almacenar los parametros del sistema, una vez validados se activara el boton de diseño en la ventana principal");
         }
     }
 }

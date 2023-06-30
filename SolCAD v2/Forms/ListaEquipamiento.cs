@@ -9,6 +9,7 @@ namespace SolCAD_v2.Forms
     {
         public static List<Consumo>? ListaEquipo;
         private Inicio formInicio;
+        public ToolTip g;
         public ListaEquipamiento(Inicio inicio)
         {
             InitializeComponent();
@@ -49,6 +50,8 @@ namespace SolCAD_v2.Forms
             }catch{}
 
             formInicio = inicio;
+            g = inicio.globo();
+            SetGlobos(inicio.chxGlobos.Checked);
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -120,25 +123,35 @@ namespace SolCAD_v2.Forms
             {
                 Inicio.ConsumoPromedio += row.SubTotal;
             }
+
             try
             {
                 Inicio.ConsumoPromedio = Inicio.ConsumoPromedio;
-                if (txtPorcientoPer.Text.Equals("") || !int.TryParse(txtPorcientoPer.Text.Replace("%", ""), out int value) || txtPorcientoPer.Text.Equals("0%"))
+                if (txtPorcientoPer.Text.Equals("") ||
+                    !int.TryParse(txtPorcientoPer.Text.Replace("%", ""), out int value) ||
+                    txtPorcientoPer.Text.Equals("0%"))
                 {
 
                     MessageBox.Show("Valor incorrecto o inexistente en campo Perdidas de Conversión!");
                     return;
-                };
+                }
+
+                ;
                 double porcientoPer = Convert.ToDouble(txtPorcientoPer.Text.Replace("%", ""));
                 if (porcientoPer > 100 || porcientoPer < 0)
                 {
                     MessageBox.Show("Ingrese un entero entre 0 y 100 en campo Perdidas de Conversión!");
                     return;
                 }
+
                 Inicio.PerdidasConversion = Inicio.ConsumoPromedio * (porcientoPer / 100);
                 Inicio.TotalCorregido = Inicio.ConsumoPromedio + Inicio.PerdidasConversion;
             }
-            catch (Exception ex) { Debug.WriteLine(ex.Message); return; }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un problema en la operacion!");
+                Debug.WriteLine(ex.Message); return;
+            }
 
             formInicio.btnCondicionesDiseño.Enabled = true;
 
@@ -146,6 +159,7 @@ namespace SolCAD_v2.Forms
             txtPerConversion.Text = Math.Round(Inicio.PerdidasConversion, 2).ToString();
             txtTotalCorregido.Text = Math.Round(Inicio.TotalCorregido, 2).ToString();
             Inicio.PorcentajePerdidas = txtPorcientoPer.Text;
+            MessageBox.Show("Listado almacenado!");
             //if (ListaEquipo.Count >0) Hide();
         }
 
@@ -245,6 +259,13 @@ namespace SolCAD_v2.Forms
             Inicio.SetDataGridView(dgEquipamiento);
             Hide();
             formInicio.ActualizarPosicion();
+        }
+        public void SetGlobos(bool active)
+        {
+            g.Active = active;
+            g.SetToolTip(dgEquipamiento, "Listado de equipos electricos, se necesita al menos un equipo en el listado para el diseño del sistema");
+            g.SetToolTip(txtPorcientoPer, "Porcentaje de perdidas de conversion");
+            g.SetToolTip(btnSave, "Se guarda la lista para la realizacion de calculos, se libera el boton variables");
         }
     }
 }

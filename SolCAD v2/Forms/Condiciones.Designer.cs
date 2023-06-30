@@ -305,6 +305,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximumSize = new System.Drawing.Size(266, 344);
+            this.MinimumSize = new System.Drawing.Size(266, 344);
             this.Name = "Condiciones";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Condiciones";

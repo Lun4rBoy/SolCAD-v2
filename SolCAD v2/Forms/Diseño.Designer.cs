@@ -32,6 +32,10 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.tbcDiseño = new System.Windows.Forms.TabControl();
             this.tabBom = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbxColectorSolar = new System.Windows.Forms.GroupBox();
             this.tabInstalacion = new System.Windows.Forms.TabPage();
             this.tabBaterias = new System.Windows.Forms.TabPage();
             this.chrBaterias = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -52,6 +56,7 @@
             this.DIC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chrAhorro = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tbcDiseño.SuspendLayout();
+            this.tabBom.SuspendLayout();
             this.tabBaterias.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chrBaterias)).BeginInit();
             this.tabAhorro.SuspendLayout();
@@ -73,6 +78,10 @@
             // 
             // tabBom
             // 
+            this.tabBom.Controls.Add(this.groupBox4);
+            this.tabBom.Controls.Add(this.groupBox3);
+            this.tabBom.Controls.Add(this.groupBox2);
+            this.tabBom.Controls.Add(this.gbxColectorSolar);
             this.tabBom.Location = new System.Drawing.Point(4, 24);
             this.tabBom.Name = "tabBom";
             this.tabBom.Padding = new System.Windows.Forms.Padding(3);
@@ -80,6 +89,46 @@
             this.tabBom.TabIndex = 0;
             this.tabBom.Text = "BOM";
             this.tabBom.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.groupBox4.Location = new System.Drawing.Point(289, 172);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(313, 180);
+            this.groupBox4.TabIndex = 3;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "OTROS MATERIALES";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.groupBox3.Location = new System.Drawing.Point(289, 6);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(313, 160);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "CONVERSION DE ENERGIA";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.groupBox2.Location = new System.Drawing.Point(6, 172);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(277, 180);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "ALMACENAMIENTO DE ENERGIA";
+            // 
+            // gbxColectorSolar
+            // 
+            this.gbxColectorSolar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.gbxColectorSolar.Location = new System.Drawing.Point(6, 6);
+            this.gbxColectorSolar.Name = "gbxColectorSolar";
+            this.gbxColectorSolar.Size = new System.Drawing.Size(277, 160);
+            this.gbxColectorSolar.TabIndex = 0;
+            this.gbxColectorSolar.TabStop = false;
+            this.gbxColectorSolar.Text = "COLECTOR SOLAR";
             // 
             // tabInstalacion
             // 
@@ -262,6 +311,7 @@
             this.Text = "Diseño";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Diseño_FormClosed);
             this.tbcDiseño.ResumeLayout(false);
+            this.tabBom.ResumeLayout(false);
             this.tabBaterias.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chrBaterias)).EndInit();
             this.tabAhorro.ResumeLayout(false);
@@ -294,5 +344,9 @@
         private DataGridViewTextBoxColumn OCT;
         private DataGridViewTextBoxColumn NOV;
         private DataGridViewTextBoxColumn DIC;
+        private GroupBox groupBox4;
+        private GroupBox groupBox3;
+        private GroupBox groupBox2;
+        private GroupBox gbxColectorSolar;
     }
 }

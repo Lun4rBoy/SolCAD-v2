@@ -1,4 +1,5 @@
 ﻿
+using System.Globalization;
 using System.Windows.Forms.DataVisualization.Charting;
 using MathNet.Numerics.Statistics;
 using SolCAD_v2.Models;
@@ -61,6 +62,8 @@ namespace SolCAD_v2.Forms
             series.ChartType = SeriesChartType.Line;
             series.ShadowColor = Color.Gray;
             series.ShadowOffset = 2;
+            titulo.Text = "Estado de carga del banco de baterias en el tiempo";
+            chrBaterias.Titles.Add(titulo);
             chrBaterias.Invalidate();
 
             if (ini.chxAhorro.Checked)
@@ -141,14 +144,24 @@ namespace SolCAD_v2.Forms
             resultado.NOV = listGeneracion[10] - a.NOV;
             resultado.DIC = listGeneracion[11] - a.DIC;
 
-            var listAhorro = resultado.ToDoubleArray().Select(r => 113 - r).ToList();
+            var listAhorro = resultado.ToDoubleArray().Select(r => 113 * r).ToList();
+            NumberFormatInfo nfi = new NumberFormatInfo
+            {
+                CurrencySymbol = "$",
+                CurrencyGroupSeparator = ",",
+                CurrencyDecimalSeparator = ".",
+                CurrencyPositivePattern = 2,
+                CurrencyNegativePattern = 2,
+                NegativeSign = "-"
+            };
+            List<string> listAhorroFormateado = listAhorro.Select(r => r.ToString("$ #,##0;$ -#,##0;$  \"-\"_ ;_ @_", nfi)).ToList();
 
             for (var i = 1; i < dgAhorro.ColumnCount; i++)
             {
                 dgAhorro.Rows[0].Cells[i].Value = a.ToDoubleArray()[i - 1].ToString("F0");
                 dgAhorro.Rows[1].Cells[i].Value = listGeneracion[i - 1].ToString("F0");
                 dgAhorro.Rows[2].Cells[i].Value = resultado.ToDoubleArray()[i - 1].ToString("F0");
-                dgAhorro.Rows[3].Cells[i].Value = listAhorro[i - 1].ToString("F0");
+                dgAhorro.Rows[3].Cells[i].Value = listAhorroFormateado[i-1];
             }
 
             for (int i = 0; i < 12; i++)
