@@ -308,6 +308,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tbcDiseño);
             this.Name = "Diseño";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Diseño";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Diseño_FormClosed);
             this.tbcDiseño.ResumeLayout(false);

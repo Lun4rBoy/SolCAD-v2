@@ -92,6 +92,7 @@
             this.btnDiseñar = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnCondicionesDiseño = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -99,6 +100,7 @@
             this.groupBox4.SuspendLayout();
             this.gbxBoleta.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -113,7 +115,7 @@
             this.groupBox1.Controls.Add(this.cbx_Comuna);
             this.groupBox1.Controls.Add(this.cbx_Region);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox1.Location = new System.Drawing.Point(12, 58);
+            this.groupBox1.Location = new System.Drawing.Point(12, 9);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(303, 132);
             this.groupBox1.TabIndex = 0;
@@ -214,10 +216,11 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.chxAhorro);
             this.groupBox2.Controls.Add(this.chxGlobos);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox2.Location = new System.Drawing.Point(321, 58);
+            this.groupBox2.Location = new System.Drawing.Point(321, 9);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(120, 133);
             this.groupBox2.TabIndex = 1;
@@ -272,7 +275,7 @@
             this.toolStripMenuItem3});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(447, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(462, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -335,7 +338,7 @@
             this.tsMenu.Location = new System.Drawing.Point(0, 24);
             this.tsMenu.Name = "tsMenu";
             this.tsMenu.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.tsMenu.Size = new System.Drawing.Size(447, 31);
+            this.tsMenu.Size = new System.Drawing.Size(462, 31);
             this.tsMenu.TabIndex = 4;
             this.tsMenu.Text = "toolStrip1";
             // 
@@ -396,6 +399,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.label8);
@@ -403,7 +407,7 @@
             this.groupBox4.Controls.Add(this.cbxDescargaMax);
             this.groupBox4.Controls.Add(this.cbxBaterias);
             this.groupBox4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox4.Location = new System.Drawing.Point(237, 197);
+            this.groupBox4.Location = new System.Drawing.Point(237, 148);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(204, 135);
             this.groupBox4.TabIndex = 5;
@@ -485,6 +489,7 @@
             // 
             // gbxBoleta
             // 
+            this.gbxBoleta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.gbxBoleta.Controls.Add(this.label16);
             this.gbxBoleta.Controls.Add(this.label17);
             this.gbxBoleta.Controls.Add(this.label18);
@@ -510,7 +515,7 @@
             this.gbxBoleta.Controls.Add(this.txtFeb);
             this.gbxBoleta.Controls.Add(this.txtEne);
             this.gbxBoleta.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.gbxBoleta.Location = new System.Drawing.Point(12, 338);
+            this.gbxBoleta.Location = new System.Drawing.Point(12, 289);
             this.gbxBoleta.Name = "gbxBoleta";
             this.gbxBoleta.Size = new System.Drawing.Size(291, 121);
             this.gbxBoleta.TabIndex = 6;
@@ -723,10 +728,11 @@
             // 
             // btnDiseñar
             // 
+            this.btnDiseñar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDiseñar.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnDiseñar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnDiseñar.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnDiseñar.Location = new System.Drawing.Point(321, 377);
+            this.btnDiseñar.Location = new System.Drawing.Point(321, 328);
             this.btnDiseñar.Name = "btnDiseñar";
             this.btnDiseñar.Size = new System.Drawing.Size(98, 47);
             this.btnDiseñar.TabIndex = 8;
@@ -736,10 +742,11 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.groupBox3.Controls.Add(this.btnCondicionesDiseño);
             this.groupBox3.Controls.Add(this.btnLista);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox3.Location = new System.Drawing.Point(12, 197);
+            this.groupBox3.Location = new System.Drawing.Point(12, 148);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(221, 135);
             this.groupBox3.TabIndex = 9;
@@ -759,22 +766,29 @@
             this.btnCondicionesDiseño.UseVisualStyleBackColor = false;
             this.btnCondicionesDiseño.Click += new System.EventHandler(this.btnCondicionesDiseño_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.groupBox2);
+            this.panel1.Controls.Add(this.gbxBoleta);
+            this.panel1.Controls.Add(this.groupBox3);
+            this.panel1.Controls.Add(this.groupBox4);
+            this.panel1.Controls.Add(this.btnDiseñar);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 55);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(462, 433);
+            this.panel1.TabIndex = 10;
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(447, 461);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.btnDiseñar);
-            this.Controls.Add(this.gbxBoleta);
-            this.Controls.Add(this.groupBox4);
+            this.ClientSize = new System.Drawing.Size(462, 488);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.tsMenu);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximumSize = new System.Drawing.Size(463, 500);
-            this.MinimumSize = new System.Drawing.Size(463, 500);
             this.Name = "Inicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SolCAD - MCD 2023";
@@ -794,6 +808,7 @@
             this.gbxBoleta.ResumeLayout(false);
             this.gbxBoleta.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -873,5 +888,6 @@
         private ToolStripMenuItem abrirToolStripMenuItem;
         private ToolStripMenuItem guardarToolStripMenuItem;
         private ToolStripMenuItem salirToolStripMenuItem;
+        private Panel panel1;
     }
 }

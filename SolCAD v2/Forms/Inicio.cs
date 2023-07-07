@@ -13,7 +13,9 @@ public partial class Inicio : Form
 {
     public Inicio()
     {
+        var formWidth = (int)(screenWidth * 0.25);
         InitializeComponent();
+        Width = formWidth;
         appState = new AppState();
         g = globo();
         list = new ListaEquipamiento(this);
@@ -39,8 +41,7 @@ public partial class Inicio : Form
         dgBackup = new DataGridView();
 
         list.Hide();
-
-        
+        btnLista.Enabled = false;
     }
 
     private void LoadDataTable()
@@ -271,8 +272,8 @@ public partial class Inicio : Form
             {
                 var comuna = (from l in ListComunas where l.COMUNA == cbx_Comuna.SelectedItem.ToString() select l)
                     .FirstOrDefault();
-                txtLatitud.Text = comuna.LAT.ToString();
-                txtLongitud.Text = comuna.LON.ToString();
+                txtLatitud.Text = comuna != null ? comuna.LAT.ToString() : "";
+                txtLongitud.Text = comuna != null ? comuna.LON.ToString(): "";
             }
             catch
             {
@@ -350,17 +351,9 @@ public partial class Inicio : Form
             a = AhorroSheets();
             if (a == null) return;
         }
-
-        try
-        {
-            dis.Show();
-        }
-        catch (Exception ex)
-        {
-            var newDis = new Diseño(this, c, a);
-            dis = newDis;
-            dis.Show();
-        }
+        var newDis = new Diseño(this, c, a);
+        dis = newDis;
+        dis.Show();
 
         Hide();
     }
@@ -369,6 +362,7 @@ public partial class Inicio : Form
     {
         bateria = listaBaterias.Where(x => x.Tipo == cbxBaterias.SelectedItem.ToString()).Select(x => x)
             .FirstOrDefault();
+        cond.RescatarVariables();
     }
 
     private void cbxDescargaMax_SelectedValueChanged(object sender, EventArgs e)
@@ -752,6 +746,8 @@ public partial class Inicio : Form
     public static string PorcentajePerdidas = "0%";
     public static GridData grid;
     public static int INC;
+    public int screenWidth = Screen.PrimaryScreen.Bounds.Width;
+    public int screenHeight = Screen.PrimaryScreen.Bounds.Height;
 
     #endregion VariablesGlobales
 
@@ -760,6 +756,7 @@ public partial class Inicio : Form
         SetGlobos();
         cond.SetGlobos(chxGlobos.Checked);
         list.SetGlobos(chxGlobos.Checked);
+        
     }
 
     private void SetGlobos()

@@ -8,17 +8,16 @@ namespace SolCAD_v2.Forms
 {
     public partial class Diseño : Form
     {
-        private static Condicion obj;
-        private static AllSheets a;
-        private static Series series;
-        private static Series seriesGeneracion;
-        private static Series seriesConsumo;
-        private static Title titulo;
-        private static Inicio inicio;
+        
         public Diseño(Inicio ini, Condicion c, AllSheets? al)
         {
-            InitializeComponent();
             inicio = ini;
+            var formWidth = (int)(inicio.screenWidth*0.6);
+            var formHeight = (int)(inicio.screenHeight * 0.5);
+            
+            InitializeComponent();
+            this.Width = formWidth;
+            this.Height = formHeight;
             obj = new Condicion();
             obj = c;
 
@@ -186,5 +185,13 @@ namespace SolCAD_v2.Forms
         {
             inicio.Show();
         }
+
+        private static Condicion obj;
+        private static AllSheets a;
+        private static Series series;
+        private static Series seriesGeneracion;
+        private static Series seriesConsumo;
+        private static Title titulo;
+        private static Inicio inicio;
     }
 }
