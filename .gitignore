@@ -24,3 +24,4 @@ obj/
 *.opensdf
 
 bin/debug/net6.0-windows/
+/SolCAD v2/bin/Debug/net6.0-windows
