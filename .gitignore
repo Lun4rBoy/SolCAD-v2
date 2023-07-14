@@ -23,4 +23,4 @@ obj/
 *.sdf
 *.opensdf
 
-!net6.0-windows/
+bin/debug/net6.0-windows/
