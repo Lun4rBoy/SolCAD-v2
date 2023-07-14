@@ -20,11 +20,12 @@ namespace SolCAD_v2.Forms
             this.Height = formHeight;
             obj = new Condicion();
             obj = c;
+            titulo = new Title();
 
             if (al != null)
             {
                 a = al;
-                titulo = new Title();
+                
                 titulo.Text = "Comparación de consumo y generación por mes";
                 chrAhorro.Titles.Add(titulo);
 
@@ -61,6 +62,7 @@ namespace SolCAD_v2.Forms
             series.ChartType = SeriesChartType.Line;
             series.ShadowColor = Color.Gray;
             series.ShadowOffset = 2;
+
             titulo.Text = "Estado de carga del banco de baterias en el tiempo";
             chrBaterias.Titles.Add(titulo);
             chrBaterias.Invalidate();

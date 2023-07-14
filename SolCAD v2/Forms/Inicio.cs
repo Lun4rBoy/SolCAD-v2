@@ -362,7 +362,10 @@ public partial class Inicio : Form
     {
         bateria = listaBaterias.Where(x => x.Tipo == cbxBaterias.SelectedItem.ToString()).Select(x => x)
             .FirstOrDefault();
-        cond.RescatarVariables();
+        if (c.Voltaje != 0)
+        {
+            cond.RescatarVariables(c);
+        }
     }
 
     private void cbxDescargaMax_SelectedValueChanged(object sender, EventArgs e)
@@ -373,6 +376,10 @@ public partial class Inicio : Form
     private void cbxPanel_SelectedValueChanged(object sender, EventArgs e)
     {
         panel = listaPaneles.Where(x => x.Tipo == cbxPanel.SelectedItem.ToString()).Select(x => x).FirstOrDefault();
+        if (c.Voltaje != 0)
+        {
+            cond.RescatarVariables(c);
+        }
     }
 
     private AllSheets? AhorroSheets()
@@ -641,6 +648,7 @@ public partial class Inicio : Form
             cond = new Condiciones(c, this);
             btnCondicionesDiseño.Enabled = TotalCorregido > 0;
             btnDiseñar.Enabled = c.TotalBaterias > 0 && c.TotalPanelesArbitrario > 0;
+            btnLista.Enabled = INC>0;
         }
     }
 

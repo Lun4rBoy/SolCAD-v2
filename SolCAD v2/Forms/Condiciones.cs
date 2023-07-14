@@ -17,6 +17,7 @@ namespace SolCAD_v2.Forms
     public partial class Condiciones : Form
     {
         public TextBox texttest = new();
+        public Condicion co = new Condicion();
         public double calculo = 0;
         private Inicio formInicio;
         public ToolTip g;
@@ -37,6 +38,7 @@ namespace SolCAD_v2.Forms
                 txtRamas.Text = c.Ramas.ToString();
                 txtAlturaInferior.Text = c.AlturaInferior.ToString();
                 txtBaterias.Text = c.TotalBaterias.ToString();
+                co = c;
             }
             catch (Exception ex)
             {
@@ -65,16 +67,26 @@ namespace SolCAD_v2.Forms
             txtRespaldoPropuesto.Text = calculo.ToString();
         }
 
-        public void RescatarVariables()
+        public void RescatarVariables(Condicion co)
         {
+            if (co.Voltaje is 0)
+            {
+                return;
+            }
+            foreach (var i in cbxVoltaje.Items)
+            {
+                if (!co.Voltaje.ToString().Equals(i)) continue;
+                cbxVoltaje.SelectedItem = i;
+                break;
+            }
+            if (cbxVoltaje.SelectedItem.ToString() == "0")
+            {
+                MessageBox.Show("Seleccione un voltaje!");
+                return;
+            }
             var c = new Condicion();
             try
             {
-                if (cbxVoltaje.SelectedItem.ToString() == "0")
-                {
-                    MessageBox.Show("Seleccione un voltaje!");
-                    return;
-                }
                 c.CapacidadBateria = Convert.ToInt32(Inicio.bateria.Cap);
                 c.Voltaje = int.TryParse(cbxVoltaje.SelectedItem.ToString(), out int voltaje) ? voltaje : 0;
                 int.TryParse(txtRespaldo.Text, out int respaldoArbitrario);
@@ -133,7 +145,7 @@ namespace SolCAD_v2.Forms
 
         private void btnCondiciones_Click(object sender, EventArgs e)
         {
-            RescatarVariables();
+            RescatarVariables(co);
         }
 
         private void txtRamas_TextChanged(object sender, EventArgs e)

@@ -160,6 +160,7 @@
             this.txtInclinacion.Name = "txtInclinacion";
             this.txtInclinacion.Size = new System.Drawing.Size(56, 25);
             this.txtInclinacion.TabIndex = 5;
+            this.txtInclinacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtInclinacion.TextChanged += new System.EventHandler(this.txtInclinacion_TextChanged);
             // 
             // label6

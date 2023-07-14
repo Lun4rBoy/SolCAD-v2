@@ -70,10 +70,11 @@
             this.tbcDiseño.Controls.Add(this.tabInstalacion);
             this.tbcDiseño.Controls.Add(this.tabBaterias);
             this.tbcDiseño.Controls.Add(this.tabAhorro);
-            this.tbcDiseño.Location = new System.Drawing.Point(12, 12);
+            this.tbcDiseño.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbcDiseño.Location = new System.Drawing.Point(0, 0);
             this.tbcDiseño.Name = "tbcDiseño";
             this.tbcDiseño.SelectedIndex = 0;
-            this.tbcDiseño.Size = new System.Drawing.Size(776, 426);
+            this.tbcDiseño.Size = new System.Drawing.Size(1091, 691);
             this.tbcDiseño.TabIndex = 0;
             // 
             // tabBom
@@ -85,7 +86,7 @@
             this.tabBom.Location = new System.Drawing.Point(4, 24);
             this.tabBom.Name = "tabBom";
             this.tabBom.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBom.Size = new System.Drawing.Size(768, 398);
+            this.tabBom.Size = new System.Drawing.Size(1083, 663);
             this.tabBom.TabIndex = 0;
             this.tabBom.Text = "BOM";
             this.tabBom.UseVisualStyleBackColor = true;
@@ -134,7 +135,7 @@
             // 
             this.tabInstalacion.Location = new System.Drawing.Point(4, 24);
             this.tabInstalacion.Name = "tabInstalacion";
-            this.tabInstalacion.Size = new System.Drawing.Size(768, 398);
+            this.tabInstalacion.Size = new System.Drawing.Size(1083, 663);
             this.tabInstalacion.TabIndex = 3;
             this.tabInstalacion.Text = "Instalacion";
             this.tabInstalacion.UseVisualStyleBackColor = true;
@@ -144,21 +145,24 @@
             this.tabBaterias.Controls.Add(this.chrBaterias);
             this.tabBaterias.Location = new System.Drawing.Point(4, 24);
             this.tabBaterias.Name = "tabBaterias";
-            this.tabBaterias.Size = new System.Drawing.Size(768, 398);
+            this.tabBaterias.Size = new System.Drawing.Size(1083, 663);
             this.tabBaterias.TabIndex = 2;
             this.tabBaterias.Text = "Banco baterias";
             this.tabBaterias.UseVisualStyleBackColor = true;
             // 
             // chrBaterias
             // 
+            this.chrBaterias.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             chartArea1.Name = "ChartArea1";
             this.chrBaterias.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chrBaterias.Legends.Add(legend1);
-            this.chrBaterias.Location = new System.Drawing.Point(6, 5);
+            this.chrBaterias.Location = new System.Drawing.Point(123, 103);
             this.chrBaterias.Name = "chrBaterias";
             this.chrBaterias.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            this.chrBaterias.Size = new System.Drawing.Size(756, 389);
+            this.chrBaterias.Size = new System.Drawing.Size(835, 450);
             this.chrBaterias.TabIndex = 1;
             this.chrBaterias.Text = "Estado carga baterias";
             // 
@@ -169,7 +173,7 @@
             this.tabAhorro.Location = new System.Drawing.Point(4, 24);
             this.tabAhorro.Name = "tabAhorro";
             this.tabAhorro.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAhorro.Size = new System.Drawing.Size(768, 398);
+            this.tabAhorro.Size = new System.Drawing.Size(1083, 663);
             this.tabAhorro.TabIndex = 1;
             this.tabAhorro.Text = "Ahorro";
             this.tabAhorro.UseVisualStyleBackColor = true;
@@ -178,6 +182,8 @@
             // 
             this.dgAhorro.AllowUserToAddRows = false;
             this.dgAhorro.AllowUserToDeleteRows = false;
+            this.dgAhorro.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgAhorro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgAhorro.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nombre,
@@ -193,12 +199,11 @@
             this.OCT,
             this.NOV,
             this.DIC});
-            this.dgAhorro.Dock = System.Windows.Forms.DockStyle.Top;
             this.dgAhorro.Location = new System.Drawing.Point(3, 3);
             this.dgAhorro.Name = "dgAhorro";
             this.dgAhorro.ReadOnly = true;
             this.dgAhorro.RowTemplate.Height = 25;
-            this.dgAhorro.Size = new System.Drawing.Size(762, 122);
+            this.dgAhorro.Size = new System.Drawing.Size(1077, 122);
             this.dgAhorro.TabIndex = 1;
             // 
             // nombre
@@ -293,11 +298,13 @@
             // 
             // chrAhorro
             // 
-            this.chrAhorro.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.chrAhorro.Location = new System.Drawing.Point(3, 123);
+            this.chrAhorro.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chrAhorro.Location = new System.Drawing.Point(8, 131);
             this.chrAhorro.Name = "chrAhorro";
             this.chrAhorro.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
-            this.chrAhorro.Size = new System.Drawing.Size(762, 272);
+            this.chrAhorro.Size = new System.Drawing.Size(1067, 524);
             this.chrAhorro.TabIndex = 0;
             this.chrAhorro.Text = "chrAhorro";
             // 
@@ -305,7 +312,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1091, 691);
             this.Controls.Add(this.tbcDiseño);
             this.Name = "Diseño";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
