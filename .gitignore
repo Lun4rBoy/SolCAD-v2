@@ -22,3 +22,5 @@ obj/
 *.ncb
 *.sdf
 *.opensdf
+
+.net6.0-windows/
