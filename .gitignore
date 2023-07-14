@@ -1,0 +1,28 @@
+# Ignorar archivos de configuración específicos de tu editor
+.vscode/
+.idea/
+
+# Ignorar archivos generados por el entorno de desarrollo
+bin/
+obj/
+
+# Ignorar archivos de respaldo
+*~
+
+# Ignorar archivos de compilación y ejecutables
+*.exe
+*.dll
+*.pdb
+
+# Ignorar archivos de salida de Visual Studio
+*.user
+*.aps
+*.ilk
+*.pch
+*.suo
+*.ncb
+*.sdf
+*.opensdf
+
+# Ignorar la carpeta Debug de Visual Studio
+!Debug/
