@@ -23,4 +23,4 @@ obj/
 *.sdf
 *.opensdf
 
-.net6.0-windows/
+!net6.0-windows/
