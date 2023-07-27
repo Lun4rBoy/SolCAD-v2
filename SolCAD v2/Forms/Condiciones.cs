@@ -67,18 +67,22 @@ namespace SolCAD_v2.Forms
             txtRespaldoPropuesto.Text = calculo.ToString();
         }
 
-        public void RescatarVariables(Condicion co)
+        public void RescatarVariables(Condicion co, bool val)
         {
-            if (co.Voltaje is 0)
+            if (val)
             {
-                return;
+                if (co.Voltaje is 0)
+                {
+                    return;
+                }
+                foreach (var i in cbxVoltaje.Items)
+                {
+                    if (!co.Voltaje.ToString().Equals(i)) continue;
+                    cbxVoltaje.SelectedItem = i;
+                    break;
+                }
             }
-            foreach (var i in cbxVoltaje.Items)
-            {
-                if (!co.Voltaje.ToString().Equals(i)) continue;
-                cbxVoltaje.SelectedItem = i;
-                break;
-            }
+
             if (cbxVoltaje.SelectedItem.ToString() == "0")
             {
                 MessageBox.Show("Seleccione un voltaje!");
@@ -145,7 +149,7 @@ namespace SolCAD_v2.Forms
 
         private void btnCondiciones_Click(object sender, EventArgs e)
         {
-            RescatarVariables(co);
+            RescatarVariables(co, false);
         }
 
         private void txtRamas_TextChanged(object sender, EventArgs e)

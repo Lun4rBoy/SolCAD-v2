@@ -104,6 +104,13 @@ namespace SolCAD_v2.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            Calculos();
+            MessageBox.Show("Listado almacenado!");
+            //if (ListaEquipo.Count >0) Hide();
+        }
+
+        private void Calculos()
+        {
             #region Variables
 
             Inicio.ConsumoPromedio = 0;
@@ -113,7 +120,6 @@ namespace SolCAD_v2.Forms
 
             #endregion Variables
 
-            if (ListaEquipo == null) return;
             if (ListaEquipo.Count == 0)
             {
                 MessageBox.Show("El listado esta vacio, ingrese al menos 1 fila!");
@@ -159,8 +165,7 @@ namespace SolCAD_v2.Forms
             txtPerConversion.Text = Math.Round(Inicio.PerdidasConversion, 2).ToString();
             txtTotalCorregido.Text = Math.Round(Inicio.TotalCorregido, 2).ToString();
             Inicio.PorcentajePerdidas = txtPorcientoPer.Text;
-            MessageBox.Show("Listado almacenado!");
-            //if (ListaEquipo.Count >0) Hide();
+            
         }
 
         private void dgEquipamiento_KeyDown(object sender, KeyEventArgs e)
@@ -250,6 +255,10 @@ namespace SolCAD_v2.Forms
                 row.Cells["PorcientoB"].Value = Math.Round(PerB * 100);
                 row.Cells["Promedio"].Value = Prom;
                 row.Cells["SubTotal"].Value = Math.Round(Convert.ToInt32(row.Cells["Qty"].Value) * Prom, 2);
+                if (!int.TryParse(txtPorcientoPer.Text.Replace("%", ""), out int value)) return;
+                if (value == 0) return;
+                Calculos();
+
             }
             catch (Exception ex) { }
         }

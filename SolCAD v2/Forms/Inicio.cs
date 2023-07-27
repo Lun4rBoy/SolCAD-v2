@@ -13,7 +13,7 @@ public partial class Inicio : Form
 {
     public Inicio()
     {
-        var formWidth = (int)(screenWidth * 0.25);
+        var formWidth = (int)(screenWidth * 0.30);
         InitializeComponent();
         Width = formWidth;
         appState = new AppState();
@@ -115,7 +115,7 @@ public partial class Inicio : Form
             "Ñuble"
         });
         var fixer = true;
-        Again:
+    Again:
         try
         {
             ListComunas = Controller_Comuna.ComunaList(fixer);
@@ -230,6 +230,13 @@ public partial class Inicio : Form
     {
         if (cbx_Comuna.SelectedIndex != 0 && txtLatitud.Visible == false)
         {
+            var comuna = (from l in ListComunas where l.COMUNA == cbx_Comuna.SelectedItem.ToString() select l)
+                .FirstOrDefault();
+            if (comuna != null)
+            {
+                txtInclinacion.Text = (Math.Truncate(comuna.LAT + -21)*-1).ToString();
+            }
+            
             txtInclinacion.Enabled = true;
             return;
         }
@@ -273,7 +280,7 @@ public partial class Inicio : Form
                 var comuna = (from l in ListComunas where l.COMUNA == cbx_Comuna.SelectedItem.ToString() select l)
                     .FirstOrDefault();
                 txtLatitud.Text = comuna != null ? comuna.LAT.ToString() : "";
-                txtLongitud.Text = comuna != null ? comuna.LON.ToString(): "";
+                txtLongitud.Text = comuna != null ? comuna.LON.ToString() : "";
             }
             catch
             {
@@ -281,7 +288,7 @@ public partial class Inicio : Form
 
             lblRegion.Text = "Latitud";
             lblComuna.Text = "Longitud";
-            btnCordenadas.Width = 95;
+            btnCordenadas.Width = 99;
             btnCordenadas.Text = "Automatico";
             lblRegion.Location = txtLatitud.Location with { X = txtLatitud.Location.X - lblRegion.Width };
             lblComuna.Location = txtLongitud.Location with { X = txtLongitud.Location.X - lblComuna.Width };
@@ -290,7 +297,7 @@ public partial class Inicio : Form
         {
             lblRegion.Text = "Región";
             lblComuna.Text = "Comuna";
-            btnCordenadas.Width = 75;
+            btnCordenadas.Width = 99;
             btnCordenadas.Text = "Manual";
             lblRegion.Location = new Point(6, 37);
             lblComuna.Location = new Point(6, 66);
@@ -364,13 +371,19 @@ public partial class Inicio : Form
             .FirstOrDefault();
         if (c.Voltaje != 0)
         {
-            cond.RescatarVariables(c);
+            cond.RescatarVariables(c, true);
         }
+        ValidateLista();
     }
 
     private void cbxDescargaMax_SelectedValueChanged(object sender, EventArgs e)
     {
         descarga = Convert.ToDouble(cbxDescargaMax.SelectedItem.ToString().Replace("%", ""));
+        if (c.Voltaje != 0)
+        {
+            cond.RescatarVariables(c, true);
+        }
+        ValidateLista();
     }
 
     private void cbxPanel_SelectedValueChanged(object sender, EventArgs e)
@@ -378,8 +391,14 @@ public partial class Inicio : Form
         panel = listaPaneles.Where(x => x.Tipo == cbxPanel.SelectedItem.ToString()).Select(x => x).FirstOrDefault();
         if (c.Voltaje != 0)
         {
-            cond.RescatarVariables(c);
+            cond.RescatarVariables(c, true);
         }
+        ValidateLista();
+    }
+
+    private void ValidateLista()
+    {
+        btnLista.Enabled = cbxBaterias.SelectedIndex != 0 && cbxPanel.SelectedIndex != 0 && cbxDescargaMax.SelectedIndex != 0;
     }
 
     private AllSheets? AhorroSheets()
@@ -533,15 +552,17 @@ public partial class Inicio : Form
             PorcentajePerdidas = PorcentajePerdidas
         };
 
-
+        if (!Directory.Exists(projectsFolder))
+        {
+            Directory.CreateDirectory(projectsFolder);
+        }
         var json = JsonConvert.SerializeObject(appState);
         var saveFileDialog = new SaveFileDialog();
 
-        // Establecer el filtro para mostrar solo archivos con extensión .json
-        saveFileDialog.Filter = "Archivos JSON (*.json)|*.json";
+        // Establecer el filtro para mostrar solo archivos con extensión .solproj
+        saveFileDialog.Filter = "Archivos de proyecto Solcad (*.solproj)|*.solproj";
 
-        // Restaurar el directorio anterior utilizado
-        saveFileDialog.RestoreDirectory = true;
+        saveFileDialog.InitialDirectory = projectsFolder;
 
         // Mostrar el cuadro de diálogo y comprobar si el usuario hizo clic en "Guardar"
         if (saveFileDialog.ShowDialog() != DialogResult.OK) return;
@@ -562,10 +583,16 @@ public partial class Inicio : Form
 
     private void AbrirProyecto()
     {
+        if (!Directory.Exists(projectsFolder))
+        {
+            Directory.CreateDirectory(projectsFolder);
+        }
         using (var openFileDialog = new OpenFileDialog())
         {
-            openFileDialog.Filter = "Archivos JSON (*.json)|*.json";
+            openFileDialog.InitialDirectory = projectsFolder;
+            openFileDialog.Filter = "Archivos de proyecto Solcad (*.solproj)|*.solproj";
             openFileDialog.RestoreDirectory = true;
+
 
             if (openFileDialog.ShowDialog() != DialogResult.OK) return;
             try
@@ -648,7 +675,7 @@ public partial class Inicio : Form
             cond = new Condiciones(c, this);
             btnCondicionesDiseño.Enabled = TotalCorregido > 0;
             btnDiseñar.Enabled = c.TotalBaterias > 0 && c.TotalPanelesArbitrario > 0;
-            btnLista.Enabled = INC>0;
+            btnLista.Enabled = INC > 0;
         }
     }
 
@@ -675,7 +702,7 @@ public partial class Inicio : Form
 
     private void Inicio_FormClosed(object sender, FormClosedEventArgs e)
     {
-        Application.Exit();
+
     }
 
     private void toolStripButton1_Click(object sender, EventArgs e)
@@ -722,6 +749,7 @@ public partial class Inicio : Form
 
     public static List<Bateria> listaBaterias = Controller_Equipo.ListaBaterias();
     public static List<Panel> listaPaneles = Controller_Equipo.ListaPaneles();
+    public static List<Inversor> listaInversores = Controller_Equipo.ListaInversores();
 
     public static double ConsumoPromedio;
     public static double PerdidasConversion;
@@ -756,6 +784,8 @@ public partial class Inicio : Form
     public static int INC;
     public int screenWidth = Screen.PrimaryScreen.Bounds.Width;
     public int screenHeight = Screen.PrimaryScreen.Bounds.Height;
+    public static string rootDirectory = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+    public string projectsFolder = Path.Combine(rootDirectory, "Proyectos");
 
     #endregion VariablesGlobales
 
@@ -764,7 +794,7 @@ public partial class Inicio : Form
         SetGlobos();
         cond.SetGlobos(chxGlobos.Checked);
         list.SetGlobos(chxGlobos.Checked);
-        
+
     }
 
     private void SetGlobos()
@@ -782,5 +812,9 @@ public partial class Inicio : Form
         g.SetToolTip(btnCondicionesDiseño, "Presione para abrir la ventana para ingresar los valores a utilizar");
         g.SetToolTip(btnCordenadas, "Presione para ingresar de forma manual o automaticas las coordenadas Latitud y Longitud del sistema");
         g.SetToolTip(btnDiseñar, "Una vez listo los parametros del sistema, presione para ver el diseño de este");
+    }
+
+    private void Inicio_FormClosing(object sender, FormClosingEventArgs e)
+    {
     }
 }

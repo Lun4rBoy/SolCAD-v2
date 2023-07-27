@@ -29,791 +29,773 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnCordenadas = new System.Windows.Forms.Button();
-            this.txtLongitud = new System.Windows.Forms.TextBox();
-            this.txtLatitud = new System.Windows.Forms.TextBox();
-            this.txtInclinacion = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lblComuna = new System.Windows.Forms.Label();
-            this.lblRegion = new System.Windows.Forms.Label();
-            this.cbx_Comuna = new System.Windows.Forms.ComboBox();
-            this.cbx_Region = new System.Windows.Forms.ComboBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.chxAhorro = new System.Windows.Forms.CheckBox();
-            this.chxGlobos = new System.Windows.Forms.CheckBox();
-            this.btnLista = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsMenu = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.cbxPanel = new System.Windows.Forms.ComboBox();
-            this.cbxDescargaMax = new System.Windows.Forms.ComboBox();
-            this.cbxBaterias = new System.Windows.Forms.ComboBox();
-            this.gbxBoleta = new System.Windows.Forms.GroupBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtDic = new System.Windows.Forms.TextBox();
-            this.txtNov = new System.Windows.Forms.TextBox();
-            this.txtOct = new System.Windows.Forms.TextBox();
-            this.txtSep = new System.Windows.Forms.TextBox();
-            this.txtAgo = new System.Windows.Forms.TextBox();
-            this.txtJul = new System.Windows.Forms.TextBox();
-            this.txtJun = new System.Windows.Forms.TextBox();
-            this.txtMay = new System.Windows.Forms.TextBox();
-            this.txtAbr = new System.Windows.Forms.TextBox();
-            this.txtMar = new System.Windows.Forms.TextBox();
-            this.txtFeb = new System.Windows.Forms.TextBox();
-            this.txtEne = new System.Windows.Forms.TextBox();
-            this.btnDiseñar = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnCondicionesDiseño = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            this.tsMenu.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.gbxBoleta.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.SuspendLayout();
+            groupBox1 = new GroupBox();
+            btnCordenadas = new Button();
+            txtLongitud = new TextBox();
+            txtLatitud = new TextBox();
+            txtInclinacion = new TextBox();
+            label6 = new Label();
+            lblComuna = new Label();
+            lblRegion = new Label();
+            cbx_Comuna = new ComboBox();
+            cbx_Region = new ComboBox();
+            groupBox2 = new GroupBox();
+            chxAhorro = new CheckBox();
+            chxGlobos = new CheckBox();
+            btnLista = new Button();
+            menuStrip1 = new MenuStrip();
+            toolStripMenuItem1 = new ToolStripMenuItem();
+            abrirToolStripMenuItem = new ToolStripMenuItem();
+            guardarToolStripMenuItem = new ToolStripMenuItem();
+            salirToolStripMenuItem = new ToolStripMenuItem();
+            toolStripMenuItem2 = new ToolStripMenuItem();
+            toolStripMenuItem3 = new ToolStripMenuItem();
+            tsMenu = new ToolStrip();
+            toolStripButton1 = new ToolStripButton();
+            toolStripButton2 = new ToolStripButton();
+            toolStripButton3 = new ToolStripButton();
+            toolStripSeparator1 = new ToolStripSeparator();
+            toolStripButton4 = new ToolStripButton();
+            toolStripButton5 = new ToolStripButton();
+            groupBox4 = new GroupBox();
+            label10 = new Label();
+            label9 = new Label();
+            label8 = new Label();
+            cbxPanel = new ComboBox();
+            cbxDescargaMax = new ComboBox();
+            cbxBaterias = new ComboBox();
+            gbxBoleta = new GroupBox();
+            label16 = new Label();
+            label17 = new Label();
+            label18 = new Label();
+            label19 = new Label();
+            label20 = new Label();
+            label21 = new Label();
+            label15 = new Label();
+            label14 = new Label();
+            label13 = new Label();
+            label12 = new Label();
+            label11 = new Label();
+            label5 = new Label();
+            txtDic = new TextBox();
+            txtNov = new TextBox();
+            txtOct = new TextBox();
+            txtSep = new TextBox();
+            txtAgo = new TextBox();
+            txtJul = new TextBox();
+            txtJun = new TextBox();
+            txtMay = new TextBox();
+            txtAbr = new TextBox();
+            txtMar = new TextBox();
+            txtFeb = new TextBox();
+            txtEne = new TextBox();
+            btnDiseñar = new Button();
+            groupBox3 = new GroupBox();
+            btnCondicionesDiseño = new Button();
+            panel1 = new Panel();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            menuStrip1.SuspendLayout();
+            tsMenu.SuspendLayout();
+            groupBox4.SuspendLayout();
+            gbxBoleta.SuspendLayout();
+            groupBox3.SuspendLayout();
+            panel1.SuspendLayout();
+            SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnCordenadas);
-            this.groupBox1.Controls.Add(this.txtLongitud);
-            this.groupBox1.Controls.Add(this.txtLatitud);
-            this.groupBox1.Controls.Add(this.txtInclinacion);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.lblComuna);
-            this.groupBox1.Controls.Add(this.lblRegion);
-            this.groupBox1.Controls.Add(this.cbx_Comuna);
-            this.groupBox1.Controls.Add(this.cbx_Region);
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox1.Location = new System.Drawing.Point(12, 9);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(303, 132);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "UBICACION";
+            groupBox1.Controls.Add(btnCordenadas);
+            groupBox1.Controls.Add(txtLongitud);
+            groupBox1.Controls.Add(txtLatitud);
+            groupBox1.Controls.Add(txtInclinacion);
+            groupBox1.Controls.Add(label6);
+            groupBox1.Controls.Add(lblComuna);
+            groupBox1.Controls.Add(lblRegion);
+            groupBox1.Controls.Add(cbx_Comuna);
+            groupBox1.Controls.Add(cbx_Region);
+            groupBox1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBox1.Location = new Point(12, 9);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(303, 132);
+            groupBox1.TabIndex = 0;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "UBICACION";
             // 
             // btnCordenadas
             // 
-            this.btnCordenadas.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCordenadas.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnCordenadas.Location = new System.Drawing.Point(18, 94);
-            this.btnCordenadas.Name = "btnCordenadas";
-            this.btnCordenadas.Size = new System.Drawing.Size(75, 23);
-            this.btnCordenadas.TabIndex = 10;
-            this.btnCordenadas.Text = "Manual";
-            this.btnCordenadas.UseVisualStyleBackColor = false;
-            this.btnCordenadas.Click += new System.EventHandler(this.btnCordenadas_Click);
+            btnCordenadas.BackColor = SystemColors.ButtonFace;
+            btnCordenadas.ForeColor = SystemColors.MenuHighlight;
+            btnCordenadas.Location = new Point(6, 94);
+            btnCordenadas.Name = "btnCordenadas";
+            btnCordenadas.Size = new Size(99, 23);
+            btnCordenadas.TabIndex = 10;
+            btnCordenadas.Text = "Manual";
+            btnCordenadas.UseVisualStyleBackColor = false;
+            btnCordenadas.Click += btnCordenadas_Click;
             // 
             // txtLongitud
             // 
-            this.txtLongitud.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtLongitud.Location = new System.Drawing.Point(72, 60);
-            this.txtLongitud.Name = "txtLongitud";
-            this.txtLongitud.Size = new System.Drawing.Size(100, 23);
-            this.txtLongitud.TabIndex = 9;
-            this.txtLongitud.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtLongitud.TextChanged += new System.EventHandler(this.txtLongitud_TextChanged);
+            txtLongitud.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtLongitud.Location = new Point(72, 60);
+            txtLongitud.Name = "txtLongitud";
+            txtLongitud.Size = new Size(100, 23);
+            txtLongitud.TabIndex = 9;
+            txtLongitud.TextAlign = HorizontalAlignment.Center;
+            txtLongitud.TextChanged += txtLongitud_TextChanged;
             // 
             // txtLatitud
             // 
-            this.txtLatitud.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtLatitud.Location = new System.Drawing.Point(72, 29);
-            this.txtLatitud.Name = "txtLatitud";
-            this.txtLatitud.Size = new System.Drawing.Size(100, 23);
-            this.txtLatitud.TabIndex = 8;
-            this.txtLatitud.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtLatitud.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtLatitud.Location = new Point(72, 29);
+            txtLatitud.Name = "txtLatitud";
+            txtLatitud.Size = new Size(100, 23);
+            txtLatitud.TabIndex = 8;
+            txtLatitud.TextAlign = HorizontalAlignment.Center;
             // 
             // txtInclinacion
             // 
-            this.txtInclinacion.Enabled = false;
-            this.txtInclinacion.Location = new System.Drawing.Point(225, 94);
-            this.txtInclinacion.Name = "txtInclinacion";
-            this.txtInclinacion.Size = new System.Drawing.Size(56, 25);
-            this.txtInclinacion.TabIndex = 5;
-            this.txtInclinacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtInclinacion.TextChanged += new System.EventHandler(this.txtInclinacion_TextChanged);
+            txtInclinacion.Enabled = false;
+            txtInclinacion.Location = new Point(225, 94);
+            txtInclinacion.Name = "txtInclinacion";
+            txtInclinacion.Size = new Size(56, 25);
+            txtInclinacion.TabIndex = 5;
+            txtInclinacion.TextAlign = HorizontalAlignment.Center;
+            txtInclinacion.TextChanged += txtInclinacion_TextChanged;
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(111, 99);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(108, 15);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Inclinación Paneles";
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Location = new Point(111, 99);
+            label6.Name = "label6";
+            label6.Size = new Size(108, 15);
+            label6.TabIndex = 4;
+            label6.Text = "Inclinación Paneles";
             // 
             // lblComuna
             // 
-            this.lblComuna.AutoSize = true;
-            this.lblComuna.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblComuna.Location = new System.Drawing.Point(6, 66);
-            this.lblComuna.Name = "lblComuna";
-            this.lblComuna.Size = new System.Drawing.Size(53, 15);
-            this.lblComuna.TabIndex = 3;
-            this.lblComuna.Text = "Comuna";
+            lblComuna.AutoSize = true;
+            lblComuna.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblComuna.Location = new Point(6, 66);
+            lblComuna.Name = "lblComuna";
+            lblComuna.Size = new Size(53, 15);
+            lblComuna.TabIndex = 3;
+            lblComuna.Text = "Comuna";
             // 
             // lblRegion
             // 
-            this.lblRegion.AutoSize = true;
-            this.lblRegion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblRegion.Location = new System.Drawing.Point(6, 37);
-            this.lblRegion.Name = "lblRegion";
-            this.lblRegion.Size = new System.Drawing.Size(44, 15);
-            this.lblRegion.TabIndex = 2;
-            this.lblRegion.Text = "Región";
+            lblRegion.AutoSize = true;
+            lblRegion.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblRegion.Location = new Point(6, 37);
+            lblRegion.Name = "lblRegion";
+            lblRegion.Size = new Size(44, 15);
+            lblRegion.TabIndex = 2;
+            lblRegion.Text = "Región";
             // 
             // cbx_Comuna
             // 
-            this.cbx_Comuna.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_Comuna.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbx_Comuna.FormattingEnabled = true;
-            this.cbx_Comuna.Location = new System.Drawing.Point(72, 60);
-            this.cbx_Comuna.Name = "cbx_Comuna";
-            this.cbx_Comuna.Size = new System.Drawing.Size(209, 25);
-            this.cbx_Comuna.TabIndex = 1;
-            this.cbx_Comuna.SelectedIndexChanged += new System.EventHandler(this.cbx_Comuna_SelectedIndexChanged);
+            cbx_Comuna.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbx_Comuna.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            cbx_Comuna.FormattingEnabled = true;
+            cbx_Comuna.Location = new Point(72, 60);
+            cbx_Comuna.Name = "cbx_Comuna";
+            cbx_Comuna.Size = new Size(209, 25);
+            cbx_Comuna.TabIndex = 1;
+            cbx_Comuna.SelectedIndexChanged += cbx_Comuna_SelectedIndexChanged;
             // 
             // cbx_Region
             // 
-            this.cbx_Region.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_Region.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbx_Region.FormattingEnabled = true;
-            this.cbx_Region.Location = new System.Drawing.Point(72, 29);
-            this.cbx_Region.Name = "cbx_Region";
-            this.cbx_Region.Size = new System.Drawing.Size(209, 25);
-            this.cbx_Region.TabIndex = 0;
-            this.cbx_Region.SelectedIndexChanged += new System.EventHandler(this.cbx_Region_SelectedIndexChanged);
+            cbx_Region.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbx_Region.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            cbx_Region.FormattingEnabled = true;
+            cbx_Region.Location = new Point(72, 29);
+            cbx_Region.Name = "cbx_Region";
+            cbx_Region.Size = new Size(209, 25);
+            cbx_Region.TabIndex = 0;
+            cbx_Region.SelectedIndexChanged += cbx_Region_SelectedIndexChanged;
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.chxAhorro);
-            this.groupBox2.Controls.Add(this.chxGlobos);
-            this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox2.Location = new System.Drawing.Point(321, 9);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(120, 133);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "HERRAMIENTAS";
+            groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            groupBox2.Controls.Add(chxAhorro);
+            groupBox2.Controls.Add(chxGlobos);
+            groupBox2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBox2.Location = new Point(326, 9);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(207, 132);
+            groupBox2.TabIndex = 1;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "HERRAMIENTAS";
             // 
             // chxAhorro
             // 
-            this.chxAhorro.AutoSize = true;
-            this.chxAhorro.Checked = true;
-            this.chxAhorro.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chxAhorro.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.chxAhorro.Location = new System.Drawing.Point(11, 60);
-            this.chxAhorro.Name = "chxAhorro";
-            this.chxAhorro.Size = new System.Drawing.Size(63, 19);
-            this.chxAhorro.TabIndex = 1;
-            this.chxAhorro.Text = "Ahorro";
-            this.chxAhorro.UseVisualStyleBackColor = true;
-            this.chxAhorro.CheckedChanged += new System.EventHandler(this.chxAhorro_CheckedChanged);
+            chxAhorro.AutoSize = true;
+            chxAhorro.Checked = true;
+            chxAhorro.CheckState = CheckState.Checked;
+            chxAhorro.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            chxAhorro.Location = new Point(11, 60);
+            chxAhorro.Name = "chxAhorro";
+            chxAhorro.Size = new Size(63, 19);
+            chxAhorro.TabIndex = 1;
+            chxAhorro.Text = "Ahorro";
+            chxAhorro.UseVisualStyleBackColor = true;
+            chxAhorro.CheckedChanged += chxAhorro_CheckedChanged;
             // 
             // chxGlobos
             // 
-            this.chxGlobos.AutoSize = true;
-            this.chxGlobos.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.chxGlobos.Location = new System.Drawing.Point(12, 31);
-            this.chxGlobos.Name = "chxGlobos";
-            this.chxGlobos.Size = new System.Drawing.Size(63, 19);
-            this.chxGlobos.TabIndex = 0;
-            this.chxGlobos.Text = "Globos";
-            this.chxGlobos.UseVisualStyleBackColor = true;
-            this.chxGlobos.CheckedChanged += new System.EventHandler(this.chxGlobos_CheckedChanged);
+            chxGlobos.AutoSize = true;
+            chxGlobos.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            chxGlobos.Location = new Point(12, 31);
+            chxGlobos.Name = "chxGlobos";
+            chxGlobos.Size = new Size(63, 19);
+            chxGlobos.TabIndex = 0;
+            chxGlobos.Text = "Globos";
+            chxGlobos.UseVisualStyleBackColor = true;
+            chxGlobos.CheckedChanged += chxGlobos_CheckedChanged;
             // 
             // btnLista
             // 
-            this.btnLista.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnLista.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnLista.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnLista.Location = new System.Drawing.Point(20, 24);
-            this.btnLista.Name = "btnLista";
-            this.btnLista.Size = new System.Drawing.Size(181, 36);
-            this.btnLista.TabIndex = 9;
-            this.btnLista.Text = "Lista Equipamiento";
-            this.btnLista.UseVisualStyleBackColor = false;
-            this.btnLista.Click += new System.EventHandler(this.btnLista_Click);
+            btnLista.BackColor = SystemColors.ButtonFace;
+            btnLista.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnLista.ForeColor = SystemColors.MenuHighlight;
+            btnLista.Location = new Point(62, 38);
+            btnLista.Name = "btnLista";
+            btnLista.Size = new Size(181, 36);
+            btnLista.TabIndex = 9;
+            btnLista.Text = "Lista Equipamiento";
+            btnLista.UseVisualStyleBackColor = false;
+            btnLista.Click += btnLista_Click;
             // 
             // menuStrip1
             // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem3});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(462, 24);
-            this.menuStrip1.TabIndex = 3;
-            this.menuStrip1.Text = "menuStrip1";
+            menuStrip1.ImageScalingSize = new Size(24, 24);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, toolStripMenuItem2, toolStripMenuItem3 });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(554, 24);
+            menuStrip1.TabIndex = 3;
+            menuStrip1.Text = "menuStrip1";
             // 
             // toolStripMenuItem1
             // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.abrirToolStripMenuItem,
-            this.guardarToolStripMenuItem,
-            this.salirToolStripMenuItem});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(60, 20);
-            this.toolStripMenuItem1.Text = "Archivo";
+            toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { abrirToolStripMenuItem, guardarToolStripMenuItem, salirToolStripMenuItem });
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(60, 20);
+            toolStripMenuItem1.Text = "Archivo";
             // 
             // abrirToolStripMenuItem
             // 
-            this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.abrirToolStripMenuItem.Text = "Abrir";
-            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
+            abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
+            abrirToolStripMenuItem.Size = new Size(116, 22);
+            abrirToolStripMenuItem.Text = "Abrir";
+            abrirToolStripMenuItem.Click += abrirToolStripMenuItem_Click;
             // 
             // guardarToolStripMenuItem
             // 
-            this.guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
-            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.guardarToolStripMenuItem.Text = "Guardar";
-            this.guardarToolStripMenuItem.Click += new System.EventHandler(this.guardarToolStripMenuItem_Click);
+            guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
+            guardarToolStripMenuItem.Size = new Size(116, 22);
+            guardarToolStripMenuItem.Text = "Guardar";
+            guardarToolStripMenuItem.Click += guardarToolStripMenuItem_Click;
             // 
             // salirToolStripMenuItem
             // 
-            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.salirToolStripMenuItem.Text = "Salir";
-            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            salirToolStripMenuItem.Size = new Size(116, 22);
+            salirToolStripMenuItem.Text = "Salir";
+            salirToolStripMenuItem.Click += salirToolStripMenuItem_Click;
             // 
             // toolStripMenuItem2
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(53, 20);
-            this.toolStripMenuItem2.Text = "Ayuda";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            toolStripMenuItem2.Name = "toolStripMenuItem2";
+            toolStripMenuItem2.Size = new Size(53, 20);
+            toolStripMenuItem2.Text = "Ayuda";
+            toolStripMenuItem2.Click += toolStripMenuItem2_Click;
             // 
             // toolStripMenuItem3
             // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(84, 20);
-            this.toolStripMenuItem3.Text = "Información";
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            toolStripMenuItem3.Name = "toolStripMenuItem3";
+            toolStripMenuItem3.Size = new Size(84, 20);
+            toolStripMenuItem3.Text = "Información";
+            toolStripMenuItem3.Click += toolStripMenuItem3_Click;
             // 
             // tsMenu
             // 
-            this.tsMenu.BackColor = System.Drawing.SystemColors.Control;
-            this.tsMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.tsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton3,
-            this.toolStripSeparator1,
-            this.toolStripButton4,
-            this.toolStripButton5});
-            this.tsMenu.Location = new System.Drawing.Point(0, 24);
-            this.tsMenu.Name = "tsMenu";
-            this.tsMenu.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.tsMenu.Size = new System.Drawing.Size(462, 31);
-            this.tsMenu.TabIndex = 4;
-            this.tsMenu.Text = "toolStrip1";
+            tsMenu.BackColor = SystemColors.Control;
+            tsMenu.ImageScalingSize = new Size(24, 24);
+            tsMenu.Items.AddRange(new ToolStripItem[] { toolStripButton1, toolStripButton2, toolStripButton3, toolStripSeparator1, toolStripButton4, toolStripButton5 });
+            tsMenu.Location = new Point(0, 24);
+            tsMenu.Name = "tsMenu";
+            tsMenu.Padding = new Padding(0, 0, 2, 0);
+            tsMenu.Size = new Size(554, 31);
+            tsMenu.TabIndex = 4;
+            tsMenu.Text = "toolStrip1";
             // 
             // toolStripButton1
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(28, 28);
-            this.toolStripButton1.Text = "Abrir";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            toolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
+            toolStripButton1.ImageTransparentColor = Color.Magenta;
+            toolStripButton1.Name = "toolStripButton1";
+            toolStripButton1.Size = new Size(28, 28);
+            toolStripButton1.Text = "Abrir";
+            toolStripButton1.Click += toolStripButton1_Click;
             // 
             // toolStripButton2
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(28, 28);
-            this.toolStripButton2.Text = "Guardar";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            toolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            toolStripButton2.Image = (Image)resources.GetObject("toolStripButton2.Image");
+            toolStripButton2.ImageTransparentColor = Color.Magenta;
+            toolStripButton2.Name = "toolStripButton2";
+            toolStripButton2.Size = new Size(28, 28);
+            toolStripButton2.Text = "Guardar";
+            toolStripButton2.Click += toolStripButton2_Click;
             // 
             // toolStripButton3
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(28, 28);
-            this.toolStripButton3.Text = "Salir";
-            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            toolStripButton3.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            toolStripButton3.Image = (Image)resources.GetObject("toolStripButton3.Image");
+            toolStripButton3.ImageTransparentColor = Color.Magenta;
+            toolStripButton3.Name = "toolStripButton3";
+            toolStripButton3.Size = new Size(28, 28);
+            toolStripButton3.Text = "Salir";
+            toolStripButton3.Click += toolStripButton3_Click;
             // 
             // toolStripSeparator1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(6, 31);
             // 
             // toolStripButton4
             // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(28, 28);
-            this.toolStripButton4.Text = "Ayuda";
-            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
+            toolStripButton4.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            toolStripButton4.Image = (Image)resources.GetObject("toolStripButton4.Image");
+            toolStripButton4.ImageTransparentColor = Color.Magenta;
+            toolStripButton4.Name = "toolStripButton4";
+            toolStripButton4.Size = new Size(28, 28);
+            toolStripButton4.Text = "Ayuda";
+            toolStripButton4.Click += toolStripButton4_Click;
             // 
             // toolStripButton5
             // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(28, 28);
-            this.toolStripButton5.Text = "Informacion";
-            this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
+            toolStripButton5.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            toolStripButton5.Image = (Image)resources.GetObject("toolStripButton5.Image");
+            toolStripButton5.ImageTransparentColor = Color.Magenta;
+            toolStripButton5.Name = "toolStripButton5";
+            toolStripButton5.Size = new Size(28, 28);
+            toolStripButton5.Text = "Informacion";
+            toolStripButton5.Click += toolStripButton5_Click;
             // 
             // groupBox4
             // 
-            this.groupBox4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Controls.Add(this.cbxPanel);
-            this.groupBox4.Controls.Add(this.cbxDescargaMax);
-            this.groupBox4.Controls.Add(this.cbxBaterias);
-            this.groupBox4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox4.Location = new System.Drawing.Point(237, 148);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(204, 135);
-            this.groupBox4.TabIndex = 5;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "BATERIAS Y PANELES";
+            groupBox4.Anchor = AnchorStyles.Right;
+            groupBox4.Controls.Add(label10);
+            groupBox4.Controls.Add(label9);
+            groupBox4.Controls.Add(label8);
+            groupBox4.Controls.Add(cbxPanel);
+            groupBox4.Controls.Add(cbxDescargaMax);
+            groupBox4.Controls.Add(cbxBaterias);
+            groupBox4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBox4.Location = new Point(326, 148);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(204, 135);
+            groupBox4.TabIndex = 5;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "BATERIAS Y PANELES";
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(11, 85);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(36, 15);
-            this.label10.TabIndex = 5;
-            this.label10.Text = "Panel";
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.Location = new Point(11, 85);
+            label10.Name = "label10";
+            label10.Size = new Size(36, 15);
+            label10.TabIndex = 5;
+            label10.Text = "Panel";
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(11, 59);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(84, 15);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "Descarga Max.";
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.Location = new Point(11, 59);
+            label9.Name = "label9";
+            label9.Size = new Size(84, 15);
+            label9.TabIndex = 4;
+            label9.Text = "Descarga Max.";
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(11, 32);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(43, 15);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Bateria";
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Location = new Point(11, 32);
+            label8.Name = "label8";
+            label8.Size = new Size(43, 15);
+            label8.TabIndex = 3;
+            label8.Text = "Bateria";
             // 
             // cbxPanel
             // 
-            this.cbxPanel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxPanel.Enabled = false;
-            this.cbxPanel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbxPanel.FormattingEnabled = true;
-            this.cbxPanel.Location = new System.Drawing.Point(99, 80);
-            this.cbxPanel.Name = "cbxPanel";
-            this.cbxPanel.Size = new System.Drawing.Size(81, 23);
-            this.cbxPanel.TabIndex = 2;
-            this.cbxPanel.SelectedValueChanged += new System.EventHandler(this.cbxPanel_SelectedValueChanged);
+            cbxPanel.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxPanel.Enabled = false;
+            cbxPanel.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            cbxPanel.FormattingEnabled = true;
+            cbxPanel.Location = new Point(99, 80);
+            cbxPanel.Name = "cbxPanel";
+            cbxPanel.Size = new Size(81, 23);
+            cbxPanel.TabIndex = 2;
+            cbxPanel.SelectedValueChanged += cbxPanel_SelectedValueChanged;
             // 
             // cbxDescargaMax
             // 
-            this.cbxDescargaMax.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxDescargaMax.Enabled = false;
-            this.cbxDescargaMax.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbxDescargaMax.FormattingEnabled = true;
-            this.cbxDescargaMax.Items.AddRange(new object[] {
-            "0%",
-            "10%",
-            "15%",
-            "20%",
-            "25%",
-            "30%"});
-            this.cbxDescargaMax.Location = new System.Drawing.Point(99, 54);
-            this.cbxDescargaMax.Name = "cbxDescargaMax";
-            this.cbxDescargaMax.Size = new System.Drawing.Size(81, 23);
-            this.cbxDescargaMax.TabIndex = 1;
-            this.cbxDescargaMax.SelectedValueChanged += new System.EventHandler(this.cbxDescargaMax_SelectedValueChanged);
+            cbxDescargaMax.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxDescargaMax.Enabled = false;
+            cbxDescargaMax.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            cbxDescargaMax.FormattingEnabled = true;
+            cbxDescargaMax.Items.AddRange(new object[] { "0%", "10%", "15%", "20%", "25%", "30%" });
+            cbxDescargaMax.Location = new Point(99, 54);
+            cbxDescargaMax.Name = "cbxDescargaMax";
+            cbxDescargaMax.Size = new Size(81, 23);
+            cbxDescargaMax.TabIndex = 1;
+            cbxDescargaMax.SelectedValueChanged += cbxDescargaMax_SelectedValueChanged;
             // 
             // cbxBaterias
             // 
-            this.cbxBaterias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxBaterias.Enabled = false;
-            this.cbxBaterias.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbxBaterias.FormattingEnabled = true;
-            this.cbxBaterias.Location = new System.Drawing.Point(99, 27);
-            this.cbxBaterias.Name = "cbxBaterias";
-            this.cbxBaterias.Size = new System.Drawing.Size(81, 23);
-            this.cbxBaterias.TabIndex = 0;
-            this.cbxBaterias.SelectedValueChanged += new System.EventHandler(this.cbxBaterias_SelectedValueChanged);
+            cbxBaterias.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxBaterias.Enabled = false;
+            cbxBaterias.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            cbxBaterias.FormattingEnabled = true;
+            cbxBaterias.Location = new Point(99, 27);
+            cbxBaterias.Name = "cbxBaterias";
+            cbxBaterias.Size = new Size(81, 23);
+            cbxBaterias.TabIndex = 0;
+            cbxBaterias.SelectedValueChanged += cbxBaterias_SelectedValueChanged;
             // 
             // gbxBoleta
             // 
-            this.gbxBoleta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.gbxBoleta.Controls.Add(this.label16);
-            this.gbxBoleta.Controls.Add(this.label17);
-            this.gbxBoleta.Controls.Add(this.label18);
-            this.gbxBoleta.Controls.Add(this.label19);
-            this.gbxBoleta.Controls.Add(this.label20);
-            this.gbxBoleta.Controls.Add(this.label21);
-            this.gbxBoleta.Controls.Add(this.label15);
-            this.gbxBoleta.Controls.Add(this.label14);
-            this.gbxBoleta.Controls.Add(this.label13);
-            this.gbxBoleta.Controls.Add(this.label12);
-            this.gbxBoleta.Controls.Add(this.label11);
-            this.gbxBoleta.Controls.Add(this.label5);
-            this.gbxBoleta.Controls.Add(this.txtDic);
-            this.gbxBoleta.Controls.Add(this.txtNov);
-            this.gbxBoleta.Controls.Add(this.txtOct);
-            this.gbxBoleta.Controls.Add(this.txtSep);
-            this.gbxBoleta.Controls.Add(this.txtAgo);
-            this.gbxBoleta.Controls.Add(this.txtJul);
-            this.gbxBoleta.Controls.Add(this.txtJun);
-            this.gbxBoleta.Controls.Add(this.txtMay);
-            this.gbxBoleta.Controls.Add(this.txtAbr);
-            this.gbxBoleta.Controls.Add(this.txtMar);
-            this.gbxBoleta.Controls.Add(this.txtFeb);
-            this.gbxBoleta.Controls.Add(this.txtEne);
-            this.gbxBoleta.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.gbxBoleta.Location = new System.Drawing.Point(12, 289);
-            this.gbxBoleta.Name = "gbxBoleta";
-            this.gbxBoleta.Size = new System.Drawing.Size(291, 121);
-            this.gbxBoleta.TabIndex = 6;
-            this.gbxBoleta.TabStop = false;
-            this.gbxBoleta.Text = "BOLETA DE ENERGIA";
+            gbxBoleta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            gbxBoleta.Controls.Add(label16);
+            gbxBoleta.Controls.Add(label17);
+            gbxBoleta.Controls.Add(label18);
+            gbxBoleta.Controls.Add(label19);
+            gbxBoleta.Controls.Add(label20);
+            gbxBoleta.Controls.Add(label21);
+            gbxBoleta.Controls.Add(label15);
+            gbxBoleta.Controls.Add(label14);
+            gbxBoleta.Controls.Add(label13);
+            gbxBoleta.Controls.Add(label12);
+            gbxBoleta.Controls.Add(label11);
+            gbxBoleta.Controls.Add(label5);
+            gbxBoleta.Controls.Add(txtDic);
+            gbxBoleta.Controls.Add(txtNov);
+            gbxBoleta.Controls.Add(txtOct);
+            gbxBoleta.Controls.Add(txtSep);
+            gbxBoleta.Controls.Add(txtAgo);
+            gbxBoleta.Controls.Add(txtJul);
+            gbxBoleta.Controls.Add(txtJun);
+            gbxBoleta.Controls.Add(txtMay);
+            gbxBoleta.Controls.Add(txtAbr);
+            gbxBoleta.Controls.Add(txtMar);
+            gbxBoleta.Controls.Add(txtFeb);
+            gbxBoleta.Controls.Add(txtEne);
+            gbxBoleta.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            gbxBoleta.Location = new Point(12, 289);
+            gbxBoleta.Name = "gbxBoleta";
+            gbxBoleta.Size = new Size(303, 121);
+            gbxBoleta.TabIndex = 6;
+            gbxBoleta.TabStop = false;
+            gbxBoleta.Text = "BOLETA DE ENERGIA";
             // 
             // label16
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label16.Location = new System.Drawing.Point(240, 74);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(26, 15);
-            this.label16.TabIndex = 23;
-            this.label16.Text = "DIC";
+            label16.AutoSize = true;
+            label16.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label16.Location = new Point(240, 74);
+            label16.Name = "label16";
+            label16.Size = new Size(26, 15);
+            label16.TabIndex = 23;
+            label16.Text = "DIC";
             // 
             // label17
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label17.Location = new System.Drawing.Point(194, 74);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(32, 15);
-            this.label17.TabIndex = 22;
-            this.label17.Text = "NOV";
+            label17.AutoSize = true;
+            label17.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label17.Location = new Point(194, 74);
+            label17.Name = "label17";
+            label17.Size = new Size(32, 15);
+            label17.TabIndex = 22;
+            label17.Text = "NOV";
             // 
             // label18
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label18.Location = new System.Drawing.Point(151, 74);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(30, 15);
-            this.label18.TabIndex = 21;
-            this.label18.Text = "OCT";
+            label18.AutoSize = true;
+            label18.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label18.Location = new Point(151, 74);
+            label18.Name = "label18";
+            label18.Size = new Size(30, 15);
+            label18.TabIndex = 21;
+            label18.Text = "OCT";
             // 
             // label19
             // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label19.Location = new System.Drawing.Point(111, 74);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(26, 15);
-            this.label19.TabIndex = 20;
-            this.label19.Text = "SEP";
+            label19.AutoSize = true;
+            label19.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label19.Location = new Point(111, 74);
+            label19.Name = "label19";
+            label19.Size = new Size(26, 15);
+            label19.TabIndex = 20;
+            label19.Text = "SEP";
             // 
             // label20
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label20.Location = new System.Drawing.Point(68, 74);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(32, 15);
-            this.label20.TabIndex = 19;
-            this.label20.Text = "AGO";
+            label20.AutoSize = true;
+            label20.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label20.Location = new Point(68, 74);
+            label20.Name = "label20";
+            label20.Size = new Size(32, 15);
+            label20.TabIndex = 19;
+            label20.Text = "AGO";
             // 
             // label21
             // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label21.Location = new System.Drawing.Point(24, 74);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(25, 15);
-            this.label21.TabIndex = 18;
-            this.label21.Text = "JUL";
+            label21.AutoSize = true;
+            label21.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label21.Location = new Point(24, 74);
+            label21.Name = "label21";
+            label21.Size = new Size(25, 15);
+            label21.TabIndex = 18;
+            label21.Text = "JUL";
             // 
             // label15
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label15.Location = new System.Drawing.Point(238, 21);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(28, 15);
-            this.label15.TabIndex = 17;
-            this.label15.Text = "JUN";
+            label15.AutoSize = true;
+            label15.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label15.Location = new Point(238, 21);
+            label15.Name = "label15";
+            label15.Size = new Size(28, 15);
+            label15.TabIndex = 17;
+            label15.Text = "JUN";
             // 
             // label14
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label14.Location = new System.Drawing.Point(194, 21);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(32, 15);
-            this.label14.TabIndex = 16;
-            this.label14.Text = "MAY";
+            label14.AutoSize = true;
+            label14.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label14.Location = new Point(194, 21);
+            label14.Name = "label14";
+            label14.Size = new Size(32, 15);
+            label14.TabIndex = 16;
+            label14.Text = "MAY";
             // 
             // label13
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label13.Location = new System.Drawing.Point(151, 21);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(29, 15);
-            this.label13.TabIndex = 15;
-            this.label13.Text = "ABR";
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label13.Location = new Point(151, 21);
+            label13.Name = "label13";
+            label13.Size = new Size(29, 15);
+            label13.TabIndex = 15;
+            label13.Text = "ABR";
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label12.Location = new System.Drawing.Point(111, 21);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(33, 15);
-            this.label12.TabIndex = 14;
-            this.label12.Text = "MAR";
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label12.Location = new Point(111, 21);
+            label12.Name = "label12";
+            label12.Size = new Size(33, 15);
+            label12.TabIndex = 14;
+            label12.Text = "MAR";
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label11.Location = new System.Drawing.Point(68, 21);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(26, 15);
-            this.label11.TabIndex = 13;
-            this.label11.Text = "FEB";
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label11.Location = new Point(68, 21);
+            label11.Name = "label11";
+            label11.Size = new Size(26, 15);
+            label11.TabIndex = 13;
+            label11.Text = "FEB";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(22, 21);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(28, 15);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "ENE";
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Location = new Point(22, 21);
+            label5.Name = "label5";
+            label5.Size = new Size(28, 15);
+            label5.TabIndex = 12;
+            label5.Text = "ENE";
             // 
             // txtDic
             // 
-            this.txtDic.Location = new System.Drawing.Point(238, 92);
-            this.txtDic.Name = "txtDic";
-            this.txtDic.Size = new System.Drawing.Size(38, 25);
-            this.txtDic.TabIndex = 11;
+            txtDic.Location = new Point(238, 92);
+            txtDic.Name = "txtDic";
+            txtDic.Size = new Size(38, 25);
+            txtDic.TabIndex = 11;
             // 
             // txtNov
             // 
-            this.txtNov.Location = new System.Drawing.Point(194, 92);
-            this.txtNov.Name = "txtNov";
-            this.txtNov.Size = new System.Drawing.Size(38, 25);
-            this.txtNov.TabIndex = 10;
+            txtNov.Location = new Point(194, 92);
+            txtNov.Name = "txtNov";
+            txtNov.Size = new Size(38, 25);
+            txtNov.TabIndex = 10;
             // 
             // txtOct
             // 
-            this.txtOct.Location = new System.Drawing.Point(150, 92);
-            this.txtOct.Name = "txtOct";
-            this.txtOct.Size = new System.Drawing.Size(38, 25);
-            this.txtOct.TabIndex = 9;
+            txtOct.Location = new Point(150, 92);
+            txtOct.Name = "txtOct";
+            txtOct.Size = new Size(38, 25);
+            txtOct.TabIndex = 9;
             // 
             // txtSep
             // 
-            this.txtSep.Location = new System.Drawing.Point(105, 92);
-            this.txtSep.Name = "txtSep";
-            this.txtSep.Size = new System.Drawing.Size(38, 25);
-            this.txtSep.TabIndex = 8;
+            txtSep.Location = new Point(105, 92);
+            txtSep.Name = "txtSep";
+            txtSep.Size = new Size(38, 25);
+            txtSep.TabIndex = 8;
             // 
             // txtAgo
             // 
-            this.txtAgo.Location = new System.Drawing.Point(62, 92);
-            this.txtAgo.Name = "txtAgo";
-            this.txtAgo.Size = new System.Drawing.Size(38, 25);
-            this.txtAgo.TabIndex = 7;
+            txtAgo.Location = new Point(62, 92);
+            txtAgo.Name = "txtAgo";
+            txtAgo.Size = new Size(38, 25);
+            txtAgo.TabIndex = 7;
             // 
             // txtJul
             // 
-            this.txtJul.Location = new System.Drawing.Point(18, 92);
-            this.txtJul.Name = "txtJul";
-            this.txtJul.Size = new System.Drawing.Size(38, 25);
-            this.txtJul.TabIndex = 6;
+            txtJul.Location = new Point(18, 92);
+            txtJul.Name = "txtJul";
+            txtJul.Size = new Size(38, 25);
+            txtJul.TabIndex = 6;
             // 
             // txtJun
             // 
-            this.txtJun.Location = new System.Drawing.Point(238, 39);
-            this.txtJun.Name = "txtJun";
-            this.txtJun.Size = new System.Drawing.Size(38, 25);
-            this.txtJun.TabIndex = 5;
+            txtJun.Location = new Point(238, 39);
+            txtJun.Name = "txtJun";
+            txtJun.Size = new Size(38, 25);
+            txtJun.TabIndex = 5;
             // 
             // txtMay
             // 
-            this.txtMay.Location = new System.Drawing.Point(194, 39);
-            this.txtMay.Name = "txtMay";
-            this.txtMay.Size = new System.Drawing.Size(38, 25);
-            this.txtMay.TabIndex = 4;
+            txtMay.Location = new Point(194, 39);
+            txtMay.Name = "txtMay";
+            txtMay.Size = new Size(38, 25);
+            txtMay.TabIndex = 4;
             // 
             // txtAbr
             // 
-            this.txtAbr.Location = new System.Drawing.Point(150, 39);
-            this.txtAbr.Name = "txtAbr";
-            this.txtAbr.Size = new System.Drawing.Size(38, 25);
-            this.txtAbr.TabIndex = 3;
+            txtAbr.Location = new Point(150, 39);
+            txtAbr.Name = "txtAbr";
+            txtAbr.Size = new Size(38, 25);
+            txtAbr.TabIndex = 3;
             // 
             // txtMar
             // 
-            this.txtMar.Location = new System.Drawing.Point(106, 39);
-            this.txtMar.Name = "txtMar";
-            this.txtMar.Size = new System.Drawing.Size(38, 25);
-            this.txtMar.TabIndex = 2;
+            txtMar.Location = new Point(106, 39);
+            txtMar.Name = "txtMar";
+            txtMar.Size = new Size(38, 25);
+            txtMar.TabIndex = 2;
             // 
             // txtFeb
             // 
-            this.txtFeb.Location = new System.Drawing.Point(62, 39);
-            this.txtFeb.Name = "txtFeb";
-            this.txtFeb.Size = new System.Drawing.Size(38, 25);
-            this.txtFeb.TabIndex = 1;
+            txtFeb.Location = new Point(62, 39);
+            txtFeb.Name = "txtFeb";
+            txtFeb.Size = new Size(38, 25);
+            txtFeb.TabIndex = 1;
             // 
             // txtEne
             // 
-            this.txtEne.Location = new System.Drawing.Point(18, 39);
-            this.txtEne.Name = "txtEne";
-            this.txtEne.Size = new System.Drawing.Size(38, 25);
-            this.txtEne.TabIndex = 0;
+            txtEne.Location = new Point(18, 39);
+            txtEne.Name = "txtEne";
+            txtEne.Size = new Size(38, 25);
+            txtEne.TabIndex = 0;
             // 
             // btnDiseñar
             // 
-            this.btnDiseñar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDiseñar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDiseñar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnDiseñar.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnDiseñar.Location = new System.Drawing.Point(321, 328);
-            this.btnDiseñar.Name = "btnDiseñar";
-            this.btnDiseñar.Size = new System.Drawing.Size(98, 47);
-            this.btnDiseñar.TabIndex = 8;
-            this.btnDiseñar.Text = "DISEÑAR";
-            this.btnDiseñar.UseVisualStyleBackColor = false;
-            this.btnDiseñar.Click += new System.EventHandler(this.btnDiseñar_Click);
+            btnDiseñar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnDiseñar.BackColor = SystemColors.ButtonFace;
+            btnDiseñar.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDiseñar.ForeColor = SystemColors.MenuHighlight;
+            btnDiseñar.Location = new Point(382, 331);
+            btnDiseñar.Name = "btnDiseñar";
+            btnDiseñar.Size = new Size(98, 47);
+            btnDiseñar.TabIndex = 8;
+            btnDiseñar.Text = "DISEÑAR";
+            btnDiseñar.UseVisualStyleBackColor = false;
+            btnDiseñar.Click += btnDiseñar_Click;
             // 
             // groupBox3
             // 
-            this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.groupBox3.Controls.Add(this.btnCondicionesDiseño);
-            this.groupBox3.Controls.Add(this.btnLista);
-            this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox3.Location = new System.Drawing.Point(12, 148);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(221, 135);
-            this.groupBox3.TabIndex = 9;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "CONDICIONES PARA EL DISEÑO";
+            groupBox3.Anchor = AnchorStyles.Left;
+            groupBox3.Controls.Add(btnCondicionesDiseño);
+            groupBox3.Controls.Add(btnLista);
+            groupBox3.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBox3.Location = new Point(12, 148);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(303, 135);
+            groupBox3.TabIndex = 9;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "CONDICIONES PARA EL DISEÑO";
             // 
             // btnCondicionesDiseño
             // 
-            this.btnCondicionesDiseño.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCondicionesDiseño.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnCondicionesDiseño.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnCondicionesDiseño.Location = new System.Drawing.Point(20, 77);
-            this.btnCondicionesDiseño.Name = "btnCondicionesDiseño";
-            this.btnCondicionesDiseño.Size = new System.Drawing.Size(181, 36);
-            this.btnCondicionesDiseño.TabIndex = 10;
-            this.btnCondicionesDiseño.Text = "Variables";
-            this.btnCondicionesDiseño.UseVisualStyleBackColor = false;
-            this.btnCondicionesDiseño.Click += new System.EventHandler(this.btnCondicionesDiseño_Click);
+            btnCondicionesDiseño.BackColor = SystemColors.ButtonFace;
+            btnCondicionesDiseño.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCondicionesDiseño.ForeColor = SystemColors.MenuHighlight;
+            btnCondicionesDiseño.Location = new Point(62, 85);
+            btnCondicionesDiseño.Name = "btnCondicionesDiseño";
+            btnCondicionesDiseño.Size = new Size(181, 36);
+            btnCondicionesDiseño.TabIndex = 10;
+            btnCondicionesDiseño.Text = "Variables";
+            btnCondicionesDiseño.UseVisualStyleBackColor = false;
+            btnCondicionesDiseño.Click += btnCondicionesDiseño_Click;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Controls.Add(this.gbxBoleta);
-            this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Controls.Add(this.groupBox4);
-            this.panel1.Controls.Add(this.btnDiseñar);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 55);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(462, 433);
-            this.panel1.TabIndex = 10;
+            panel1.Controls.Add(groupBox1);
+            panel1.Controls.Add(groupBox2);
+            panel1.Controls.Add(gbxBoleta);
+            panel1.Controls.Add(groupBox3);
+            panel1.Controls.Add(groupBox4);
+            panel1.Controls.Add(btnDiseñar);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(0, 55);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(554, 433);
+            panel1.TabIndex = 10;
             // 
             // Inicio
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(462, 488);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.tsMenu);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(478, 527);
-            this.Name = "Inicio";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SolCAD - MCD 2023";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Inicio_FormClosed);
-            this.LocationChanged += new System.EventHandler(this.Inicio_LocationChanged);
-            this.DragOver += new System.Windows.Forms.DragEventHandler(this.Inicio_DragOver);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.tsMenu.ResumeLayout(false);
-            this.tsMenu.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.gbxBoleta.ResumeLayout(false);
-            this.gbxBoleta.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(554, 488);
+            Controls.Add(panel1);
+            Controls.Add(tsMenu);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
+            MinimumSize = new Size(478, 527);
+            Name = "Inicio";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "SolCAD - MCD 2023";
+            FormClosing += Inicio_FormClosing;
+            FormClosed += Inicio_FormClosed;
+            LocationChanged += Inicio_LocationChanged;
+            DragOver += Inicio_DragOver;
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
+            tsMenu.ResumeLayout(false);
+            tsMenu.PerformLayout();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
+            gbxBoleta.ResumeLayout(false);
+            gbxBoleta.PerformLayout();
+            groupBox3.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
