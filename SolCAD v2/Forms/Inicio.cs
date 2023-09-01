@@ -1,5 +1,7 @@
 using System.Diagnostics;
+using System.Windows.Forms;
 using MathNet.Numerics.Statistics;
+using Microsoft.Web.WebView2.WinForms;
 using Newtonsoft.Json;
 using SolCAD_v2.DAO;
 using SolCAD_v2.Forms;
@@ -13,7 +15,7 @@ public partial class Inicio : Form
 {
     public Inicio()
     {
-        var formWidth = (int)(screenWidth * 0.30);
+        var formWidth = (int)(screenWidth * 0.32);
         InitializeComponent();
         Width = formWidth;
         appState = new AppState();
@@ -24,6 +26,7 @@ public partial class Inicio : Form
         btnDiseñar.Enabled = false;
         txtLatitud.Visible = false;
         txtLongitud.Visible = false;
+
         cbx_Region.Items.Add("Seleccione...");
         cbxBaterias.Items.Add("Ninguna");
         cbxPanel.Items.Add("Ninguno");
@@ -43,6 +46,7 @@ public partial class Inicio : Form
         list.Hide();
         btnLista.Enabled = false;
     }
+
 
     private void LoadDataTable()
     {
@@ -234,9 +238,10 @@ public partial class Inicio : Form
                 .FirstOrDefault();
             if (comuna != null)
             {
-                txtInclinacion.Text = (Math.Truncate(comuna.LAT + -21)*-1).ToString();
+                txtInclinacion.Text = (Math.Truncate(comuna.LAT + -21) * -1).ToString();
+                Inicio.comuna = comuna;
             }
-            
+
             txtInclinacion.Enabled = true;
             return;
         }
@@ -388,7 +393,9 @@ public partial class Inicio : Form
 
     private void cbxPanel_SelectedValueChanged(object sender, EventArgs e)
     {
-        panel = listaPaneles.Where(x => x.Tipo == cbxPanel.SelectedItem.ToString()).Select(x => x).FirstOrDefault();
+        panel = (from p in listaPaneles
+                 where p.Tipo == cbxPanel.SelectedItem.ToString()
+                 select p).FirstOrDefault();
         if (c.Voltaje != 0)
         {
             cond.RescatarVariables(c, true);
@@ -496,6 +503,7 @@ public partial class Inicio : Form
         cbx_Comuna.Enabled = true;
         var nombres = (from c in ListComunas where c.Region == cbx_Region.SelectedIndex select c.COMUNA).ToArray();
         cbx_Comuna.Items.AddRange(nombres);
+        region = cbx_Region.SelectedText;
     }
 
     private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -653,6 +661,7 @@ public partial class Inicio : Form
             DesviationLost = appState.DesviationLost;
             INC = appState.INC;
             cbx_Region.SelectedIndex = appState.RegionSelectedIndex;
+            region = cbx_Region.SelectedItem.ToString();
             cbx_Comuna.SelectedIndex = appState.ComunaSelectedIndex;
             txtInclinacion.Text = appState.inclinacion;
             cbxPanel.SelectedIndex = appState.PanelSelectedIndex;
@@ -692,12 +701,17 @@ public partial class Inicio : Form
 
     private void Ayuda()
     {
-        //Aqui lo de agustin
+        var info = new webViewInfo(this, 1);
+        info.Show();
+        Hide();
     }
 
     private void Info()
     {
-        //Aqui lo de agustin
+        //info
+        var info = new webViewInfo(this, 2);
+        info.Show();
+        Hide();
     }
 
     private void Inicio_FormClosed(object sender, FormClosedEventArgs e)
@@ -722,7 +736,7 @@ public partial class Inicio : Form
 
     private void toolStripMenuItem2_Click(object sender, EventArgs e)
     {
-        Ayuda();
+
     }
 
     private void toolStripMenuItem3_Click(object sender, EventArgs e)
@@ -751,6 +765,8 @@ public partial class Inicio : Form
     public static List<Panel> listaPaneles = Controller_Equipo.ListaPaneles();
     public static List<Inversor> listaInversores = Controller_Equipo.ListaInversores();
 
+    public static Comuna comuna = new();
+
     public static double ConsumoPromedio;
     public static double PerdidasConversion;
     public static double TotalCorregido;
@@ -764,17 +780,7 @@ public partial class Inicio : Form
     private ListaEquipamiento list;
     private Diseño dis;
     private List<Comuna> ListComunas;
-
-    public ToolTip globo()
-    {
-        ToolTip toolTip = new ToolTip();
-        toolTip.AutoPopDelay = 5000;
-        toolTip.InitialDelay = 200; // Tiempo de espera antes de mostrar el globo en milisegundos (1 segundo)
-        toolTip.ReshowDelay = 500;   // Tiempo de espera antes de volver a mostrar el globo en milisegundos (0.5 segundos)
-        toolTip.ShowAlways = true;
-
-        return toolTip;
-    }
+    public static string region;
 
     public ToolTip g;
     public static double RadPropose;
@@ -789,6 +795,16 @@ public partial class Inicio : Form
 
     #endregion VariablesGlobales
 
+    public ToolTip globo()
+    {
+        ToolTip toolTip = new ToolTip();
+        toolTip.AutoPopDelay = 5000;
+        toolTip.InitialDelay = 200; // Tiempo de espera antes de mostrar el globo en milisegundos (1 segundo)
+        toolTip.ReshowDelay = 500;   // Tiempo de espera antes de volver a mostrar el globo en milisegundos (0.5 segundos)
+        toolTip.ShowAlways = true;
+
+        return toolTip;
+    }
     private void chxGlobos_CheckedChanged(object sender, EventArgs e)
     {
         SetGlobos();
@@ -816,5 +832,15 @@ public partial class Inicio : Form
 
     private void Inicio_FormClosing(object sender, FormClosingEventArgs e)
     {
+    }
+
+    private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        MessageBox.Show("UNIVERSIDAD ADOLFO IBAÑEZ\nMASTER EN CIENCIAS DEL DISEÑO\nSolCAD v. 1.2\r\nAplicación para el diseño asistido por computador de sistemas fotovoltaicos de escala domiciliaria.\r\n\r\nAgustín A. Gallardo P.\r\n\r\n\r\nSantiago, 2023\r\n", "Acerca de", MessageBoxButtons.OK, MessageBoxIcon.Information);
+    }
+
+    private void ayudaToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        Ayuda();
     }
 }

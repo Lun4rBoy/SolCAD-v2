@@ -32,7 +32,9 @@ namespace SolCAD_v2.Forms
                 try
                 {
                     dgEquipamiento.Rows.RemoveAt(dgEquipamiento.Rows.Count - 2);
-                }catch{}
+                }
+                catch { }
+
                 
             }
             else
@@ -47,7 +49,9 @@ namespace SolCAD_v2.Forms
                 txtPerConversion.Text = Inicio.PerdidasConversion.ToString();
                 txtTotalCorregido.Text = Inicio.TotalCorregido.ToString();
                 txtPorcientoPer.Text = Inicio.PorcentajePerdidas;
-            }catch{}
+                ListaEquipo = listaEquipos();
+            }
+            catch { }
 
             formInicio = inicio;
             g = inicio.globo();
@@ -120,7 +124,8 @@ namespace SolCAD_v2.Forms
 
             #endregion Variables
 
-            if (ListaEquipo.Count == 0)
+            if (ListaEquipo == null) return;
+            if (!ListaEquipo.Any())
             {
                 MessageBox.Show("El listado esta vacio, ingrese al menos 1 fila!");
                 return;
@@ -159,13 +164,18 @@ namespace SolCAD_v2.Forms
                 Debug.WriteLine(ex.Message); return;
             }
 
-            formInicio.btnCondicionesDiseño.Enabled = true;
-
-            txtPromedioTotal.Text = Math.Round(Inicio.ConsumoPromedio, 2).ToString();
-            txtPerConversion.Text = Math.Round(Inicio.PerdidasConversion, 2).ToString();
-            txtTotalCorregido.Text = Math.Round(Inicio.TotalCorregido, 2).ToString();
-            Inicio.PorcentajePerdidas = txtPorcientoPer.Text;
+            try
+            {
+                formInicio.btnCondicionesDiseño.Enabled = true;
+            }
+            catch(Exception ex) { }
             
+
+            txtPromedioTotal.Text = Math.Round(Inicio.ConsumoPromedio, 1).ToString();
+            txtPerConversion.Text = Math.Round(Inicio.PerdidasConversion, 1).ToString();
+            txtTotalCorregido.Text = Math.Round(Inicio.TotalCorregido, 1).ToString();
+            Inicio.PorcentajePerdidas = txtPorcientoPer.Text;
+
         }
 
         private void dgEquipamiento_KeyDown(object sender, KeyEventArgs e)
@@ -229,7 +239,7 @@ namespace SolCAD_v2.Forms
 
             string value = e.FormattedValue.ToString();
 
-            if(string.IsNullOrEmpty((value))) return;
+            if (string.IsNullOrEmpty((value))) return;
             if (int.TryParse(value, out int result)) return;
 
             dgEquipamiento.Rows[e.RowIndex].ErrorText = "Debe ingresar un valor numérico.";
@@ -250,11 +260,12 @@ namespace SolCAD_v2.Forms
                 int PowB = Convert.ToInt32(row.Cells["PotenciaB"].Value);
                 double PerA = Convert.ToDouble(row.Cells["PorcientoA"].Value) / 100;
                 double PerB = 1 - PerA;
-                var Prom = Math.Round((PowA * PerA) + (PowB * PerB), 2);
+                var Prom = Math.Round((PowA * PerA) + (PowB * PerB), 1);
 
+                if ((row.Cells["PotenciaA"].Value is null) || row.Cells["PotenciaB"].Value is null) return;
                 row.Cells["PorcientoB"].Value = Math.Round(PerB * 100);
                 row.Cells["Promedio"].Value = Prom;
-                row.Cells["SubTotal"].Value = Math.Round(Convert.ToInt32(row.Cells["Qty"].Value) * Prom, 2);
+                row.Cells["SubTotal"].Value = Math.Round(Convert.ToInt32(row.Cells["Qty"].Value) * Prom, 1);
                 if (!int.TryParse(txtPorcientoPer.Text.Replace("%", ""), out int value)) return;
                 if (value == 0) return;
                 Calculos();

@@ -22,7 +22,7 @@ public class Condicion
     public double VolumenBanco { get; set; }
     public double PesoArreglo { get; set; }
     public double AreaArreglo { get; set; }
-    public double SombraPoryectada { get; set; }
+    public double SombraProyectada { get; set; }
     public double PotenciaTotalBruta { get; set; }
     public double PotenciaTotalCorregida { get; set; }
     public double EnergiaDiaria { get; set; }

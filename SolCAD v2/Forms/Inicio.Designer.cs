@@ -49,14 +49,16 @@
             guardarToolStripMenuItem = new ToolStripMenuItem();
             salirToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem2 = new ToolStripMenuItem();
+            ayudaToolStripMenuItem = new ToolStripMenuItem();
+            acercaDeToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem3 = new ToolStripMenuItem();
             tsMenu = new ToolStrip();
             toolStripButton1 = new ToolStripButton();
             toolStripButton2 = new ToolStripButton();
-            toolStripButton3 = new ToolStripButton();
-            toolStripSeparator1 = new ToolStripSeparator();
-            toolStripButton4 = new ToolStripButton();
             toolStripButton5 = new ToolStripButton();
+            toolStripButton4 = new ToolStripButton();
+            toolStripSeparator1 = new ToolStripSeparator();
+            toolStripButton3 = new ToolStripButton();
             groupBox4 = new GroupBox();
             label10 = new Label();
             label9 = new Label();
@@ -117,7 +119,7 @@
             groupBox1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox1.Location = new Point(12, 9);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(303, 132);
+            groupBox1.Size = new Size(303, 135);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "UBICACION";
@@ -221,9 +223,10 @@
             groupBox2.Controls.Add(chxAhorro);
             groupBox2.Controls.Add(chxGlobos);
             groupBox2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox2.Location = new Point(326, 9);
+            groupBox2.Location = new Point(328, 10);
+            groupBox2.Margin = new Padding(0);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(207, 132);
+            groupBox2.Size = new Size(303, 135);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "HERRAMIENTAS";
@@ -234,7 +237,7 @@
             chxAhorro.Checked = true;
             chxAhorro.CheckState = CheckState.Checked;
             chxAhorro.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            chxAhorro.Location = new Point(11, 60);
+            chxAhorro.Location = new Point(25, 58);
             chxAhorro.Name = "chxAhorro";
             chxAhorro.Size = new Size(63, 19);
             chxAhorro.TabIndex = 1;
@@ -246,7 +249,7 @@
             // 
             chxGlobos.AutoSize = true;
             chxGlobos.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            chxGlobos.Location = new Point(12, 31);
+            chxGlobos.Location = new Point(26, 29);
             chxGlobos.Name = "chxGlobos";
             chxGlobos.Size = new Size(63, 19);
             chxGlobos.TabIndex = 0;
@@ -273,7 +276,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, toolStripMenuItem2, toolStripMenuItem3 });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(554, 24);
+            menuStrip1.Size = new Size(640, 24);
             menuStrip1.TabIndex = 3;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -307,10 +310,25 @@
             // 
             // toolStripMenuItem2
             // 
+            toolStripMenuItem2.DropDownItems.AddRange(new ToolStripItem[] { ayudaToolStripMenuItem, acercaDeToolStripMenuItem });
             toolStripMenuItem2.Name = "toolStripMenuItem2";
             toolStripMenuItem2.Size = new Size(53, 20);
             toolStripMenuItem2.Text = "Ayuda";
             toolStripMenuItem2.Click += toolStripMenuItem2_Click;
+            // 
+            // ayudaToolStripMenuItem
+            // 
+            ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
+            ayudaToolStripMenuItem.Size = new Size(180, 22);
+            ayudaToolStripMenuItem.Text = "Ayuda";
+            ayudaToolStripMenuItem.Click += ayudaToolStripMenuItem_Click;
+            // 
+            // acercaDeToolStripMenuItem
+            // 
+            acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
+            acercaDeToolStripMenuItem.Size = new Size(180, 22);
+            acercaDeToolStripMenuItem.Text = "Acerca de";
+            acercaDeToolStripMenuItem.Click += acercaDeToolStripMenuItem_Click;
             // 
             // toolStripMenuItem3
             // 
@@ -323,11 +341,11 @@
             // 
             tsMenu.BackColor = SystemColors.Control;
             tsMenu.ImageScalingSize = new Size(24, 24);
-            tsMenu.Items.AddRange(new ToolStripItem[] { toolStripButton1, toolStripButton2, toolStripButton3, toolStripSeparator1, toolStripButton4, toolStripButton5 });
+            tsMenu.Items.AddRange(new ToolStripItem[] { toolStripButton1, toolStripButton2, toolStripButton5, toolStripButton4, toolStripSeparator1, toolStripButton3 });
             tsMenu.Location = new Point(0, 24);
             tsMenu.Name = "tsMenu";
             tsMenu.Padding = new Padding(0, 0, 2, 0);
-            tsMenu.Size = new Size(554, 31);
+            tsMenu.Size = new Size(640, 31);
             tsMenu.TabIndex = 4;
             tsMenu.Text = "toolStrip1";
             // 
@@ -351,20 +369,15 @@
             toolStripButton2.Text = "Guardar";
             toolStripButton2.Click += toolStripButton2_Click;
             // 
-            // toolStripButton3
+            // toolStripButton5
             // 
-            toolStripButton3.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton3.Image = (Image)resources.GetObject("toolStripButton3.Image");
-            toolStripButton3.ImageTransparentColor = Color.Magenta;
-            toolStripButton3.Name = "toolStripButton3";
-            toolStripButton3.Size = new Size(28, 28);
-            toolStripButton3.Text = "Salir";
-            toolStripButton3.Click += toolStripButton3_Click;
-            // 
-            // toolStripSeparator1
-            // 
-            toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 31);
+            toolStripButton5.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            toolStripButton5.Image = (Image)resources.GetObject("toolStripButton5.Image");
+            toolStripButton5.ImageTransparentColor = Color.Magenta;
+            toolStripButton5.Name = "toolStripButton5";
+            toolStripButton5.Size = new Size(28, 28);
+            toolStripButton5.Text = "Informacion";
+            toolStripButton5.Click += toolStripButton5_Click;
             // 
             // toolStripButton4
             // 
@@ -376,15 +389,20 @@
             toolStripButton4.Text = "Ayuda";
             toolStripButton4.Click += toolStripButton4_Click;
             // 
-            // toolStripButton5
+            // toolStripSeparator1
             // 
-            toolStripButton5.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton5.Image = (Image)resources.GetObject("toolStripButton5.Image");
-            toolStripButton5.ImageTransparentColor = Color.Magenta;
-            toolStripButton5.Name = "toolStripButton5";
-            toolStripButton5.Size = new Size(28, 28);
-            toolStripButton5.Text = "Informacion";
-            toolStripButton5.Click += toolStripButton5_Click;
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(6, 31);
+            // 
+            // toolStripButton3
+            // 
+            toolStripButton3.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            toolStripButton3.Image = (Image)resources.GetObject("toolStripButton3.Image");
+            toolStripButton3.ImageTransparentColor = Color.Magenta;
+            toolStripButton3.Name = "toolStripButton3";
+            toolStripButton3.Size = new Size(28, 28);
+            toolStripButton3.Text = "Salir";
+            toolStripButton3.Click += toolStripButton3_Click;
             // 
             // groupBox4
             // 
@@ -396,9 +414,9 @@
             groupBox4.Controls.Add(cbxDescargaMax);
             groupBox4.Controls.Add(cbxBaterias);
             groupBox4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox4.Location = new Point(326, 148);
+            groupBox4.Location = new Point(328, 148);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(204, 135);
+            groupBox4.Size = new Size(303, 135);
             groupBox4.TabIndex = 5;
             groupBox4.TabStop = false;
             groupBox4.Text = "BATERIAS Y PANELES";
@@ -407,7 +425,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label10.Location = new Point(11, 85);
+            label10.Location = new Point(67, 91);
             label10.Name = "label10";
             label10.Size = new Size(36, 15);
             label10.TabIndex = 5;
@@ -417,7 +435,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label9.Location = new Point(11, 59);
+            label9.Location = new Point(67, 65);
             label9.Name = "label9";
             label9.Size = new Size(84, 15);
             label9.TabIndex = 4;
@@ -427,7 +445,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(11, 32);
+            label8.Location = new Point(67, 38);
             label8.Name = "label8";
             label8.Size = new Size(43, 15);
             label8.TabIndex = 3;
@@ -439,7 +457,7 @@
             cbxPanel.Enabled = false;
             cbxPanel.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             cbxPanel.FormattingEnabled = true;
-            cbxPanel.Location = new Point(99, 80);
+            cbxPanel.Location = new Point(155, 86);
             cbxPanel.Name = "cbxPanel";
             cbxPanel.Size = new Size(81, 23);
             cbxPanel.TabIndex = 2;
@@ -452,7 +470,7 @@
             cbxDescargaMax.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             cbxDescargaMax.FormattingEnabled = true;
             cbxDescargaMax.Items.AddRange(new object[] { "0%", "10%", "15%", "20%", "25%", "30%" });
-            cbxDescargaMax.Location = new Point(99, 54);
+            cbxDescargaMax.Location = new Point(155, 60);
             cbxDescargaMax.Name = "cbxDescargaMax";
             cbxDescargaMax.Size = new Size(81, 23);
             cbxDescargaMax.TabIndex = 1;
@@ -464,7 +482,7 @@
             cbxBaterias.Enabled = false;
             cbxBaterias.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             cbxBaterias.FormattingEnabled = true;
-            cbxBaterias.Location = new Point(99, 27);
+            cbxBaterias.Location = new Point(155, 33);
             cbxBaterias.Name = "cbxBaterias";
             cbxBaterias.Size = new Size(81, 23);
             cbxBaterias.TabIndex = 0;
@@ -631,6 +649,7 @@
             txtDic.Name = "txtDic";
             txtDic.Size = new Size(38, 25);
             txtDic.TabIndex = 11;
+            txtDic.TextAlign = HorizontalAlignment.Right;
             // 
             // txtNov
             // 
@@ -638,6 +657,7 @@
             txtNov.Name = "txtNov";
             txtNov.Size = new Size(38, 25);
             txtNov.TabIndex = 10;
+            txtNov.TextAlign = HorizontalAlignment.Right;
             // 
             // txtOct
             // 
@@ -645,6 +665,7 @@
             txtOct.Name = "txtOct";
             txtOct.Size = new Size(38, 25);
             txtOct.TabIndex = 9;
+            txtOct.TextAlign = HorizontalAlignment.Right;
             // 
             // txtSep
             // 
@@ -652,6 +673,7 @@
             txtSep.Name = "txtSep";
             txtSep.Size = new Size(38, 25);
             txtSep.TabIndex = 8;
+            txtSep.TextAlign = HorizontalAlignment.Right;
             // 
             // txtAgo
             // 
@@ -659,6 +681,7 @@
             txtAgo.Name = "txtAgo";
             txtAgo.Size = new Size(38, 25);
             txtAgo.TabIndex = 7;
+            txtAgo.TextAlign = HorizontalAlignment.Right;
             // 
             // txtJul
             // 
@@ -666,6 +689,7 @@
             txtJul.Name = "txtJul";
             txtJul.Size = new Size(38, 25);
             txtJul.TabIndex = 6;
+            txtJul.TextAlign = HorizontalAlignment.Right;
             // 
             // txtJun
             // 
@@ -673,6 +697,7 @@
             txtJun.Name = "txtJun";
             txtJun.Size = new Size(38, 25);
             txtJun.TabIndex = 5;
+            txtJun.TextAlign = HorizontalAlignment.Right;
             // 
             // txtMay
             // 
@@ -680,6 +705,7 @@
             txtMay.Name = "txtMay";
             txtMay.Size = new Size(38, 25);
             txtMay.TabIndex = 4;
+            txtMay.TextAlign = HorizontalAlignment.Right;
             // 
             // txtAbr
             // 
@@ -687,6 +713,7 @@
             txtAbr.Name = "txtAbr";
             txtAbr.Size = new Size(38, 25);
             txtAbr.TabIndex = 3;
+            txtAbr.TextAlign = HorizontalAlignment.Right;
             // 
             // txtMar
             // 
@@ -694,6 +721,7 @@
             txtMar.Name = "txtMar";
             txtMar.Size = new Size(38, 25);
             txtMar.TabIndex = 2;
+            txtMar.TextAlign = HorizontalAlignment.Right;
             // 
             // txtFeb
             // 
@@ -701,6 +729,7 @@
             txtFeb.Name = "txtFeb";
             txtFeb.Size = new Size(38, 25);
             txtFeb.TabIndex = 1;
+            txtFeb.TextAlign = HorizontalAlignment.Right;
             // 
             // txtEne
             // 
@@ -708,6 +737,7 @@
             txtEne.Name = "txtEne";
             txtEne.Size = new Size(38, 25);
             txtEne.TabIndex = 0;
+            txtEne.TextAlign = HorizontalAlignment.Right;
             // 
             // btnDiseñar
             // 
@@ -715,9 +745,9 @@
             btnDiseñar.BackColor = SystemColors.ButtonFace;
             btnDiseñar.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnDiseñar.ForeColor = SystemColors.MenuHighlight;
-            btnDiseñar.Location = new Point(382, 331);
+            btnDiseñar.Location = new Point(415, 319);
             btnDiseñar.Name = "btnDiseñar";
-            btnDiseñar.Size = new Size(98, 47);
+            btnDiseñar.Size = new Size(159, 75);
             btnDiseñar.TabIndex = 8;
             btnDiseñar.Text = "DISEÑAR";
             btnDiseñar.UseVisualStyleBackColor = false;
@@ -760,19 +790,20 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 55);
             panel1.Name = "panel1";
-            panel1.Size = new Size(554, 433);
+            panel1.Size = new Size(640, 433);
             panel1.TabIndex = 10;
             // 
             // Inicio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(554, 488);
+            ClientSize = new Size(640, 488);
             Controls.Add(panel1);
             Controls.Add(tsMenu);
             Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
-            MinimumSize = new Size(478, 527);
+            MinimumSize = new Size(656, 527);
             Name = "Inicio";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SolCAD - MCD 2023";
@@ -873,5 +904,7 @@
         private ToolStripMenuItem guardarToolStripMenuItem;
         private ToolStripMenuItem salirToolStripMenuItem;
         private Panel panel1;
+        private ToolStripMenuItem ayudaToolStripMenuItem;
+        private ToolStripMenuItem acercaDeToolStripMenuItem;
     }
 }

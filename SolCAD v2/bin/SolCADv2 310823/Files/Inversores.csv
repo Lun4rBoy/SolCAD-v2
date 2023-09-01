@@ -1,0 +1,4 @@
+Tipo;Ancho;Largo;Espesor;Peso;Eff;Consumo;ImaxPV;ImaxAC;VmpptMin;VmpptMax;VocMin;VocMax
+PLI 5000-48;29.8;46.9;13;11.5;0.93;50;80;60;60;115;72;145
+PLI 2400-24;27.5;38.5;11.4;7.6;0.91;45;40;60;30;80;36;100
+PLI 1000-12;27.5;38.5;11.5;6.9;0.9;17;40;20;15;80;18;100

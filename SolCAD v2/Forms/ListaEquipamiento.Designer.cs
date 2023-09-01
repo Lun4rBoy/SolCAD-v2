@@ -28,233 +28,252 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgEquipamiento = new System.Windows.Forms.DataGridView();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PotenciaA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PorcientoA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PotenciaB = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PorcientoB = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Promedio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtPorcientoPer = new System.Windows.Forms.TextBox();
-            this.txtTotalCorregido = new System.Windows.Forms.TextBox();
-            this.txtPerConversion = new System.Windows.Forms.TextBox();
-            this.txtPromedioTotal = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgEquipamiento)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.SuspendLayout();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaEquipamiento));
+            dgEquipamiento = new DataGridView();
+            Qty = new DataGridViewTextBoxColumn();
+            Nombre = new DataGridViewTextBoxColumn();
+            PotenciaA = new DataGridViewTextBoxColumn();
+            PorcientoA = new DataGridViewTextBoxColumn();
+            PotenciaB = new DataGridViewTextBoxColumn();
+            PorcientoB = new DataGridViewTextBoxColumn();
+            Promedio = new DataGridViewTextBoxColumn();
+            SubTotal = new DataGridViewTextBoxColumn();
+            label1 = new Label();
+            label2 = new Label();
+            groupBox1 = new GroupBox();
+            txtPorcientoPer = new TextBox();
+            txtTotalCorregido = new TextBox();
+            txtPerConversion = new TextBox();
+            txtPromedioTotal = new TextBox();
+            label3 = new Label();
+            btnClose = new Button();
+            btnSave = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgEquipamiento).BeginInit();
+            groupBox1.SuspendLayout();
+            SuspendLayout();
             // 
             // dgEquipamiento
             // 
-            this.dgEquipamiento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgEquipamiento.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Qty,
-            this.Nombre,
-            this.PotenciaA,
-            this.PorcientoA,
-            this.PotenciaB,
-            this.PorcientoB,
-            this.Promedio,
-            this.SubTotal});
-            this.dgEquipamiento.Location = new System.Drawing.Point(12, 12);
-            this.dgEquipamiento.Name = "dgEquipamiento";
-            this.dgEquipamiento.RowTemplate.Height = 25;
-            this.dgEquipamiento.Size = new System.Drawing.Size(514, 426);
-            this.dgEquipamiento.TabIndex = 0;
-            this.dgEquipamiento.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEquipamiento_CellEndEdit);
-            this.dgEquipamiento.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgEquipamiento_CellValidating);
-            this.dgEquipamiento.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEquipamiento_CellValueChanged);
-            this.dgEquipamiento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgEquipamiento_KeyDown);
+            dgEquipamiento.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            dgEquipamiento.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgEquipamiento.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgEquipamiento.Columns.AddRange(new DataGridViewColumn[] { Qty, Nombre, PotenciaA, PorcientoA, PotenciaB, PorcientoB, Promedio, SubTotal });
+            dgEquipamiento.Location = new Point(12, 12);
+            dgEquipamiento.Name = "dgEquipamiento";
+            dgEquipamiento.RowTemplate.Height = 25;
+            dgEquipamiento.Size = new Size(514, 426);
+            dgEquipamiento.TabIndex = 0;
+            dgEquipamiento.CellEndEdit += dgEquipamiento_CellEndEdit;
+            dgEquipamiento.CellValidating += dgEquipamiento_CellValidating;
+            dgEquipamiento.CellValueChanged += dgEquipamiento_CellValueChanged;
+            dgEquipamiento.KeyDown += dgEquipamiento_KeyDown;
             // 
             // Qty
             // 
-            this.Qty.HeaderText = "Qty";
-            this.Qty.Name = "Qty";
-            this.Qty.Width = 30;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Padding = new Padding(1);
+            Qty.DefaultCellStyle = dataGridViewCellStyle1;
+            Qty.FillWeight = 73.67658F;
+            Qty.HeaderText = "Qty";
+            Qty.Name = "Qty";
             // 
             // Nombre
             // 
-            this.Nombre.HeaderText = "Equipamiento";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.Width = 130;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Padding = new Padding(1);
+            Nombre.DefaultCellStyle = dataGridViewCellStyle2;
+            Nombre.FillWeight = 284.263947F;
+            Nombre.HeaderText = "Equip.";
+            Nombre.Name = "Nombre";
             // 
             // PotenciaA
             // 
-            this.PotenciaA.HeaderText = "Pot. A";
-            this.PotenciaA.Name = "PotenciaA";
-            this.PotenciaA.Width = 40;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Padding = new Padding(1);
+            PotenciaA.DefaultCellStyle = dataGridViewCellStyle3;
+            PotenciaA.FillWeight = 73.67658F;
+            PotenciaA.HeaderText = "Pot. A";
+            PotenciaA.Name = "PotenciaA";
             // 
             // PorcientoA
             // 
-            this.PorcientoA.HeaderText = "%A";
-            this.PorcientoA.Name = "PorcientoA";
-            this.PorcientoA.Width = 40;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Padding = new Padding(1);
+            PorcientoA.DefaultCellStyle = dataGridViewCellStyle4;
+            PorcientoA.FillWeight = 73.67658F;
+            PorcientoA.HeaderText = "%A";
+            PorcientoA.Name = "PorcientoA";
             // 
             // PotenciaB
             // 
-            this.PotenciaB.HeaderText = "Pot. B";
-            this.PotenciaB.Name = "PotenciaB";
-            this.PotenciaB.Width = 40;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Padding = new Padding(1);
+            PotenciaB.DefaultCellStyle = dataGridViewCellStyle5;
+            PotenciaB.FillWeight = 73.67658F;
+            PotenciaB.HeaderText = "Pot. B";
+            PotenciaB.Name = "PotenciaB";
             // 
             // PorcientoB
             // 
-            this.PorcientoB.HeaderText = "%B";
-            this.PorcientoB.Name = "PorcientoB";
-            this.PorcientoB.ReadOnly = true;
-            this.PorcientoB.Width = 40;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Padding = new Padding(1);
+            PorcientoB.DefaultCellStyle = dataGridViewCellStyle6;
+            PorcientoB.FillWeight = 73.67658F;
+            PorcientoB.HeaderText = "%B";
+            PorcientoB.Name = "PorcientoB";
+            PorcientoB.ReadOnly = true;
             // 
             // Promedio
             // 
-            this.Promedio.HeaderText = "Promedio";
-            this.Promedio.Name = "Promedio";
-            this.Promedio.ReadOnly = true;
-            this.Promedio.Width = 90;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Padding = new Padding(1);
+            Promedio.DefaultCellStyle = dataGridViewCellStyle7;
+            Promedio.FillWeight = 73.67658F;
+            Promedio.HeaderText = "Media";
+            Promedio.Name = "Promedio";
+            Promedio.ReadOnly = true;
             // 
             // SubTotal
             // 
-            this.SubTotal.HeaderText = "Sub Total";
-            this.SubTotal.Name = "SubTotal";
-            this.SubTotal.ReadOnly = true;
-            this.SubTotal.Width = 60;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.Padding = new Padding(1);
+            SubTotal.DefaultCellStyle = dataGridViewCellStyle8;
+            SubTotal.FillWeight = 73.67658F;
+            SubTotal.HeaderText = "Sub Total";
+            SubTotal.Name = "SubTotal";
+            SubTotal.ReadOnly = true;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(141, 15);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Consumo promedio total";
+            label1.AutoSize = true;
+            label1.Location = new Point(6, 19);
+            label1.Name = "label1";
+            label1.Size = new Size(141, 15);
+            label1.TabIndex = 1;
+            label1.Text = "Consumo promedio total";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 50);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(131, 15);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Perdidas de Conversion";
+            label2.AutoSize = true;
+            label2.Location = new Point(6, 50);
+            label2.Name = "label2";
+            label2.Size = new Size(131, 15);
+            label2.TabIndex = 2;
+            label2.Text = "Perdidas de Conversion";
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtPorcientoPer);
-            this.groupBox1.Controls.Add(this.txtTotalCorregido);
-            this.groupBox1.Controls.Add(this.txtPerConversion);
-            this.groupBox1.Controls.Add(this.txtPromedioTotal);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(163, 444);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(363, 118);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
+            groupBox1.Controls.Add(txtPorcientoPer);
+            groupBox1.Controls.Add(txtTotalCorregido);
+            groupBox1.Controls.Add(txtPerConversion);
+            groupBox1.Controls.Add(txtPromedioTotal);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Location = new Point(163, 444);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(363, 118);
+            groupBox1.TabIndex = 3;
+            groupBox1.TabStop = false;
             // 
             // txtPorcientoPer
             // 
-            this.txtPorcientoPer.Location = new System.Drawing.Point(168, 47);
-            this.txtPorcientoPer.Name = "txtPorcientoPer";
-            this.txtPorcientoPer.Size = new System.Drawing.Size(51, 23);
-            this.txtPorcientoPer.TabIndex = 7;
-            this.txtPorcientoPer.Text = "0%";
-            this.txtPorcientoPer.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            txtPorcientoPer.Location = new Point(168, 47);
+            txtPorcientoPer.Name = "txtPorcientoPer";
+            txtPorcientoPer.Size = new Size(51, 23);
+            txtPorcientoPer.TabIndex = 7;
+            txtPorcientoPer.Text = "0%";
+            txtPorcientoPer.TextAlign = HorizontalAlignment.Right;
             // 
             // txtTotalCorregido
             // 
-            this.txtTotalCorregido.Location = new System.Drawing.Point(257, 77);
-            this.txtTotalCorregido.Name = "txtTotalCorregido";
-            this.txtTotalCorregido.ReadOnly = true;
-            this.txtTotalCorregido.Size = new System.Drawing.Size(100, 23);
-            this.txtTotalCorregido.TabIndex = 6;
-            this.txtTotalCorregido.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtTotalCorregido.Location = new Point(257, 77);
+            txtTotalCorregido.Name = "txtTotalCorregido";
+            txtTotalCorregido.ReadOnly = true;
+            txtTotalCorregido.Size = new Size(100, 23);
+            txtTotalCorregido.TabIndex = 6;
+            txtTotalCorregido.TextAlign = HorizontalAlignment.Right;
             // 
             // txtPerConversion
             // 
-            this.txtPerConversion.Location = new System.Drawing.Point(257, 47);
-            this.txtPerConversion.Name = "txtPerConversion";
-            this.txtPerConversion.ReadOnly = true;
-            this.txtPerConversion.Size = new System.Drawing.Size(100, 23);
-            this.txtPerConversion.TabIndex = 5;
-            this.txtPerConversion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtPerConversion.Location = new Point(257, 47);
+            txtPerConversion.Name = "txtPerConversion";
+            txtPerConversion.ReadOnly = true;
+            txtPerConversion.Size = new Size(100, 23);
+            txtPerConversion.TabIndex = 5;
+            txtPerConversion.TextAlign = HorizontalAlignment.Right;
             // 
             // txtPromedioTotal
             // 
-            this.txtPromedioTotal.Location = new System.Drawing.Point(257, 16);
-            this.txtPromedioTotal.Name = "txtPromedioTotal";
-            this.txtPromedioTotal.ReadOnly = true;
-            this.txtPromedioTotal.Size = new System.Drawing.Size(100, 23);
-            this.txtPromedioTotal.TabIndex = 4;
-            this.txtPromedioTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtPromedioTotal.Location = new Point(257, 16);
+            txtPromedioTotal.Name = "txtPromedioTotal";
+            txtPromedioTotal.ReadOnly = true;
+            txtPromedioTotal.Size = new Size(100, 23);
+            txtPromedioTotal.TabIndex = 4;
+            txtPromedioTotal.TextAlign = HorizontalAlignment.Right;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 80);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(188, 15);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Consumo eléctrico total corregido";
+            label3.AutoSize = true;
+            label3.Location = new Point(6, 80);
+            label3.Name = "label3";
+            label3.Size = new Size(188, 15);
+            label3.TabIndex = 3;
+            label3.Text = "Consumo eléctrico total corregido";
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(12, 568);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(106, 36);
-            this.btnClose.TabIndex = 4;
-            this.btnClose.Text = "Cerrar";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            btnClose.Location = new Point(12, 568);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(106, 36);
+            btnClose.TabIndex = 4;
+            btnClose.Text = "Cerrar";
+            btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += btnClose_Click;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(420, 568);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(106, 36);
-            this.btnSave.TabIndex = 5;
-            this.btnSave.Text = "Guardar";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            btnSave.Location = new Point(420, 568);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(106, 36);
+            btnSave.TabIndex = 5;
+            btnSave.Text = "Guardar";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // ListaEquipamiento
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(539, 616);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.dgEquipamiento);
-            this.MaximumSize = new System.Drawing.Size(555, 655);
-            this.MinimumSize = new System.Drawing.Size(555, 655);
-            this.Name = "ListaEquipamiento";
-            this.Text = "ListaEquipamiento";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ListaEquipamiento_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ListaEquipamiento_FormClosed);
-            ((System.ComponentModel.ISupportInitialize)(this.dgEquipamiento)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(539, 616);
+            Controls.Add(btnSave);
+            Controls.Add(btnClose);
+            Controls.Add(groupBox1);
+            Controls.Add(dgEquipamiento);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximumSize = new Size(555, 655);
+            MinimumSize = new Size(555, 655);
+            Name = "ListaEquipamiento";
+            Text = "Listado Consumo";
+            FormClosing += ListaEquipamiento_FormClosing;
+            FormClosed += ListaEquipamiento_FormClosed;
+            ((System.ComponentModel.ISupportInitialize)dgEquipamiento).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
 
         private DataGridView dgEquipamiento;
-        private DataGridViewTextBoxColumn Qty;
-        private DataGridViewTextBoxColumn Nombre;
-        private DataGridViewTextBoxColumn PotenciaA;
-        private DataGridViewTextBoxColumn PorcientoA;
-        private DataGridViewTextBoxColumn PotenciaB;
-        private DataGridViewTextBoxColumn PorcientoB;
-        private DataGridViewTextBoxColumn Promedio;
-        private DataGridViewTextBoxColumn SubTotal;
         private Label label1;
         private Label label2;
         private GroupBox groupBox1;
@@ -265,5 +284,13 @@
         private Label label3;
         private Button btnClose;
         private Button btnSave;
+        private DataGridViewTextBoxColumn Qty;
+        private DataGridViewTextBoxColumn Nombre;
+        private DataGridViewTextBoxColumn PotenciaA;
+        private DataGridViewTextBoxColumn PorcientoA;
+        private DataGridViewTextBoxColumn PotenciaB;
+        private DataGridViewTextBoxColumn PorcientoB;
+        private DataGridViewTextBoxColumn Promedio;
+        private DataGridViewTextBoxColumn SubTotal;
     }
 }
