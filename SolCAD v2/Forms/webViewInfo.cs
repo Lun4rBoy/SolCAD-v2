@@ -39,7 +39,9 @@ namespace SolCAD_v2.Forms
                         wvInfo.CoreWebView2.Navigate("file://" + htmData);
                         break;
                     case 2:
-                        wvInfo.Source = new Uri("https://matias.ma/nsfw/");
+                        //wvInfo.Source = new Uri("https://matias.ma/nsfw/");
+                        string htmData2 = Path.Combine(Environment.CurrentDirectory + "/webSource/Capsulas.htm");
+                        wvInfo.CoreWebView2.Navigate("file://" + htmData2);
                         break;
                 }
             }

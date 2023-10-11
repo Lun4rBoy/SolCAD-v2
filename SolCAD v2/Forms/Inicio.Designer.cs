@@ -67,6 +67,8 @@
             cbxDescargaMax = new ComboBox();
             cbxBaterias = new ComboBox();
             gbxBoleta = new GroupBox();
+            label1 = new Label();
+            txtPrecioKwh = new TextBox();
             label16 = new Label();
             label17 = new Label();
             label18 = new Label();
@@ -154,6 +156,7 @@
             txtLatitud.Size = new Size(100, 23);
             txtLatitud.TabIndex = 8;
             txtLatitud.TextAlign = HorizontalAlignment.Center;
+            txtLatitud.TextChanged += txtLatitud_TextChanged;
             // 
             // txtInclinacion
             // 
@@ -319,14 +322,14 @@
             // ayudaToolStripMenuItem
             // 
             ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
-            ayudaToolStripMenuItem.Size = new Size(180, 22);
+            ayudaToolStripMenuItem.Size = new Size(126, 22);
             ayudaToolStripMenuItem.Text = "Ayuda";
             ayudaToolStripMenuItem.Click += ayudaToolStripMenuItem_Click;
             // 
             // acercaDeToolStripMenuItem
             // 
             acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            acercaDeToolStripMenuItem.Size = new Size(180, 22);
+            acercaDeToolStripMenuItem.Size = new Size(126, 22);
             acercaDeToolStripMenuItem.Text = "Acerca de";
             acercaDeToolStripMenuItem.Click += acercaDeToolStripMenuItem_Click;
             // 
@@ -414,9 +417,9 @@
             groupBox4.Controls.Add(cbxDescargaMax);
             groupBox4.Controls.Add(cbxBaterias);
             groupBox4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox4.Location = new Point(328, 148);
+            groupBox4.Location = new Point(328, 150);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(303, 135);
+            groupBox4.Size = new Size(303, 127);
             groupBox4.TabIndex = 5;
             groupBox4.TabStop = false;
             groupBox4.Text = "BATERIAS Y PANELES";
@@ -425,7 +428,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label10.Location = new Point(67, 91);
+            label10.Location = new Point(46, 91);
             label10.Name = "label10";
             label10.Size = new Size(36, 15);
             label10.TabIndex = 5;
@@ -435,7 +438,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label9.Location = new Point(67, 65);
+            label9.Location = new Point(46, 65);
             label9.Name = "label9";
             label9.Size = new Size(84, 15);
             label9.TabIndex = 4;
@@ -445,7 +448,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(67, 38);
+            label8.Location = new Point(46, 38);
             label8.Name = "label8";
             label8.Size = new Size(43, 15);
             label8.TabIndex = 3;
@@ -457,9 +460,9 @@
             cbxPanel.Enabled = false;
             cbxPanel.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             cbxPanel.FormattingEnabled = true;
-            cbxPanel.Location = new Point(155, 86);
+            cbxPanel.Location = new Point(134, 86);
             cbxPanel.Name = "cbxPanel";
-            cbxPanel.Size = new Size(81, 23);
+            cbxPanel.Size = new Size(119, 23);
             cbxPanel.TabIndex = 2;
             cbxPanel.SelectedValueChanged += cbxPanel_SelectedValueChanged;
             // 
@@ -470,9 +473,9 @@
             cbxDescargaMax.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             cbxDescargaMax.FormattingEnabled = true;
             cbxDescargaMax.Items.AddRange(new object[] { "0%", "10%", "15%", "20%", "25%", "30%" });
-            cbxDescargaMax.Location = new Point(155, 60);
+            cbxDescargaMax.Location = new Point(134, 60);
             cbxDescargaMax.Name = "cbxDescargaMax";
-            cbxDescargaMax.Size = new Size(81, 23);
+            cbxDescargaMax.Size = new Size(119, 23);
             cbxDescargaMax.TabIndex = 1;
             cbxDescargaMax.SelectedValueChanged += cbxDescargaMax_SelectedValueChanged;
             // 
@@ -482,15 +485,17 @@
             cbxBaterias.Enabled = false;
             cbxBaterias.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             cbxBaterias.FormattingEnabled = true;
-            cbxBaterias.Location = new Point(155, 33);
+            cbxBaterias.Location = new Point(134, 33);
             cbxBaterias.Name = "cbxBaterias";
-            cbxBaterias.Size = new Size(81, 23);
+            cbxBaterias.Size = new Size(119, 23);
             cbxBaterias.TabIndex = 0;
             cbxBaterias.SelectedValueChanged += cbxBaterias_SelectedValueChanged;
             // 
             // gbxBoleta
             // 
             gbxBoleta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            gbxBoleta.Controls.Add(label1);
+            gbxBoleta.Controls.Add(txtPrecioKwh);
             gbxBoleta.Controls.Add(label16);
             gbxBoleta.Controls.Add(label17);
             gbxBoleta.Controls.Add(label18);
@@ -516,12 +521,30 @@
             gbxBoleta.Controls.Add(txtFeb);
             gbxBoleta.Controls.Add(txtEne);
             gbxBoleta.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            gbxBoleta.Location = new Point(12, 289);
+            gbxBoleta.Location = new Point(12, 283);
             gbxBoleta.Name = "gbxBoleta";
-            gbxBoleta.Size = new Size(303, 121);
+            gbxBoleta.Size = new Size(303, 174);
             gbxBoleta.TabIndex = 6;
             gbxBoleta.TabStop = false;
             gbxBoleta.Text = "BOLETA DE ENERGIA";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(130, 137);
+            label1.Name = "label1";
+            label1.Size = new Size(71, 15);
+            label1.TabIndex = 25;
+            label1.Text = "Precio Kw/h";
+            // 
+            // txtPrecioKwh
+            // 
+            txtPrecioKwh.Location = new Point(207, 132);
+            txtPrecioKwh.Name = "txtPrecioKwh";
+            txtPrecioKwh.Size = new Size(69, 25);
+            txtPrecioKwh.TabIndex = 24;
+            txtPrecioKwh.TextAlign = HorizontalAlignment.Right;
             // 
             // label16
             // 
@@ -745,7 +768,7 @@
             btnDiseñar.BackColor = SystemColors.ButtonFace;
             btnDiseñar.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnDiseñar.ForeColor = SystemColors.MenuHighlight;
-            btnDiseñar.Location = new Point(415, 319);
+            btnDiseñar.Location = new Point(400, 326);
             btnDiseñar.Name = "btnDiseñar";
             btnDiseñar.Size = new Size(159, 75);
             btnDiseñar.TabIndex = 8;
@@ -759,9 +782,9 @@
             groupBox3.Controls.Add(btnCondicionesDiseño);
             groupBox3.Controls.Add(btnLista);
             groupBox3.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox3.Location = new Point(12, 148);
+            groupBox3.Location = new Point(12, 150);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(303, 135);
+            groupBox3.Size = new Size(303, 127);
             groupBox3.TabIndex = 9;
             groupBox3.TabStop = false;
             groupBox3.Text = "CONDICIONES PARA EL DISEÑO";
@@ -790,14 +813,14 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 55);
             panel1.Name = "panel1";
-            panel1.Size = new Size(640, 433);
+            panel1.Size = new Size(640, 469);
             panel1.TabIndex = 10;
             // 
             // Inicio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(640, 488);
+            ClientSize = new Size(640, 524);
             Controls.Add(panel1);
             Controls.Add(tsMenu);
             Controls.Add(menuStrip1);
@@ -906,5 +929,7 @@
         private Panel panel1;
         private ToolStripMenuItem ayudaToolStripMenuItem;
         private ToolStripMenuItem acercaDeToolStripMenuItem;
+        private Label label1;
+        private TextBox txtPrecioKwh;
     }
 }

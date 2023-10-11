@@ -77,8 +77,8 @@ namespace SolCAD_v2.Csv_manager
                 document.Add(subheader2);
                 Paragraph colectorParagraph = new Paragraph(c1).SetFontSize(11);
                 document.Add(colectorParagraph);
-                document.Add(ls);
-                //document.Add(new AreaBreak());
+                //document.Add(ls);
+                document.Add(new AreaBreak());
 
                 Paragraph subheader3 = new Paragraph("Almacenamiento de energia")
                     .SetTextAlignment(TextAlignment.LEFT)
@@ -94,8 +94,8 @@ namespace SolCAD_v2.Csv_manager
                 document.Add(subheader4);
                 Paragraph conversorParagraph = new Paragraph(c3).SetFontSize(11);
                 document.Add(conversorParagraph);
-                document.Add(ls);
-                
+                //document.Add(ls);
+                document.Add(new AreaBreak());
                 Paragraph subheader5 = new Paragraph("Otros materiales")
                     .SetTextAlignment(TextAlignment.LEFT)
                     .SetFontSize(15);
@@ -121,9 +121,9 @@ namespace SolCAD_v2.Csv_manager
                     table.AddCell(consumo.Qty.ToString());
                     table.AddCell(consumo.Nombre);
                     table.AddCell(consumo.PotenciaA.ToString());
-                    table.AddCell((consumo.PorcentajeA * 100)+"%");
+                    table.AddCell((Math.Round(consumo.PorcentajeA * 100))+"%");
                     table.AddCell(consumo.PotenciaB.ToString());
-                    table.AddCell((consumo.PorcentajeB * 100)+"%");
+                    table.AddCell((Math.Round(consumo.PorcentajeB * 100))+"%");
                     table.AddCell(consumo.Promedio.ToString());
                     table.AddCell(consumo.SubTotal.ToString());
                 }

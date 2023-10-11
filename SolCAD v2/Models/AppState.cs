@@ -24,6 +24,8 @@ public class AppState
     public string inclinacion { get; set; }
     public int ComunaSelectedIndex { get; set; }
     public int RegionSelectedIndex { get; set; }
+    public double LAT { get; set; }
+    public double LON { get; set; }
     public int PanelSelectedIndex { get; set; }
     public int DescargaMaxSelectedIndex { get; set; }
     public int BateriasSelectedIndex { get; set; }
@@ -40,5 +42,5 @@ public class AppState
     public string TxtOct { get; set; }
     public string TxtNov { get; set; }
     public string TxtDic { get; set; }
-
+    public string TxtKwh { get; set; }
 }

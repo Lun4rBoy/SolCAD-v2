@@ -39,6 +39,7 @@ namespace SolCAD_v2.Forms
             if (al != null)
             {
                 a = al;
+                precioKwh = Inicio.prcKw;
 
                 titulo.Text = "Comparación de consumo y generación por mes";
                 titulo.Font = new Font("Microsoft Tai Le Bold", 18, FontStyle.Bold);
@@ -110,7 +111,15 @@ namespace SolCAD_v2.Forms
             var paneles = c.TotalPanelesArbitrario;
             var panelWp = Inicio.panel.Tipo;
 
-            var panelPot = Convert.ToInt32(panelWp.Replace("Wp", ""));
+            var panelPot = 0;
+            try
+            {
+                panelPot = Convert.ToInt32(panelWp.Replace("Wp", ""));
+            }
+            catch (Exception e)
+            {
+                panelPot = Convert.ToInt32(panelWp.ToLower().Replace("wpf", ""));
+            }
 
             var unionesParalelas = c.UnionesParalelas;
             var pesoPaneles = c.PesoArreglo;
@@ -201,14 +210,17 @@ namespace SolCAD_v2.Forms
 
             string outColector = $"{paneles}\tPaneles {panelWp}\r\n\n" +
                             $"{unionesParalelas}\tUniones paralelas {panelCalibre} mm2\r\n\n" +
-                            $"-\tPeso del arreglo {pesoPaneles} Kgs\r\n\n" +
-                            $"-\tArea del arreglo {areaPaneles:F1} m2\r\n\n" +
-                            $"-\tAltura inferior {altura} Metros\r\n\n" +
-                            $"-\tSombra proyectada {sombraProyectada:F2} Metros\r\n\n" +
                             $"{conectorMC4Y}\tConector MC-4 Y Unidades\r\n\n" +
                             $"{conectorMC4MH}\tConector MC4 MH Unidades\r\n\n" +
                             $"{estructuraPaneles}\tEstructura de Paneles\r\n\n" +
-                            $"1\tBreaker doble {panelAuto} Amp";
+                            $"1\tBreaker doble {panelAuto} Amp\r\n" +
+                            "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\r\n" +
+                            "Resultado Calculos:\r\n\n" +
+                            $"-\tPeso del arreglo {pesoPaneles} Kgs\r\n\n" +
+                            $"-\tArea del arreglo {areaPaneles:F1} m2\r\n\n" +
+                            $"-\tAltura inferior {altura} Metros\r\n\n" +
+                            $"-\tSombra proyectada {sombraProyectada:F2} Metros"
+                            ;
             txtColector.Text = outColector;
             #endregion
 
@@ -218,11 +230,14 @@ namespace SolCAD_v2.Forms
 
             string outEnergia = $"{baterias}\tBaterias {tipoBateria}\r\n\n" +
                                 $"{unionesSerie}\tUniones serie {bateriaCalibre} mm2\r\n\n" +
-                                $"-\tPeso del banco {pesoBanco:F1} Kgs\r\n\n" +
-                                $"-\tVolumen del banco {volumenBanco:f2} m3\r\n\n" +
                                 $"{terminal}\tTerminal de ojo para 6mm\r\n\n" +
                                 $"1\tBreaker doble {bateriaAuto} Amp\r\n\n" +
-                                $"{tapa}\tTapa Borne de goma";
+                                $"{tapa}\tTapa Borne de goma\r\n" +
+                                "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\r\n" +
+                                "Resultado Calculos:\r\n\n" +
+                                $"-\tPeso del banco {pesoBanco:F1} Kgs\r\n\n" +
+                                $"-\tVolumen del banco {volumenBanco:f2} m3"
+                                ;
             txtEnergia.Text = outEnergia;
             #endregion
 
@@ -388,7 +403,9 @@ namespace SolCAD_v2.Forms
             resultado.NOV = listGeneracion[10] - a.NOV;
             resultado.DIC = listGeneracion[11] - a.DIC;
 
-            var listAhorro = resultado.ToDoubleArray().Select(r => 113 * r).ToList();
+            var precio = precioKwh != 0 ? precioKwh : 113;
+
+            var listAhorro = resultado.ToDoubleArray().Select(r => precio * r).ToList();
             NumberFormatInfo nfi = new NumberFormatInfo
             {
                 CurrencySymbol = "$",
@@ -399,6 +416,8 @@ namespace SolCAD_v2.Forms
                 NegativeSign = "-"
             };
             List<string> listAhorroFormateado = listAhorro.Select(r => r.ToString("$ #,##0;$ -#,##0;$  \"-\"_ ;_ @_", nfi)).ToList();
+
+            tableAhorro = new Table(13);
 
             tableAhorro.AddHeaderCell(" ");
             tableAhorro.AddHeaderCell("ENE");
@@ -488,6 +507,7 @@ namespace SolCAD_v2.Forms
         private static bool chkAhorro;
         private static int formWidth;
         private static int formHeight;
+        private static double precioKwh;
 
         private void picExport_Click(object sender, EventArgs e)
         {
@@ -501,7 +521,16 @@ namespace SolCAD_v2.Forms
                 tbcDiseño.SelectedTab = tabInstalacion;
                 this.WindowState = FormWindowState.Normal;
                 this.Size = new Size(1300, 693);
-                string ubicacion = $"Region: {region}\r\n\nComuna: {com.COMUNA}\r\n\nLatitud: {com.LAT}\r\n\nLongitud: {com.LON}\r\n\n";
+                string ubicacion = string.Empty;
+                if (com != null)
+                {
+                    ubicacion = $"Region: {region}\r\n\nComuna: {com.COMUNA}\r\n\nLatitud: {com.LAT}\r\n\nLongitud: {com.LON}\r\n\n";
+                }
+                else
+                {
+                    ubicacion = $"Latitud: {Inicio.latitud}\r\n\nLongitud: {Inicio.longitud}\r\n\n";
+                }
+                
                 Exporter.ExportToPDF(txtColector.Text, txtEnergia.Text, txtConversion.Text, txtOtros.Text, ubicacion,
                     consumo, chkAhorro ? tableAhorro : null, chkAhorro, chkAhorro ? chrAhorro : null, chrBaterias, tbcDiseño.TabPages[1]);
                 tbcDiseño.SelectedTab = tabBom;

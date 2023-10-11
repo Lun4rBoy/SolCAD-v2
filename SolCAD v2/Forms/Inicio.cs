@@ -50,22 +50,26 @@ public partial class Inicio : Form
 
     private void LoadDataTable()
     {
-        if (cbx_Comuna.SelectedIndex == 0) return;
+        //if (cbx_Comuna.SelectedIndex == 0) return;
 
         #region Variables de entrada
 
-        var comuna = (from c in ListComunas where c.COMUNA == cbx_Comuna.SelectedItem select c).FirstOrDefault();
+
         double LAT = 0;
         double LON = 0;
         try
         {
-            LAT = comuna.LAT;
-            LON = comuna.LON;
+            var comuna = (from c in ListComunas where c.COMUNA == cbx_Comuna.SelectedItem select c).FirstOrDefault();
+            LAT = comuna == null ? Convert.ToDouble(txtLatitud.Text.Replace(".", ",").Trim()) : comuna.LAT;
+            LON = comuna == null ? Convert.ToDouble(txtLongitud.Text.Replace(".", ",").Trim()) : comuna.LON;
+            latitud = LAT;
+            longitud = LON;
         }
         catch (Exception ex)
         {
             Debug.WriteLine(ex.Message);
         }
+
 
         try
         {
@@ -234,12 +238,12 @@ public partial class Inicio : Form
     {
         if (cbx_Comuna.SelectedIndex != 0 && txtLatitud.Visible == false)
         {
-            var comuna = (from l in ListComunas where l.COMUNA == cbx_Comuna.SelectedItem.ToString() select l)
+            var comunaSearch = (from l in ListComunas where l.COMUNA == cbx_Comuna.SelectedItem.ToString() select l)
                 .FirstOrDefault();
-            if (comuna != null)
+            if (comunaSearch != null)
             {
-                txtInclinacion.Text = (Math.Truncate(comuna.LAT + -21) * -1).ToString();
-                Inicio.comuna = comuna;
+                txtInclinacion.Text = (Math.Truncate(comunaSearch.LAT + -21) * -1).ToString();
+                Inicio.comuna = comunaSearch;
             }
 
             txtInclinacion.Enabled = true;
@@ -284,8 +288,9 @@ public partial class Inicio : Form
             {
                 var comuna = (from l in ListComunas where l.COMUNA == cbx_Comuna.SelectedItem.ToString() select l)
                     .FirstOrDefault();
-                txtLatitud.Text = comuna != null ? comuna.LAT.ToString() : "";
-                txtLongitud.Text = comuna != null ? comuna.LON.ToString() : "";
+                txtLatitud.Text = comuna != null ? comuna.LAT.ToString() : txtLatitud.Text != "" ? txtLatitud.Text : "";
+                txtLongitud.Text = comuna != null ? comuna.LON.ToString() : txtLongitud.Text != "" ? txtLongitud.Text : "";
+                Inicio.comuna = null;
             }
             catch
             {
@@ -306,6 +311,11 @@ public partial class Inicio : Form
             btnCordenadas.Text = "Manual";
             lblRegion.Location = new Point(6, 37);
             lblComuna.Location = new Point(6, 66);
+            try
+            {
+                Inicio.comuna = (from l in ListComunas where l.COMUNA == cbx_Comuna.SelectedItem.ToString() select l).FirstOrDefault();
+            }
+            catch{}
         }
     }
 
@@ -314,6 +324,8 @@ public partial class Inicio : Form
         if (cbx_Comuna.Visible) return;
         if (string.IsNullOrEmpty(txtLatitud.Text) || string.IsNullOrEmpty(txtLongitud.Text))
         {
+            var lon = txtLongitud.Text.Trim().Replace(".", ",");
+            if (Double.TryParse(lon, out longitud)) { }
             txtInclinacion.Enabled = false;
             return;
         }
@@ -362,6 +374,20 @@ public partial class Inicio : Form
         {
             a = AhorroSheets();
             if (a == null) return;
+            try
+            {
+                var precio = txtPrecioKwh.Text.Trim().Replace(".", ",");
+                if (Double.TryParse(precio, out prcKw))
+                {
+                }
+                else
+                {
+                    MessageBox.Show("Valor incorrecto en precio Kw!");
+                    return;
+                }
+            }
+            catch { }
+
         }
         var newDis = new Diseño(this, c, a);
         dis = newDis;
@@ -523,6 +549,7 @@ public partial class Inicio : Form
 
     private void GuardarProyecto()
     {
+        list.ForceDataGrid();
         appState = new AppState
         {
             InformacionClimatica = InformacionClimatica,
@@ -539,6 +566,8 @@ public partial class Inicio : Form
             RadPropose = RadPropose,
             DesviationLost = DesviationLost,
             INC = INC,
+            LAT = latitud,
+            LON = longitud,
             inclinacion = txtInclinacion.Text,
             ComunaSelectedIndex = cbx_Comuna.SelectedIndex,
             RegionSelectedIndex = cbx_Region.SelectedIndex,
@@ -557,8 +586,11 @@ public partial class Inicio : Form
             TxtOct = txtOct.Text,
             TxtNov = txtNov.Text,
             TxtDic = txtDic.Text,
+            TxtKwh = txtPrecioKwh.Text,
             PorcentajePerdidas = PorcentajePerdidas
         };
+
+
 
         if (!Directory.Exists(projectsFolder))
         {
@@ -663,6 +695,10 @@ public partial class Inicio : Form
             cbx_Region.SelectedIndex = appState.RegionSelectedIndex;
             region = cbx_Region.SelectedItem.ToString();
             cbx_Comuna.SelectedIndex = appState.ComunaSelectedIndex;
+            txtLatitud.Text = appState.LAT.ToString();
+            txtLongitud.Text = appState.LON.ToString();
+            longitud = appState.LON;
+            latitud = appState.LAT;
             txtInclinacion.Text = appState.inclinacion;
             cbxPanel.SelectedIndex = appState.PanelSelectedIndex;
             cbxDescargaMax.SelectedIndex = appState.DescargaMaxSelectedIndex;
@@ -680,6 +716,7 @@ public partial class Inicio : Form
             txtOct.Text = appState.TxtOct;
             txtNov.Text = appState.TxtNov;
             txtDic.Text = appState.TxtDic;
+            txtPrecioKwh.Text = appState.TxtKwh;
 
             cond = new Condiciones(c, this);
             btnCondicionesDiseño.Enabled = TotalCorregido > 0;
@@ -765,7 +802,9 @@ public partial class Inicio : Form
     public static List<Panel> listaPaneles = Controller_Equipo.ListaPaneles();
     public static List<Inversor> listaInversores = Controller_Equipo.ListaInversores();
 
-    public static Comuna comuna = new();
+    public static Comuna? comuna = null;
+    public static double latitud = 0;
+    public static double longitud = 0;
 
     public static double ConsumoPromedio;
     public static double PerdidasConversion;
@@ -792,6 +831,8 @@ public partial class Inicio : Form
     public int screenHeight = Screen.PrimaryScreen.Bounds.Height;
     public static string rootDirectory = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
     public string projectsFolder = Path.Combine(rootDirectory, "Proyectos");
+
+    public static double prcKw;
 
     #endregion VariablesGlobales
 
@@ -842,5 +883,12 @@ public partial class Inicio : Form
     private void ayudaToolStripMenuItem_Click(object sender, EventArgs e)
     {
         Ayuda();
+    }
+
+    private void txtLatitud_TextChanged(object sender, EventArgs e)
+    {
+        var lat = txtLatitud.Text.Trim().Replace(".", ",");
+        if (Double.TryParse(lat, out latitud)){}
+
     }
 }

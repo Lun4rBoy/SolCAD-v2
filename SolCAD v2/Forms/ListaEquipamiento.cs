@@ -45,9 +45,9 @@ namespace SolCAD_v2.Forms
 
             try
             {
-                txtPromedioTotal.Text = Inicio.ConsumoPromedio.ToString();
-                txtPerConversion.Text = Inicio.PerdidasConversion.ToString();
-                txtTotalCorregido.Text = Inicio.TotalCorregido.ToString();
+                txtPromedioTotal.Text = Inicio.ConsumoPromedio.ToString("F1");
+                txtPerConversion.Text = Inicio.PerdidasConversion.ToString("F1");
+                txtTotalCorregido.Text = Inicio.TotalCorregido.ToString("F1");
                 txtPorcientoPer.Text = Inicio.PorcentajePerdidas;
                 ListaEquipo = listaEquipos();
             }
@@ -63,6 +63,11 @@ namespace SolCAD_v2.Forms
             Inicio.SetDataGridView(dgEquipamiento);
             Hide();
             formInicio.ActualizarPosicion();
+        }
+
+        public void ForceDataGrid()
+        {
+            Inicio.SetDataGridView(dgEquipamiento);
         }
 
         public List<Consumo> listaEquipos()
@@ -109,7 +114,12 @@ namespace SolCAD_v2.Forms
         private void btnSave_Click(object sender, EventArgs e)
         {
             Calculos();
-            MessageBox.Show("Listado almacenado!");
+            if (!txtPorcientoPer.Text.Equals("0") && !txtPorcientoPer.Text.Equals("0%") &&
+                !txtPorcientoPer.Text.Trim().Equals(""))
+            {
+                MessageBox.Show("Listado y calculos almacenado!");
+            }
+
             //if (ListaEquipo.Count >0) Hide();
         }
 
@@ -130,6 +140,7 @@ namespace SolCAD_v2.Forms
                 MessageBox.Show("El listado esta vacio, ingrese al menos 1 fila!");
                 return;
             }
+            Inicio.SetDataGridView(dgEquipamiento);
             foreach (var row in ListaEquipo)
             {
                 Inicio.ConsumoPromedio += row.SubTotal;
@@ -175,7 +186,7 @@ namespace SolCAD_v2.Forms
             txtPerConversion.Text = Math.Round(Inicio.PerdidasConversion, 1).ToString();
             txtTotalCorregido.Text = Math.Round(Inicio.TotalCorregido, 1).ToString();
             Inicio.PorcentajePerdidas = txtPorcientoPer.Text;
-
+            
         }
 
         private void dgEquipamiento_KeyDown(object sender, KeyEventArgs e)
